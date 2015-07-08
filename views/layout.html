@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="https://www.facebook.com/2008/fbml" itemscope="itemscope" itemtype="http://schema.org/Product">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+
+	<title>Agronet</title>
+
+	{% for file in libraryIndex.bowerCss %}
+	<link rel="stylesheet" href="{{file}}">
+	{% endfor %}
+	{% for file in libraryIndex.css %}
+	<link rel="stylesheet" href="{{file}}">
+	{% endfor %}
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+	<div id="fb-root"></div>
+	<section class="content">
+		{% block content %}{% endblock %}
+	</section>
+
+	{% for file in libraryIndex.bowerJs %}
+	<script type="text/javascript" src="{{file}}"></script>
+	{% endfor %}
+	{% for file in libraryIndex.js %}
+	<script type="text/javascript" src="{{file}}"></script>
+	{% endfor %}
+</body>
+
+</html>
