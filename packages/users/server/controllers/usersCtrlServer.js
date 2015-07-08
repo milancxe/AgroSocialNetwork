@@ -3,6 +3,7 @@
 var mongoose = require('mongoose');
 var UserModel = mongoose.model('UserModel');
 var UserCredentialModel = mongoose.model('UserCredentialModel');
+var utils = require('../../../../utils/utils.js');
 
 exports.createUser = function (req, res, next) {
 
@@ -37,4 +38,28 @@ exports.createUser = function (req, res, next) {
         });
         
     });
+};
+
+
+exports.logoutUser = function (req, res) {
+     var cookies = [];
+     if(req.headers.cookie!==null){
+        req.headers.cookie.split(';').forEach(function( cookie ) {
+            var parts = cookie.split('=');
+            cookies[ parts[ 0 ].trim() ] = ( parts[ 1 ] || '' ).trim();
+        });
+
+        if(cookies.remember_me) {
+            //delete me from Token db before you delete my cookie
+            utils.deleteMeFromToken(req.user, function(err,ok){
+                if(err){
+                    console.log(err);
+                }
+                res.clearCookie('remember_me');
+            });
+        }
+    }
+    req.logout();
+    res.send(200);
+    //res.redirect('/');
 };

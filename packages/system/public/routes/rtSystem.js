@@ -20,22 +20,22 @@ angular.module('agronet.system').config(['$stateProvider', '$urlRouterProvider',
 						//resolve header
 						templateProvider: ['$rootScope','$templateFactory','CheckAuth', function($rootScope,$templateFactory,CheckAuth) {
 							var resolveView=function(resolve){
-								/*if ( $rootScope.user){
-									return $templateFactory.fromUrl('users/public/views/header/userHeader.html');
-								}else{*/
+								if ( $rootScope.user){
+									return $templateFactory.fromUrl('users/public/views/headers/loggedUserHeader.html');
+								}else{
 									return $templateFactory.fromUrl('system/public/views/headers/headerLoginNavbar.html');
-							//	}
+								}
 							};
-							/*if(!$rootScope.startUserChecked){
+							if(!$rootScope.startUserChecked){
 								var qUser=CheckAuth.checkUser();
 								if(qUser){
 									return qUser.then(resolveView);
 								}else{
 									return resolveView();
 								}
-							}else{*/
+							}else{
 								return resolveView();
-							//}
+							}
 
 						}]
 					},

@@ -40,6 +40,7 @@ module.exports = function(app) {
   	usernameField: 'email',
   	passwordField: 'password'
   },function(email, password, done) {
+    console.log('trazim u local strategiji');
   	UserCredentialModel.findOne({
   		email: email
   	}).populate('user').exec(function(err, userCredential) {
@@ -78,8 +79,8 @@ module.exports = function(app) {
     ));
 
     app.use(session({ 
-    	secret: 'nekaS1fraChallengera', 
-    	name:'challenger.sid',
+    	secret: 'secretAgronet', 
+    	name:'agronet.sid',
     	resave:true,
     	saveUninitialized:true
     }));

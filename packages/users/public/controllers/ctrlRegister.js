@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('agronet.users')
-.controller('ctrlRegister',['$scope', '$stateParams', 'User',
-function($scope, $stateParams, User){
+.controller('ctrlRegister',['$scope','$rootScope', '$stateParams','$state', 'User',
+function($scope, $rootScope, $stateParams, $state , User){
 	
 	console.log('radi kontroler za registrovanje korisnika');
 	$scope.editUser ={};
@@ -11,7 +11,8 @@ function($scope, $stateParams, User){
 
 		console.log($scope.editUser);
 		new User().createUser($scope.editUser, function(createdUser){
-			console.log('user has been created');
+			$rootScope.user=createdUser;
+			$state.go('ml.rhf.mainPage');
 		});
 
 	};
