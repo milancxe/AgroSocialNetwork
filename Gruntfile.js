@@ -39,8 +39,8 @@ module.exports = function(grunt) {
 // Project Configuration
 grunt.initConfig({
 	env : {
-		challenger : {
-			CHALLENGER_ENV : process.argv[2]==='production'?'production':'dev'
+		agronet : {
+			AGRONET_ENV : process.argv[2]==='production'?'production':'dev'
 		}
 	},
 	watch: {
@@ -84,7 +84,7 @@ grunt.initConfig({
 		},
 	},
 	uglify: {
-		challenger_min: {
+		agronet_min: {
 			files: {
 				'production/aggregated.js': paths.jsAll
 			}
