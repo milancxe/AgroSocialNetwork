@@ -1,20 +1,30 @@
-<div>
-	<h3>This is header</h3>
-	<div ng-controller="ctrlLogin">
-		<form id="login_form" ng-submit="loginUser()">
+<div class="containter">
+  <div class="row">
+    <nav class="navbar navbar-default c-menu-navbar" role="navigation">
 
-        <div class="row input-wrapper">
+      <div class="container">
+          <div class="navbar-header">
+              	<h3>This is header</h3>
+              	<div ng-controller="ctrlLogin">
+              		<form id="login_form" ng-submit="loginUser()">
 
-            <input required id="email" type="email" name="email" placeholder="email"
-                   ng-model="loginData.email">
+                      <div >
+
+                          <input required id="email" type="email" name="email" placeholder="email"
+                                 ng-model="loginData.email">
 
 
-            <input required id="password" type="password" name="password" placeholder="Password"
-                   ng-model="loginData.password">
+                          <input required id="password" type="password" name="password" placeholder="Password"
+                                 ng-model="loginData.password">
 
-            <button type="submit" class="submit_button">Login</button>
-        
-        </div>
-	</div>
-	<a ui-sref="ml.rhf.register" > Register</a>
+                          <button type="submit" class="submit_button">Login</button>
+                      
+                      </div>
+                  </form>
+              	</div>
+              	<a ui-sref="ml.rhf.register" > Register</a>
+          </div>      
+      </div>
+    </div>
+  </div>
 </div>

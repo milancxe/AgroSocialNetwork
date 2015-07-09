@@ -7,8 +7,6 @@ var utils = require('../../../../utils/utils.js');
 
 exports.createUser = function (req, res, next) {
 
-	console.log('spicili ste serverski kontroler');
-
     var user = new UserModel();
     user.provider = 'local';
     user.roles = ['authenticated'];

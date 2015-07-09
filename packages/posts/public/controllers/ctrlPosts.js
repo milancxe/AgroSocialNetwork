@@ -1,10 +1,13 @@
 'use strict';
 
 angular.module('agronet.posts')
-.controller('ctrlPosts',['$scope', '$stateParams',
-	function($scope, $stateParams){
+.controller('ctrlPosts',['$scope', '$stateParams','Post',
+	function($scope, $stateParams, Post){
 
-		console.log('main controller on posts has been summoned');
+		new Post().getAll(function(allPosts){
+
+			$scope.allPosts=allPosts;
+		});
 
 
 	}

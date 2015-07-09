@@ -1,0 +1,49 @@
+<div>
+	<form id="newPost_form" ng-submit="createNewPost()">
+	        <h2>Create new post</h2>
+	        <div class="row input-wrapper">
+	            <label class="col-lg-2 control-label">Title</label>
+	            <input required id="title" type="text" name="title" placeholder="Title"
+	                   ng-model="newPost.title">
+	            <div ng-show="error.title">{{error.title}}</div>
+	        </div>
+
+	        <div class="row input-wrapper">
+	            <label class="col-lg-2 control-label">Description</label>
+	            <input required id="description" type="text" name="description" placeholder="Description"
+	                   ng-model="newPost.description">
+	            <div ng-show="error.description">{{error.description}}</div>
+	        </div>
+
+	        
+
+	        <div class="row input-wrapper form-group">
+	         <!--   <label class="col-md-4 control-label">Profile picture</label>
+	            <div class="col-md-8">
+	                <input type="file" nv-file-select="" uploader="uploader" accept="image/*"/>
+	            </div>
+	             <div class="thumbWrapper col-md-12">
+	                <ul class="thumbList">
+	                    <li ng-repeat="item in  uploader.queue">
+	                        <strong>{{ item.file.name }}</strong>
+	                        <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+	                        <div class="progress" style="margin-bottom: 0;">
+	                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+	                        </div>
+	                        <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+	                        <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+	                        <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+	                        <a class="btn" data-ng-click="item.remove()">
+	                            <i class="glyphicon glyphicon-trash"></i>
+	                        </a>
+	                    </li>
+	                </ul>
+	            </div> -->
+	        </div>
+
+	        <div class="row button_register">
+	            <button type="submit" class="submit_button">Sign up</button>
+	        </div>
+	    </form>
+
+</div>
