@@ -1,8 +1,10 @@
-<div>
+<div class="containter">
 
-<h4>this is the result on main page</h4>
-	<div ng-repeat="post in allPosts">
-  		{{post.title}}
-  		{{post.description}}
+			<h4 class="text-center">Posts of other peolpe</h4 class="row">
+			<div ng-repeat="post in allPosts" class="row post_basic">
+	  			{{post.title}}
+	  			{{post.description}}
+			</div>
+
 	</div>
 </div>
