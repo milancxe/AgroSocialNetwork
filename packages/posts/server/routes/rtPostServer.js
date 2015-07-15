@@ -8,14 +8,14 @@ var passport=require('passport');*/
 
 module.exports = function (app) {
 
-	app.route('/createPost')
+	app.route('/posts')
+		.get(posts.getAllPosts)
         .post(posts.createPost);
 
     app.route('/posts/:postId')
         .get(posts.getOnePost);
 
-    app.route('/posts')
-        .get(posts.getAllPosts);
+        
 
 
     app.param('postId', posts.post);

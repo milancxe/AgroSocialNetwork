@@ -17,9 +17,10 @@ var PostModel= new Schema({
         type: Schema.ObjectId,
         ref: 'UserModel'
     },
-    profilePicture: {
-        type: String
-    }
+    postImage: [{
+        type: String,
+        trim: true
+    }]
 
 });
 

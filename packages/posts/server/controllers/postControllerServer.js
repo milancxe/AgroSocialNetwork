@@ -30,8 +30,8 @@ exports.getAllPosts=function(req,res){
 exports.createPost = function (req, res, next) {
 
 
-	var newPost = new PostModel();
-
+	var newPost = new PostModel(req.body);
+	console.log(req.body);
 	newPost.title=req.body.title;
 	newPost.description= req.body.description;
 	newPost.author=req.user;

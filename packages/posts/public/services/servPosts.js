@@ -2,15 +2,15 @@
 
 angular.module('agronet.posts').factory('Post', ['$resource','$http',
     function($resource,$http) {
-        var PostResource = $resource('');
+        var PostResource = $resource('/posts/:postId',{postId:'@_id'});
 
-        PostResource.prototype.createNewPost=function(newPost,next){
+        /*PostResource.prototype.createNewPost=function(newPost,next){
         	$http.post('createPost',newPost)
         	.success(function(data, status, headers, config){
         		if (next) next(data);
         	});
 
-        };
+        };*/
         PostResource.prototype.getOne=function(postId,next){
             $http.get('posts/'+postId)
             .success(function(data, status, headers, config){

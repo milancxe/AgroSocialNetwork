@@ -1,10 +1,14 @@
 <div class="containter">
 
-			<h4 class="text-center">Posts of other peolpe</h4 class="row">
-			<div ng-repeat="post in allPosts" class="row post_basic">
-	  			{{post.title}}
-	  			{{post.description}}
-			</div>
+			<h4 class="text-center">Posts of other people</h4 class="row">
+			
+            <!--Body content-->
+            <ul class="ul">
+                <li ng-repeat="post in allPosts">
+                    <div ng-show-small-post post="post" all-challenges="allPosts"/>
+                </li>
+            </ul>
+        </div>
 
 	</div>
 </div>

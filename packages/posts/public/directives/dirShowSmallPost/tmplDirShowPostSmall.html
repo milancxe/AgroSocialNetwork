@@ -1,0 +1,19 @@
+<div class="post_basic" >
+	<div class="row">
+		<div ng-click="showPost()"><h4>Title:{{post.title}}</h4></div>
+		<div ng-click="showPost()">Description:{{post.description}}</div>
+	</div>
+	<div class="row">
+		<h5> 
+			<span >
+				<a class="btn" href="/#!/posts/{{post._id}}/edit">
+					<i class="glyphicon glyphicon-edit"></i>
+				</a>
+				<a class="btn" ng-click="remove(post)">
+					<i class="glyphicon glyphicon-trash"></i>
+				</a>
+			</span>
+			
+		</h5>
+	</div>
+</div>
