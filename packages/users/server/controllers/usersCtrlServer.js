@@ -61,3 +61,22 @@ exports.logoutUser = function (req, res) {
     res.send(200);
     //res.redirect('/');
 };
+
+exports.editProfile=function(req,res){
+
+    console.log('treba da promenim informacije o useru:');
+    console.log(req.body);
+
+    UserModel.findOne({_id:req.body._id}).exec(function(error,user){
+        console.log('nasao sam ga:');
+        console.log(user);
+        user.lastName=req.body.lastName;
+        user.username=req.body.username;
+        user.firstName=req.body.firstName;
+
+        user.save(function(err){
+            if(err) res.send(400);
+            res.send(200,user);
+        });
+    });
+};

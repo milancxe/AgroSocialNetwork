@@ -6,10 +6,13 @@ angular.module('agronet.posts')
 
 
 		new Post().getOne($stateParams.postId,function(post){
-			console.log('pribavljam post');
-			console.log(post);
 
 			$scope.post=new Post(post);
+			console.log('ovaj post ima vise slika:');
+			console.log($scope.post.postImage);
+
+			$scope.images=$scope.post.postImage;
+			
 		});
 		
 

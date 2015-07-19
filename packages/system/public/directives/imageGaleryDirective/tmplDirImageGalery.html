@@ -1,0 +1,12 @@
+<div class="container post_basic" >
+
+	<div class="row text-center">
+						
+		<img ng-src="{{'/files/post/851/'+selectedImage}}" />
+	</div>
+	<div class="row">
+		<div class="coll-md-4" ng-repeat="image in allImages" ng-click="selectImage(image)">
+			<img ng-src="{{'/files/post/160/'+image}}" />
+		</div>
+	</div>
+</div>

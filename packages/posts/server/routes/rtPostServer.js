@@ -13,7 +13,8 @@ module.exports = function (app) {
         .post(posts.createPost);
 
     app.route('/posts/:postId')
-        .get(posts.getOnePost);
+        .get(posts.getOnePost)
+        .delete(posts.deletePost);
 
         
 

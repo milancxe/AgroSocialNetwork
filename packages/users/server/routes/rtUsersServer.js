@@ -58,4 +58,8 @@ module.exports = function (app) {
     	.get(users.logoutUser);
 
 
+    app.route('/users/editProfile')
+        .post(users.editProfile);
+
+
 };

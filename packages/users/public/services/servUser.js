@@ -12,6 +12,13 @@ angular.module('agronet.users').factory('User', ['$resource','$http',
 
         };
 
+        UserResource.prototype.editProfile=function(newUserData,next){
+            $http.post('/users/editProfile',newUserData)
+            .success(function(data, status, headers, config){
+                if (next) next(data);
+            });
+        };
+
         UserResource.prototype.loginUser=function(user,next){
         	console.log(user.email,user.password,user.remember_me);
         	$http.post('userLogin',{ email:user.email,password:user.password,remember_me:user.remember_me })

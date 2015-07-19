@@ -1,0 +1,32 @@
+<div>
+    <div class="alert alert-danger animated fadeIn" ng-show="error.general">{{error.general}}</div>
+    <form id="register_form" ng-submit="editProfileData()">
+        <h2>Sign Up</h2>
+        <div class="row input-wrapper">
+            <label class="col-lg-2 control-label">Username</label>
+            <input required id="username" type="text" name="username" placeholder="Username"
+                   ng-model="editUser.username">
+            <div ng-show="error.username">{{error.username}}</div>
+        </div>
+
+        <div class="row input-wrapper">
+            <label class="col-lg-2 control-label">First name</label>
+            <input required id="firstName" type="text" name="firstName" placeholder="First name"
+                   ng-model="editUser.firstName">
+            <div ng-show="error.firstName" >{{error.firstName}}</div>
+        </div>
+
+        <div class="row input-wrapper">
+            <label class="col-lg-2 control-label">Last name</label>
+            <input required id="lastName" type="text" name="lastName" placeholder="Last name"
+                   ng-model="editUser.lastName">
+
+            <div ng-show="error.lastName" >{{error.lastName}}</div>
+        </div>
+
+
+        <div class="row button_register">
+            <button type="submit" class="submit_button">Save</button>
+        </div>
+    </form>
+</div>

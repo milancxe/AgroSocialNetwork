@@ -28,6 +28,15 @@ angular.module('agronet.users').config(['$stateProvider',
                 }
 
 
+            })
+            .state('ml.rhf.editProfile',{
+                url:'/users/editProfile',
+                views:{
+                    'view_body@ml':{
+                        templateUrl:'users/public/views/body/editProfile.html',
+                        controller:'ctrlEditProfile'
+                    }
+                }
             });
             
     }
