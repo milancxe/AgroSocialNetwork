@@ -15,4 +15,19 @@ On this page one post will be displayeddddd :D
 						<i class="glyphicon glyphicon-arrow-down"></i>
 					</a>
 	</div>
+
+	<br></br>
+	<div class="comment_basic">
+
+
+		<div class="row input-wrapper text-center ">
+	            <label class="col-lg-2 text-center">Add Comment</label>
+	            <input class="col col-lg-8 text-center rounded_input" required id="comment" type="text" name="comment" placeholder="Write Comment"
+	                   ng-model="comment.text">
+	            <a  class="btn btn-default col-lg-2 text-center" click="addComment()">Add Comment</a>
+	            <div ng-show="error.text">{{error.text}}</div>
+				
+	    </div>
+	    Comments:
+	<div>
 </div>
