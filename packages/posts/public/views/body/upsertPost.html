@@ -1,19 +1,30 @@
-<div>
-	<form id="newPost_form" ng-submit="createNewPost()">
+<div ng-init="init()">
+	<form id="newPost_form" ng-submit="savePost()">
 	        <h2>Create new post</h2>
 	        <div class="row input-wrapper">
 	            <label class="col-lg-2 control-label">Title</label>
 	            <input required id="title" type="text" name="title" placeholder="Title"
-	                   ng-model="newPost.title">
+	                   ng-model="post.title">
 	            <div ng-show="error.title">{{error.title}}</div>
 	        </div>
 
 	        <div class="row input-wrapper">
 	            <label class="col-lg-2 control-label">Description</label>
 	            <input required id="description" type="text" name="description" placeholder="Description"
-	                   ng-model="newPost.description">
+	                   ng-model="post.description">
 	            <div ng-show="error.description">{{error.description}}</div>
 	        </div>
+
+	        
+        	<div class="row" ng-if='!create'>
+				<div class="coll-md-4" ng-repeat="image in post.postImage">
+					<img ng-src="{{'/files/post/160/'+image}}" />
+					<button type="button" class="btn btn-danger btn-xs" ng-click="removeImage(image)">
+                            <span class="glyphicon glyphicon-trash"></span> Remove Image
+                    </button>
+				</div>
+			</div>
+        
 
 		    <div>
 		        <input type="file" nv-file-select="" uploader="uploader" accept="image/*" multiple/><br/>
@@ -24,6 +35,9 @@
 		                <div class="progress" style="margin-bottom: 0;">
 	                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
 	                    </div>
+	                    <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                            <span class="glyphicon glyphicon-trash"></span> Remove
+                        </button>
 		            </li>
 		        </ul>
 		        <div class="progress" style="margin-bottom: 0;">

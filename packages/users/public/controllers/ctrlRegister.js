@@ -12,7 +12,10 @@ function($scope, $rootScope, $stateParams, $state , User){
 		console.log($scope.editUser);
 		new User().createUser($scope.editUser, function(createdUser){
 			$rootScope.user=createdUser;
-			$state.go('ml.rhf.mainPage');
+			$state.go('ml.rhf.mainPage',{}, {
+	                    	reload: true,
+						    inherit: true}
+						);
 		});
 
 	};

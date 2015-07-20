@@ -20,6 +20,14 @@ var PostModel= new Schema({
     postImage: [{
         type: String,
         trim: true
+    }],
+    scoreUp:[{
+        type: Schema.ObjectId,
+        ref: 'UserModel'
+    }],
+    scoreDown:[{
+        type: Schema.ObjectId,
+        ref: 'UserModel'
     }]
 
 });

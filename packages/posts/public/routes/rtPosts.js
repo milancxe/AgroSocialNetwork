@@ -19,13 +19,22 @@ angular.module('agronet.posts').config(['$stateProvider',
                 url:'/newPost',
                 views:{
                     'view_body@ml':{
-                        templateUrl:'posts/public/views/body/newPost.html',
+                        templateUrl:'posts/public/views/body/upsertPost.html',
                         controller:'ctrlNewPost'
                     }
                 }
 
 
-            }).state('ml.rhf.onePost',{
+            }).state('ml.rhf.updatePost',{
+                url:'/posts/:postId/edit',
+                views:{
+                    'view_body@ml':{
+                        templateUrl:'posts/public/views/body/upsertPost.html',
+                        controller:'ctrlNewPost'
+                    }
+                }
+            })
+            .state('ml.rhf.onePost',{
 
                 url:'/posts/:postId',
                 views:{

@@ -2,15 +2,16 @@
 
 angular.module('agronet.posts').factory('Post', ['$resource','$http',
     function($resource,$http) {
-        var PostResource = $resource('/posts/:postId',{postId:'@_id'});
+        var PostResource = $resource('/posts/:postId',{
 
-        /*PostResource.prototype.createNewPost=function(newPost,next){
-        	$http.post('createPost',newPost)
-        	.success(function(data, status, headers, config){
-        		if (next) next(data);
-        	});
+                postId:'@_id'
+                
+            }, {
+                update:{
+                    method:'PUT'
+                }
+            });
 
-        };*/
         PostResource.prototype.getOne=function(postId,next){
             $http.get('posts/'+postId)
             .success(function(data, status, headers, config){
@@ -22,6 +23,13 @@ angular.module('agronet.posts').factory('Post', ['$resource','$http',
             $http.get('posts')
             .success(function(data,status,headers,config){
                 if(next) next(data);
+            });
+        };
+
+        PostResource.prototype.votePost=function(postId,voteType,next){
+            $http.post('posts/vote/'+postId,{ voteType:voteType })
+            .success(function(data, status, headers, config){
+                if (next) next(data);
             });
         };
         

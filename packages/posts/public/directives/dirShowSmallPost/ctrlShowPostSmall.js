@@ -23,13 +23,16 @@ function($scope, Post, $stateParams, $sce, dialogs,$location){
 	$scope.showPost=function(){
 		 $location.path('/posts/'+$scope.post._id);
 	};
+
+	/*$scope.update=function(){
+		$location.path('posts/'+$scope.post._id+'/edit');
+	};*/
+
     $scope.remove = function(post) {
         if(post) {
         	var dlg = dialogs.confirm('Please confirm', 'Are you sure you want to delete post: ' + post.title + ' ?');
 			dlg.result.then(function(btn) {
 				new Post(post).$remove();
-				console.log('all posts su:');
-				console.log($scope.allPosts);
 	            for(var i in $scope.allPosts) {
 	                if($scope.allPosts[i]._id === post._id) {
 	                    $scope.allPosts.splice(i, 1);

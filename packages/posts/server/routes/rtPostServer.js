@@ -14,8 +14,14 @@ module.exports = function (app) {
 
     app.route('/posts/:postId')
         .get(posts.getOnePost)
+        .put(posts.update)
         .delete(posts.deletePost);
 
+    app.route('/posts/:postId/deleteImage')
+    	.post(posts.deleteImageFromPost);
+
+    app.route('/posts/vote/:postId')
+        .post(posts.voteOnPost);
         
 
 
