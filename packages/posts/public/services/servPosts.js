@@ -32,6 +32,22 @@ angular.module('agronet.posts').factory('Post', ['$resource','$http',
                 if (next) next(data);
             });
         };
+
+        PostResource.prototype.addComment=function(commentText,next){
+            var post=this;
+            $http.post('/posts/'+post._id+'/comment',{ commentText:commentText })
+            .success(function(data, status, headers, config){
+                if (next) next(data);
+            });
+        };
+
+        PostResource.prototype.getPostComments=function(next){
+            var post=this;
+            $http.get('/posts/'+post._id+'/comment')
+            .success(function(data, status, headers, config){
+                if (next) next(data);
+            });
+        };
         
 
         return PostResource;

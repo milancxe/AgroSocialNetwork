@@ -12,6 +12,11 @@ angular.module('agronet.posts')
 
 			$scope.images=$scope.post.postImage;
 
+			$scope.post.getPostComments(function(comments){
+				console.log(comments);
+				$scope.comments=comments;
+			});
+
 			$scope.score=0+$scope.post.scoreUp.length-$scope.post.scoreDown.length;
 
 		});
@@ -33,7 +38,14 @@ angular.module('agronet.posts')
 				$scope.score=0+$scope.post.scoreUp.length-$scope.post.scoreDown.length;
 			});
 		};
+		$scope.comment={};
+		$scope.addComment=function(){
 
+			$scope.post.addComment($scope.comment.text,function(response){
+				$scope.comments.push(response);
+			});
+
+		};
 
 	}
 ]);

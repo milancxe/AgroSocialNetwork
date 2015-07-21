@@ -22,6 +22,10 @@ module.exports = function (app) {
 
     app.route('/posts/vote/:postId')
         .post(posts.voteOnPost);
+
+    app.route('/posts/:postId/comment')
+        .get(posts.getCommentsOnPost)
+        .post(posts.commentOnPost);
         
 
 

@@ -3,6 +3,7 @@
 
 var mongoose = require('mongoose');
 var PostModel = mongoose.model('PostModel');
+var CommentModel = mongoose.model('CommentModel');
 var fs = require('fs');
 var _ = require('lodash');
 exports.post = function (req, res, next,id) {
@@ -193,4 +194,28 @@ exports.voteOnPost = function(req,res,next){
 		});
 		
 	}
+};
+
+exports.commentOnPost = function(req,res,next){
+
+
+
+	var comment = new CommentModel();
+	comment.text=req.body.commentText;
+	comment.author=req.user;
+	comment.post=req.post;
+	comment.save(function(err,comment){
+		if (err) res.json(500,{error:'Error occured not able to save comment try again'});
+		res.json(200,comment);
+	});
+};
+
+exports.getCommentsOnPost=function(req,res,next){
+	console.log('trazim komentare na post');
+
+	CommentModel.find({post:req.post._id}).populate('author').exec(function(err,posts){
+
+		if(err) res.send(500,{error:'I cannot find comments'});
+		res.send(200,posts);
+	});
 };

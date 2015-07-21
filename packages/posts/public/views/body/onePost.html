@@ -24,10 +24,18 @@ On this page one post will be displayeddddd :D
 	            <label class="col-lg-2 text-center">Add Comment</label>
 	            <input class="col col-lg-8 text-center rounded_input" required id="comment" type="text" name="comment" placeholder="Write Comment"
 	                   ng-model="comment.text">
-	            <a  class="btn btn-default col-lg-2 text-center" click="addComment()">Add Comment</a>
+	            <a  class="btn btn-default col-lg-2 text-center" ng-click="addComment()">Add Comment</a>
 	            <div ng-show="error.text">{{error.text}}</div>
 				
 	    </div>
+	    <br/>
 	    Comments:
+	    <div class="row">
+	            <div ng-repeat="comment in comments">
+	            	<h4> comment author: {{comment.author.username}}</h4>
+	            	<h4> comment text:{{comment.text}}</h4>
+	            </div>
+				
+	    </div>
 	<div>
 </div>
