@@ -48,6 +48,25 @@ angular.module('agronet.posts').factory('Post', ['$resource','$http',
                 if (next) next(data);
             });
         };
+
+        PostResource.prototype.addCommentReply=function(commentId,commentReplyText,next){
+
+            var post=this;
+            $http.post('/posts/'+post._id+'/comment/'+commentId,{ commentReplyText:commentReplyText })
+            .success(function(data, status, headers, config){
+                if (next) next(data);
+            });
+
+        };
+
+        PostResource.prototype.voteComment=function(value,commentId,next){
+
+            var post=this;
+            $http.post('/posts/'+post._id+'/comment/'+commentId+'/vote',{ value:value })
+            .success(function(data, status, headers, config){
+                if (next) next(data);
+            });
+        };
         
 
         return PostResource;
