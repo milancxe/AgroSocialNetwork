@@ -1,76 +1,80 @@
-<div>
+<div ng-controller="ctrlOnePost">
+<div ng-if="post">
 
-On this page one post will be displayeddddd :D
- 	<h2 class="row"> post title:{{post.title}}</h2>
- 	<h2 class="row"> post description:{{post.description}}</h2>
+	On this page one post will be displayeddddd :D
+	 	<h2 class="row"> post title:{{post.title}}</h2>
+	 	<h2 class="row"> post description:{{post.description}}</h2>
 
-	<div ng-Image-Galery all-images="images" ng-if="images">
-	</div>
-	<div>
-		Score: {{score}}
-		Vote: <a class="btn" href="" ng-click="voteUp()">
-						<i class="glyphicon glyphicon-arrow-up"></i>
-					</a>
-			<a class="btn" href="" ng-click="voteDown()">
-						<i class="glyphicon glyphicon-arrow-down"></i>
-					</a>
-	</div>
+		<div ng-Image-Galery all-images="images" ng-if="images">
+		</div>
+		<div>
+			Score: {{score}}
+			Vote: <a class="btn" href="" ng-click="voteUp()">
+							<i class="glyphicon glyphicon-arrow-up"></i>
+						</a>
+				<a class="btn" href="" ng-click="voteDown()">
+							<i class="glyphicon glyphicon-arrow-down"></i>
+						</a>
+		</div>
 
-	<br></br>
-	<div class="comment_basic" >
+		<br></br>
+		<div ng-Comments post='post' ></div>
+
+		<div class="comment_basic" >
 
 
-		<!-- <div class="row input-wrapper text-center ">
-	            <label class="col-lg-2 text-center">Add Comment</label>
-	            <input class="col col-lg-8 text-center rounded_input" required id="comment" type="text" name="comment" placeholder="Write Comment"
-	                   ng-model="comment.text">
-	            <a  class="btn btn-default col-lg-2 text-center" ng-click="addComment()">Add Comment</a>
-	            <div ng-show="error.text">{{error.text}}</div>
-				
-	    </div>
-	    <br/> -->
-	    Comments:
+			<!-- <div class="row input-wrapper text-center ">
+		            <label class="col-lg-2 text-center">Add Comment</label>
+		            <input class="col col-lg-8 text-center rounded_input" required id="comment" type="text" name="comment" placeholder="Write Comment"
+		                   ng-model="comment.text">
+		            <a  class="btn btn-default col-lg-2 text-center" ng-click="addComment()">Add Comment</a>
+		            <div ng-show="error.text">{{error.text}}</div>
+					
+		    </div>
+		    <br/> -->
+		    Comments:
 
-	    <div ng-comments post="post" ></div>
+		    <!-- <div ng-Comments post="post" ></div> -->
 
-	    <!-- <div class="row">
-	            <div ng-repeat="comment in comments">
-	            	<h4> comment author: {{comment.author.username}}</h4>
-	            	<h4> comment text:{{comment.text}}</h4>
-	            	<div>
-						Score: {{0+comment.scoreUp-comment.scoreDown}}
-						Vote: <a class="btn" href="" ng-click="voteComment(1,comment)">
-										<i class="glyphicon glyphicon-arrow-up"></i>
-									</a>
-							<a class="btn" href="" ng-click="voteComment(2,comment)">
-										<i class="glyphicon glyphicon-arrow-down"></i>
-									</a>
-					</div>
-	            	replies:
-	            	<div class="text-center" ng-repeat="reply in comment.replies">
-	            		autorrr:  {{reply.author}}
-	            		tekstttt:  {{reply.text}}
-	            		<div>
-							Score: {{score}}
-							Vote: <a class="btn" href="" ng-click="voteUp()">
+		    <!-- <div class="row">
+		            <div ng-repeat="comment in comments">
+		            	<h4> comment author: {{comment.author.username}}</h4>
+		            	<h4> comment text:{{comment.text}}</h4>
+		            	<div>
+							Score: {{0+comment.scoreUp-comment.scoreDown}}
+							Vote: <a class="btn" href="" ng-click="voteComment(1,comment)">
 											<i class="glyphicon glyphicon-arrow-up"></i>
 										</a>
-								<a class="btn" href="" ng-click="voteDown()">
+								<a class="btn" href="" ng-click="voteComment(2,comment)">
 											<i class="glyphicon glyphicon-arrow-down"></i>
 										</a>
 						</div>
-	            	</div>
-            		<a class=" btn " ng-click="showAddReplyForm=!showAddReplyForm">Add Reply</a>
-            		<div class="row" ng-if="showAddReplyForm">
-			            <input class="col col-lg-8 text-center rounded_input" required id="comment" type="text" name="commentReply" placeholder="Write Comment"
-			                   ng-model="commentReply.text">
-			            <a  class="btn btn-default col-lg-2 text-center" ng-click="addCommentReply(comment)">Add Reply</a>
-			            <div ng-show="error.text">{{error.text}}</div>
-			        </div>
+		            	replies:
+		            	<div class="text-center" ng-repeat="reply in comment.replies">
+		            		autorrr:  {{reply.author}}
+		            		tekstttt:  {{reply.text}}
+		            		<div>
+								Score: {{score}}
+								Vote: <a class="btn" href="" ng-click="voteUp()">
+												<i class="glyphicon glyphicon-arrow-up"></i>
+											</a>
+									<a class="btn" href="" ng-click="voteDown()">
+												<i class="glyphicon glyphicon-arrow-down"></i>
+											</a>
+							</div>
+		            	</div>
+	            		<a class=" btn " ng-click="showAddReplyForm=!showAddReplyForm">Add Reply</a>
+	            		<div class="row" ng-if="showAddReplyForm">
+				            <input class="col col-lg-8 text-center rounded_input" required id="comment" type="text" name="commentReply" placeholder="Write Comment"
+				                   ng-model="commentReply.text">
+				            <a  class="btn btn-default col-lg-2 text-center" ng-click="addCommentReply(comment)">Add Reply</a>
+				            <div ng-show="error.text">{{error.text}}</div>
+				        </div>
 
 
-	            </div>
-				
-	    </div> -->
-	<div>
+		            </div>
+					
+		    </div> -->
+		<div>
+	</div>
 </div>

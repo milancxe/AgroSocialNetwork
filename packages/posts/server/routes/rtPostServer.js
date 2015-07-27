@@ -1,7 +1,7 @@
 'use strict';
 
 var posts= require('../controllers/postControllerServer.js');
-
+var comments=require('../controllers/commentControllerServer.js');
 /*var users = require('../controllers/usersCtrlServer.js');
 var utils = require('../../../../utils/utils.js');
 var passport=require('passport');*/
@@ -26,8 +26,14 @@ module.exports = function (app) {
     app.route('/posts/:postId/comment')
         .get(posts.getCommentsOnPost)
         .post(posts.commentOnPost);
-        
+
+    app.route('/posts/:postId/comment/:commentId')
+        .post(comments.addCommentReply);
+
+    app.route('/posts/:postId/comment/:commentId/vote')
+        .post(comments.voteOnComment);
 
 
     app.param('postId', posts.post);
+    app.param('commentId',comments.comment);
 };

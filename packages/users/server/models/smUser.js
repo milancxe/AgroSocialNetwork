@@ -29,6 +29,17 @@ var UserModel= new Schema({
         type: String,
         default: 'local'
     },
+    votedComments: [{
+        comment: {
+            type: Schema.ObjectId,
+            ref: 'CommentModel',
+        },
+        val: {
+            type:Number,
+            default:0
+        }
+
+    }],
     facebook: {},
     twitter: {},
     github: {},

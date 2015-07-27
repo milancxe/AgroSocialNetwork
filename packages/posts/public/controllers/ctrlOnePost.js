@@ -6,15 +6,10 @@ angular.module('agronet.posts')
 
 		$scope.showAddReplyForm=false;
 
-		new Post().getOne($stateParams.postId,function(post){
+		 new Post().getOne($stateParams.postId,function(post){
 
-			$scope.post=new Post(post);
-
-
+			$scope.post =new Post(post);
 			$scope.images=$scope.post.postImage;
-
-			
-
 			$scope.score=0+$scope.post.scoreUp.length-$scope.post.scoreDown.length;
 
 		});

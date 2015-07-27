@@ -24,9 +24,32 @@ var CommentModel= new Schema({
         type: Number,
         default:0
     },
+    created: {
+        type: Date,
+        default: Date.now
+    },
     replies:[{
-        type: Schema.ObjectId,
-        ref: 'PostModel'
+        author:{
+            type: Schema.ObjectId,
+            ref: 'UserModel'
+        },
+        text:{
+            type: String,
+            trim: true
+        },
+        scoreUp:{
+            type:Number,
+            default:0
+        },
+        scoreDown:{
+            type: Number,
+            default:0
+        },
+        created: {
+            type: Date,
+            default: Date.now
+        }
+
     }]
 
 
