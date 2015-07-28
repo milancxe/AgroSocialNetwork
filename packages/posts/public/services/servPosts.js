@@ -67,6 +67,15 @@ angular.module('agronet.posts').factory('Post', ['$resource','$http',
                 if (next) next(data);
             });
         };
+
+        PostResource.prototype.voteReplyComment=function(value,commentId,replyId,next){
+
+            var post=this;
+            $http.post('/posts/'+post._id+'/comment/'+commentId+'/voteReply',{ value:value, replyId:replyId })
+            .success(function(data, status, headers, config){
+                if (next) next(data);
+            });
+        };
         
 
         return PostResource;

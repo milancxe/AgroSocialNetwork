@@ -33,6 +33,8 @@ module.exports = function (app) {
     app.route('/posts/:postId/comment/:commentId/vote')
         .post(comments.voteOnComment);
 
+    app.route('/posts/:postId/comment/:commentId/voteReply')
+        .post(comments.voteOnReplyComment);
 
     app.param('postId', posts.post);
     app.param('commentId',comments.comment);

@@ -1,7 +1,4 @@
 <div>
-
-
-	iz direktive
 	<div class="row input-wrapper text-center ">
 	            <label class="col-lg-2 text-center">Add Comment</label>
 	            <input class="col col-lg-8 text-center rounded_input" required id="comment" type="text" name="comment" placeholder="Write Comment"
@@ -17,29 +14,12 @@
 		<div ng-if="comment">
 		 	<h4> comment author: {{comment.author.username}}</h4>
 			<h4> comment text:{{comment.text}}</h4>
-			<!-- <div>
-				Score: 
-				Vote: <a class="btn" href="" ng-click="voteComment(1,comment)">
-								<i class="glyphicon glyphicon-arrow-up"></i>
-							</a>
-					<a class="btn" href="" ng-click="voteComment(2,comment)">
-								<i class="glyphicon glyphicon-arrow-down"></i>
-							</a>
-			</div> -->
 			<div ng-vote-comment comment='comment'></div>
 			replies:
-			<div class="text-center" ng-repeat="reply in comment.replies">
+			<div ng-if="comment.replies" class="text-center" ng-repeat="reply in comment.replies">
 				autorrr:  {{reply.author}}
 				tekstttt:  {{reply.text}}
-				<div>
-					Score: {{score}}
-					Vote: <a class="btn" href="" ng-click="voteUp()">
-									<i class="glyphicon glyphicon-arrow-up"></i>
-								</a>
-						<a class="btn" href="" ng-click="voteDown()">
-									<i class="glyphicon glyphicon-arrow-down"></i>
-								</a>
-				</div>
+				<div ng-vote-reply-comment post="post" reply-comment="reply"></div>
 			</div>
 			<a class=" btn " ng-click="showAddReplyForm=!showAddReplyForm">Add Reply</a>
 			<div class="row" ng-if="showAddReplyForm">

@@ -143,3 +143,141 @@ exports.voteOnComment = function(req,res,next){
 	/**/
 
 };
+
+exports.voteOnReplyComment = function(req,res,next){
+
+	console.log('treba da glasam na reply komentar:');
+	var reply={};
+	var replyIndex=-1;
+	console.log('user je:');
+	console.log(req.user);
+	for(var i=0; i<req.comment.replies.length;i=i+1){
+
+		if(req.comment.replies[i]._id.equals(req.body.replyId)){
+			console.log('nasao sam reply');
+			reply=req.comment.replies[i];
+			replyIndex=i;
+		}
+	}
+	var voted=false;
+	var votedValue=0;
+	var votedIndex=0;
+	//first to see if I already voted on this post!
+
+	for(var i=0;i<req.user.votedReplyComments.length;i=i+1){
+		console.log('u foru gledam dal sam glasao');
+		if (req.user.votedReplyComments[i].replyComment.equals(reply._id)){
+			voted=true;
+			votedValue=req.user.votedReplyComments[i].val;
+			votedIndex=i;
+			console.log('glasao sam');
+			break;
+		}
+
+	}
+
+	if(voted===false){	
+		var voting={};
+
+
+		voting.replyComment=reply._id;
+		voting.val = req.body.value;
+		console.log(voting);
+
+		req.user.votedReplyComments.push(voting);
+		req.user.save(function(err,replyComment){
+			if(err) res.send(500,{error:'error occured cannot vote on comment'});
+			if(req.body.value===1){
+				req.comment.replies[replyIndex].scoreUp=req.comment.replies[replyIndex].scoreUp+1;
+				req.comment.save(function(err,comment){
+						if (err) res.json(500,{error:'there was an error with voting'});
+						res.send(200,comment.replies[replyIndex]);
+					});
+			}else{
+				req.comment.replies[replyIndex].scoreDown=req.comment.replies[replyIndex].scoreDown+1;
+				req.comment.save(function(err,comment){
+						if (err) res.json(500,{error:'there was an error with voting'});
+						res.send(200,comment.replies[replyIndex]);
+					});
+			}
+		});
+
+	}else{
+		//if he already upvoated a comment
+		if(votedValue===1){
+
+			//if i pressed upvote again
+			if(req.body.value===1){
+				console.log('vrednost je 1 treba da stavim na 0 jer je opet stisnuo 1');
+				req.user.votedReplyComments.splice(votedIndex,1);
+				req.user.save(function(err,user){
+					if(err) res.send(500,{error:'there was an error with voting'});
+					req.comment.replies[replyIndex].scoreUp=req.comment.replies[replyIndex].scoreUp-1;
+					req.comment.save(function(err,comment){
+						if (err) res.json(500,{error:'there was an error with voting'});
+						res.send(200,comment.replies[replyIndex]);
+					});
+				});
+				
+			}else{
+
+
+				req.user.votedReplyComments.splice(votedIndex,1);
+				var voting={};
+				voting.replyComment=reply._id;
+				voting.val = req.body.value;
+
+				req.user.votedReplyComments.push(voting);
+				req.user.save(function(err,user){
+					if(err) res.json(500,{error:'there was an error with voting'});
+					req.comment.replies[replyIndex].scoreUp=req.comment.replies[replyIndex].scoreUp-1;
+					req.comment.replies[replyIndex].scoreDown=req.comment.replies[replyIndex].scoreDown+1;
+					req.comment.save(function(err,comment){
+						if (err) res.json(500,{error:'there was an error with voting'});
+						res.send(200,comment.replies[replyIndex]);
+					});
+				});
+			}
+			//do ovde gotovo
+		}else if(votedValue===2){
+			console.log('glasao sam sa 2');
+			console.log('i sad hocu sa :');
+			console.log(req.body.value);
+			if(req.body.value===2){
+
+				req.user.votedReplyComments.splice(votedIndex,1);
+				req.user.save(function(err,user){
+					if(err) res.json(500,{error:'there was an error with voting'});
+					req.comment.replies[replyIndex].scoreDown=req.comment.replies[replyIndex].scoreDown-1;
+					req.comment.save(function(err,comment){
+						if (err) res.json(500,{error:'there was an error with voting'});
+						res.send(200,comment.replies[replyIndex]);
+					});
+				});
+			}else{
+
+				req.user.votedReplyComments.splice(votedIndex,1);
+
+				var voting={};
+				voting.replyComment=reply._id;
+				voting.val = req.body.value;
+
+				req.user.votedReplyComments.push(voting);
+				req.user.save(function(err,user){
+					if(err) res.json(500,{error:'there was an error with voting'});
+					req.comment.replies[replyIndex].scoreDown=req.comment.replies[replyIndex].scoreDown-1;
+					req.comment.replies[replyIndex].scoreUp=req.comment.replies[replyIndex].scoreUp+1;
+					req.comment.save(function(err,comment){
+						if (err) res.json(500,{error:'there was an error with voting'});
+						res.send(200,comment.replies[replyIndex]);
+					});
+				});
+			}
+		}else{
+			console.log('something strange happend');
+			res.send(500,{error:'there was an error with voting on comments try again'});
+		}
+	}
+
+
+};

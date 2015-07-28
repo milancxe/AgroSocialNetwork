@@ -40,6 +40,17 @@ var UserModel= new Schema({
         }
 
     }],
+    votedReplyComments: [{
+        replyComment: {
+            type: Schema.ObjectId,
+            ref: 'CommentModel.replies',
+        },
+        val: {
+            type:Number,
+            default:0
+        }
+
+    }],
     facebook: {},
     twitter: {},
     github: {},
