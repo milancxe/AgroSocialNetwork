@@ -55,8 +55,6 @@ exports.update= function(req,res,next){
 	var post=req.post;
 
 	if(req.body.deleteImages){
-		console.log('treba da pobrisem slike:');
-		console.log(req.body.deleteImages);
 		for(var k=0; k<req.body.deleteImages.length;k=k+1){
 
 			//treba da protrcim kroz niz slika na postu nadjem tu i obrisem je i sacuvam post
@@ -80,27 +78,6 @@ exports.update= function(req,res,next){
 	});
 	
 
-};
-
-exports.deleteImageFromPost= function(req,res,next){
-
-	/*var post=req.post;
-	//treba da protrcim kroz niz slika na postu nadjem tu i obrisem je i sacuvam post
-	for(var i=0;i<post.postImage.length;i=i+1){
-		if(post.postImage[i]===req.body.image){
-			for(var j=0;j<global.config.imageDimensions.length;j=j+1){
-				post.postImage.splice(i,1);
-            	fs.unlink(global.config.filePathPostImage() +global.config.imageDimensions[j]+'/'+ req.body.image);
-            	break;
-        	}
-		}
-	}
-	post.save(function(err,post){
-			if(err){
-				return res.json(500,{error:'Error occured while post delete'});
-			}
-			return res.json(200,post);
-	});*/
 };
 
 exports.deletePost = function(req,res,next){
@@ -129,9 +106,6 @@ exports.deletePost = function(req,res,next){
 
 exports.voteOnPost = function(req,res,next){
 
-	console.log('I should vote on this post:');
-	
-	console.log(req.body.voteType);
 	var voted=false;
 	var votedUp=false;
 	var votedDown=false;
@@ -211,11 +185,14 @@ exports.commentOnPost = function(req,res,next){
 };
 
 exports.getCommentsOnPost=function(req,res,next){
-	console.log('trazim komentare na post');
+
 
 	CommentModel.find({post:req.post._id}).populate('author').exec(function(err,posts){
 
-		if(err) res.send(500,{error:'I cannot find comments'});
-		res.send(200,posts);
+		CommentModel.populate(posts,{path: 'replies.author', model: 'UserModel'},function(err, posts){
+			if(err) res.send(500,{error:'I cannot find comments'});
+			res.send(200,posts);
+		});
+
 	});
 };

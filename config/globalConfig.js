@@ -13,6 +13,14 @@ config.filePathPostImage=function(){
 	}
 };
 
+config.fileProfilePicture=function(){
+	if(isWin){
+		return 'C:\\work\\agronet\\user\\';
+	}else{
+		return '/home/agronetUser/data/user/';
+	}
+};
+
 
 
 config.imageDimensions=[

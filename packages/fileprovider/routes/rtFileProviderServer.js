@@ -15,6 +15,12 @@ module.exports = function(app) {
     app.route('/files/uploadImage')
         .post(/*auth.requiresLogin,*/ hasAuthorization, fileprovider.uploadImage);
 
+        
+
+    app.route('/files/user/uploadImage')
+        .post(/*auth.requiresLogin,*/ hasAuthorization, fileprovider.uploadUserImage);
+
+
 
     app.param('fileSize', fileprovider.fileSize);
     app.param('filename', fileprovider.filename);

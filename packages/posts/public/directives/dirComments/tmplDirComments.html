@@ -17,7 +17,7 @@
 			<div ng-vote-comment comment='comment'></div>
 			replies:
 			<div ng-if="comment.replies" class="text-center" ng-repeat="reply in comment.replies">
-				autorrr:  {{reply.author}}
+				autorrr:  {{reply.author.username}}
 				tekstttt:  {{reply.text}}
 				<div ng-vote-reply-comment post="post" reply-comment="reply"></div>
 			</div>

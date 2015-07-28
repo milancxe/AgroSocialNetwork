@@ -19,7 +19,8 @@ var UserModel= new Schema({
         required: true
     },
     profilePicture: {
-        type: String
+        type: String,
+        trim: true
     },
     roles: {
         type: Array,

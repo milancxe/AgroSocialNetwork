@@ -3,6 +3,7 @@
 var fs = require('fs');
 var mongoose = require('mongoose');
 var PostModel = mongoose.model('PostModel');
+var UserModel=mongoose.model('UserModel');
 var multiparty= require('multiparty');
 var lwip = require('lwip');
 
@@ -49,7 +50,15 @@ var writeOneImage=function(image,sizeIndex,imageFolder,imageName,onSuccess){
 var writeImages=function(type,source,fileName,onSuccess){
 	var imageFolder='';
 	
-	imageFolder=global.config.filePathPostImage();
+	if(type==='user'){
+		imageFolder=global.config.fileProfilePicture();
+		console.log('user je');
+		console.log(imageFolder);
+	}else{
+		imageFolder=global.config.filePathPostImage();
+		console.log('post je');
+		console.log(imageFolder);
+	}
 	var extension=source.split('.').pop().toLowerCase();
 	//napravi sliku
 	lwip.open(source, function(err, image){
@@ -143,4 +152,54 @@ exports.uploadImage = function(req, res) {
 			}
 		});
 	});
+};
+
+exports.uploadUserImage=function(req, res){
+
+	console.log('uploadujem profilnu sliku');
+	var form = new multiparty.Form({
+		maxFilesSize:5000000
+	});
+	form.parse(req, function(err, fields, files) {
+
+		if (err) {
+			res.json(500,['bad request']);
+		}
+		UserModel.findOne({_id:fields.id}).exec(function(err, user) {
+			if (err) {
+				res.json(500,['bad request']);
+			}
+			if (!user){
+				res.json(500,['bad request']);
+			}
+			else {
+
+				var fileName = fields.id +'_'+ randomString(5);
+				user.profilePicture=fileName+ '.jpg';
+				user.save(function(err){});
+
+				var source = files.file[0].path;
+
+				writeImages('user',source,fileName,function(){
+					res.json(['ok']).status(200);
+				});
+			}
+		});
+	});
+
+};
+
+exports.getProfilePicture = function(req, res) {
+
+	console.log('spicio me je za prikaz profilne slike');
+	var filePath = global.config.fileProfilePicture() + '/' + req.fileSize + '/' + req.filename;
+	var stat = fs.statSync(filePath);
+
+	res.writeHead(200, {
+		'Content-Type': 'image/jpg',
+		'Content-Length': stat.size
+	});
+
+	var readStream = fs.createReadStream(filePath);
+	readStream.pipe(res);
 };

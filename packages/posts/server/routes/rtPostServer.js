@@ -17,8 +17,8 @@ module.exports = function (app) {
         .put(posts.update)
         .delete(posts.deletePost);
 
-    app.route('/posts/:postId/deleteImage')
-    	.post(posts.deleteImageFromPost);
+    /*app.route('/posts/:postId/deleteImage')
+    	.post(posts.deleteImageFromPost);*/
 
     app.route('/posts/vote/:postId')
         .post(posts.voteOnPost);

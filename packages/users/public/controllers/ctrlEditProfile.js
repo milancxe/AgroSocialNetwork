@@ -6,6 +6,7 @@ function($scope, $rootScope, $stateParams, $state , User){
 
 	//ovde ne valja
 	$scope.editUser=$scope.user;
+	console.log('editUser');
 
 	$scope.editProfileData=function(){
 		new User().editProfile($scope.editUser, function(changedData){

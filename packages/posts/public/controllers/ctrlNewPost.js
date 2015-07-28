@@ -50,7 +50,6 @@ angular.module('agronet.posts')
 	        }
 	    };
 
-
 		var uploadPhotos=function(uploader,postId){
             var numberOfItems = 0;
             if (uploader.queue.length > 0) {
