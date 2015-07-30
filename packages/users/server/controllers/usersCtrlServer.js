@@ -14,6 +14,15 @@ exports.user= function(req, res, next,id){
 
 };
 
+exports.getUser= function(req, res, next){
+
+    UserModel.findOne({ _id: req.body.userId}, function (err, user){
+        if (err) res.send(500,{error:'cannot find use'});
+        res.send(200,user);
+    });
+
+};
+
 exports.createUser = function (req, res, next) {
 
     var user = new UserModel();

@@ -9,7 +9,8 @@
 		</div>
 		<div class="col-md-4">
 			<h5> 
-				author: {{post.author.username}}
+				author:<a href="#!/users/userProfile/{{post.author._id}}">{{post.author.username}}</a>
+				 
 				<span >
 					<a class="btn" href="/#!/posts/{{post._id}}/edit">
 						<i class="glyphicon glyphicon-edit"></i>

@@ -6,7 +6,7 @@ var passport=require('passport');
 
 module.exports = function (app) {
 
-	 app.route('/userDetail')
+	app.route('/userDetail')
         .post(users.createUser);
 
     app.route('/userLogin')
@@ -63,6 +63,9 @@ module.exports = function (app) {
 
     app.route('/users/:userId/changePassword')
         .post(users.changePassword);
+
+    app.route('/users/:userId/userProfile')
+        .post(users.getUser);
 
     app.param('userId', users.user);
 };

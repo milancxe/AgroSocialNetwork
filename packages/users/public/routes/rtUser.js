@@ -56,6 +56,15 @@ angular.module('agronet.users').config(['$stateProvider',
                     }
                 }
                 
+            }).state('ml.rhf.userProfile',{
+                url:'/users/userProfile/:userId',
+                views:{
+                    'view_body@ml':{
+                        templateUrl:'users/public/views/body/userProfile.html',
+                        controller:'ctrlUserProfile'
+                    }
+                }
+                
             })
             ;
             
