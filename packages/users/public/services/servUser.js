@@ -46,6 +46,21 @@ angular.module('agronet.users').factory('User', ['$resource','$http',
 
 		};
 
+        UserResource.prototype.changePassword=function(password,next){
+
+            var user=this;
+            $http.post('/users/'+user._id+'/changePassword',{password:password  })
+            .success(function(data, status, headers, config){
+                if (next) next(data);
+            }).
+            error(function(data, status, headers, config) {
+                console.log('error has occured while login');
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+
+        };
+
 
 
 

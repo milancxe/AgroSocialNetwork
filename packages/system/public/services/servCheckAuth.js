@@ -8,6 +8,7 @@ function($http,$rootScope,$q,User) {
 			var deferred = $q.defer();
 			$http.get('/loggedin').success(function(response) {
 				$rootScope.startUserChecked=true;
+				console.log('proveravam sa Authom');
 				if (response !== '0') {
 					$rootScope.user = new User(response);
 				}

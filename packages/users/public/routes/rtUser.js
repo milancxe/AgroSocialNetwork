@@ -37,7 +37,17 @@ angular.module('agronet.users').config(['$stateProvider',
                         controller:'ctrlEditProfile'
                     }
                 }
-            });
+            })
+            .state('ml.rhf.changePassword',{
+                url:'/users/:userId/changePassword',
+                views:{
+                    'view_body@ml':{
+                        templateUrl:'users/public/views/body/changePassword.html',
+                        controller:'ctrlChangePassword'
+                    }
+                }
+            })
+            ;
             
     }
 ]);

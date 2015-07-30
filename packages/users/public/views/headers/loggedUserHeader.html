@@ -17,10 +17,15 @@
                         <li><a href="#">Left</a></li>
                         <li><a href="#about">Left</a></li>
                     </ul> -->
-                    <div class="coll-md-4" ng-repeat="image in allImages" ng-click="selectImage(image)">
-                      <img ng-src="{{'/files/profilePicture/160/'+image}}" />
-                    </div>
+                  
+
                     <ul class="nav navbar-nav navbar-right">
+                          <li>
+                              <div ng-if='user' data-ng-controller="ctrlLogin">
+                                  <img ng-src="{{'/files/profilePicture/32/'+user.profilePicture}}" />
+                              </div>
+                          </li>
+                          <li><a role="button" class="header_button" href="#!/users/{{user._id}}/changePassword"> Change Password </a></li>
                           <li><a role="button" class="header_button" ui-sref="ml.rhf.editProfile"> Edit Profile </a></li>
                       		<li><a role="button" class="header_button" ui-sref="ml.rhf.newPost"> Create post </a></li>
 

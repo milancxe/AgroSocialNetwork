@@ -61,5 +61,8 @@ module.exports = function (app) {
     app.route('/users/editProfile')
         .post(users.editProfile);
 
+    app.route('/users/:userId/changePassword')
+        .post(users.changePassword);
 
+    app.param('userId', users.user);
 };

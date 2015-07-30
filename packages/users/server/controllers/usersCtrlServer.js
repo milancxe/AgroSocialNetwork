@@ -5,6 +5,15 @@ var UserModel = mongoose.model('UserModel');
 var UserCredentialModel = mongoose.model('UserCredentialModel');
 var utils = require('../../../../utils/utils.js');
 
+exports.user= function(req, res, next,id){
+
+    UserModel.findOne({ _id: id}, function (err, user){
+        req.user=user;
+        next();
+    });
+
+};
+
 exports.createUser = function (req, res, next) {
 
     var user = new UserModel();
@@ -79,4 +88,35 @@ exports.editProfile=function(req,res){
             res.send(200,user);
         });
     });
+};
+
+exports.changePassword=function(req,res){
+
+    console.log('treba da promenim sifru');
+
+    var password=req.body.password;
+
+    if(password.newPassword===password.newPasswordRepeat){
+
+        UserCredentialModel.findOne({user:req.user}).populate('user').exec(function(err,user){
+
+            //var userCredential = new UserCredentialModel();
+
+            console.log('autentificiram:');
+            console.log(password.oldPassword);
+            console.log(user);
+            if(user.authenticate(password.oldPassword)){
+                user.salt=user.makeSalt();
+                user.hashed_password=user.hashPassword(password.newPassword);
+                UserCredentialModel.update({_id:user._id},{ $set: { salt: user.salt,hashed_password:user.hashed_password }}, function(err, savedUser){
+                    console.log(savedUser);
+                });
+                
+            }else{
+                console.log('ne valja mu sigra');
+            }
+
+        });
+    }
+
 };
