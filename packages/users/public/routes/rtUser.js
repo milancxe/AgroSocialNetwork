@@ -47,6 +47,16 @@ angular.module('agronet.users').config(['$stateProvider',
                     }
                 }
             })
+            .state('ml.rhf.changeProfilePicture',{
+                url:'/users/:userId/changeProfilePicture',
+                views:{
+                    'view_body@ml':{
+                        templateUrl:'users/public/views/body/changeProfilePicture.html',
+                        controller:'ctrlChangeProfilePicture'
+                    }
+                }
+                
+            })
             ;
             
     }

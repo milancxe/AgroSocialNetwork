@@ -1,7 +1,7 @@
 <div>
     <div class="alert alert-danger animated fadeIn" ng-show="error.general">{{error.general}}</div>
     <form id="register_form" ng-submit="editProfileData()">
-        <h2>Sign Up</h2>
+        <h2>Edit Your Details</h2>
         <div class="row input-wrapper">
             <label class="col-lg-2 control-label">Username</label>
             <input required id="username" type="text" name="username" placeholder="Username"
@@ -27,8 +27,12 @@
         <img ng-src="{{'/files/profilePicture/160/'+editUser.profilePicture}}" />
 
 
+
+
         <div class="row button_register">
             <button type="submit" class="submit_button">Save</button>
         </div>
+
     </form>
+    <a role="button" href="#!/users/{{user._id}}/changeProfilePicture">Change Profile Picture</a>
 </div>

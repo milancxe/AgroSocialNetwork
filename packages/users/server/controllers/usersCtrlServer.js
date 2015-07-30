@@ -91,29 +91,21 @@ exports.editProfile=function(req,res){
 };
 
 exports.changePassword=function(req,res){
-
-    console.log('treba da promenim sifru');
-
     var password=req.body.password;
-
+    
     if(password.newPassword===password.newPasswordRepeat){
-
         UserCredentialModel.findOne({user:req.user}).populate('user').exec(function(err,user){
 
-            //var userCredential = new UserCredentialModel();
-
-            console.log('autentificiram:');
-            console.log(password.oldPassword);
-            console.log(user);
             if(user.authenticate(password.oldPassword)){
                 user.salt=user.makeSalt();
                 user.hashed_password=user.hashPassword(password.newPassword);
                 UserCredentialModel.update({_id:user._id},{ $set: { salt: user.salt,hashed_password:user.hashed_password }}, function(err, savedUser){
-                    console.log(savedUser);
+                    if(err) res.send(500);
+                    res.send(200);
                 });
                 
             }else{
-                console.log('ne valja mu sigra');
+                res.send(500);
             }
 
         });

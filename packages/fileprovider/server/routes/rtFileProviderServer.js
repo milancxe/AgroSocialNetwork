@@ -26,6 +26,9 @@ module.exports = function(app) {
     app.route('/files/profilePicture/:fileSize/:filename')
         .get(fileprovider.getProfilePicture);
 
+    app.route('/files/user/changeProfilePicture')
+        .post(/*auth.requiresLogin,*/ hasAuthorization, fileprovider.changeProfilePicture);
+
 
     app.param('fileSize', fileprovider.fileSize);
     app.param('filename', fileprovider.filename);

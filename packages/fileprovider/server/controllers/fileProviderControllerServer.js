@@ -203,3 +203,41 @@ exports.getProfilePicture = function(req, res) {
 	var readStream = fs.createReadStream(filePath);
 	readStream.pipe(res);
 };
+
+exports.changeProfilePicture = function(req, res) {
+
+	var form = new multiparty.Form({
+		maxFilesSize:5000000
+	});
+	form.parse(req, function(err, fields, files) {
+		if (err) {
+			res.json(500,['bad request']);
+		}
+		UserModel.findOne({_id:fields.id}).exec(function(err, user) {
+			if (err) {
+				res.json(500,['bad request']);
+			}
+			if (!user){
+				res.json(500,['bad request']);
+			}
+			else {
+				var oldPicture=user.profilePicture;
+				var fileName = fields.id +'_'+ randomString(5);
+				user.profilePicture=fileName+ '.jpg';
+				UserModel.update({_id:user._id},{ $set: { profilePicture:user.profilePicture }}, function(err, savedUser){
+                    if(err) res.send(500);
+                    var source = files.file[0].path;
+                    //delete Old Picture
+                    for(var j=0;j<global.config.imageDimensions.length;j=j+1){
+                    	fs.unlink(global.config.fileProfilePicture() +global.config.imageDimensions[j]+'/'+ oldPicture);
+                    }
+					writeImages('user',source,fileName,function(){
+						res.json(['ok']).status(200);
+					});
+                });
+
+				
+			}
+		});
+	});
+};
