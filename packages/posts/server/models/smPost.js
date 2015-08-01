@@ -21,6 +21,10 @@ var PostModel= new Schema({
         type: String,
         trim: true
     }],
+    created: {
+        type: Date,
+        default: Date.now
+    },
     scoreUp:[{
         type: Schema.ObjectId,
         ref: 'UserModel'
