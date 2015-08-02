@@ -23,18 +23,8 @@ exports.getAllPosts=function(req,res){
 
 	var lastId= req.body.lastId ? req.body.lastId : null ;
 	var userId = req.user ? req.user._id :null;
-	if(req.user){
-		console.log('ima usera req userId: i lastId');
-		console.log(userId);
-		console.log(lastId);
-	}else{
-		console.log('nema usera req:');
-		console.log(lastId);
-	}
-
 	postUtils.findAllPostsByCreation(userId, lastId ,function(posts){
-		console.log('I wanna check all posts');
-		console.log(posts);
+
 		res.send(200,posts);
 
 	});

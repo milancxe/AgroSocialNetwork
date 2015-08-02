@@ -19,8 +19,8 @@ angular.module('agronet.posts').factory('Post', ['$resource','$http',
             });
         };
 
-        PostResource.prototype.getAll=function(next){
-            $http.get('posts')
+        PostResource.prototype.getAll=function(lastId,next){
+            $http.post('posts/fresh',{lastId:lastId})
             .success(function(data,status,headers,config){
                 if(next) next(data);
             });

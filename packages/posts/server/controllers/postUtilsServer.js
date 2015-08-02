@@ -15,7 +15,7 @@ exports.findAllPostsByCreation=function( userId,lastId,next){
 	var findCriteria=lastId?{_id : { '$lt' : lastId } }:{};
 
 	PostModel.find(findCriteria).lean().populate({path:'author',model:'UserModel'})
-		.limit(global.config.paginationSize).sort('-created').exec(function(err,posts){
+		.limit(global.config.paginationSize.posts).sort('-created').exec(function(err,posts){
 
 			postUtils.checkUserVotedPost(userId,posts,function (checkedPosts){
 				next(checkedPosts);

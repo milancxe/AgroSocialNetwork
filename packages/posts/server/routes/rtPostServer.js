@@ -11,6 +11,8 @@ module.exports = function (app) {
 	app.route('/posts')
 		.get(posts.getAllPosts)
         .post(posts.createPost);
+    app.route('/posts/fresh')
+        .post(posts.getAllPosts);
 
     app.route('/posts/:postId')
         .get(posts.getOnePost)
