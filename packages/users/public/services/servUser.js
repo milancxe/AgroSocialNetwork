@@ -75,6 +75,48 @@ angular.module('agronet.users').factory('User', ['$resource','$http',
 
         };
 
+        UserResource.prototype.getPostsCreatedByUser=function(next){
+            var userId = this._id;
+            $http.post('/users/userProfile/'+userId+'/createdPosts',{userId:userId})
+            .success(function(data, status, headers, config){
+                if (next) next(data);
+            }).
+            error(function(data, status, headers, config) {
+                console.log('error has occured while fetching user details');
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+
+        };
+
+        UserResource.prototype.getPostsVotedByUser=function(next){
+            var userId = this._id;
+            $http.post('/users/userProfile/'+userId+'/votedPosts',{userId:userId})
+            .success(function(data, status, headers, config){
+                if (next) next(data);
+            }).
+            error(function(data, status, headers, config) {
+                console.log('error has occured while fetching user details');
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+
+        };
+
+        UserResource.prototype.getPostsCommentedByUser=function(next){
+            var userId = this._id;
+            $http.post('/users/userProfile/'+userId+'/commentedPosts',{userId:userId})
+            .success(function(data, status, headers, config){
+                if (next) next(data);
+            }).
+            error(function(data, status, headers, config) {
+                console.log('error has occured while fetching user details');
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+
+        };
+
 
 
 

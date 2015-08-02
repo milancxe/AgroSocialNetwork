@@ -67,5 +67,13 @@ module.exports = function (app) {
     app.route('/users/:userId/userProfile')
         .post(users.getUser);
 
+
+    app.route('/users/userProfile/:userId/createdPosts')
+        .post(users.getPostsCreatedByUser);
+    app.route('/users/userProfile/:userId/votedPosts')
+        .post(users.getPostsVotedByUser);
+    app.route('/users/userProfile/:userId/commentedPosts')
+        .post(users.getPostsCommentedByUser);
+
     app.param('userId', users.user);
 };

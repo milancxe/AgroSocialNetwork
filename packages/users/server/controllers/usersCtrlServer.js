@@ -2,6 +2,8 @@
 
 var mongoose = require('mongoose');
 var UserModel = mongoose.model('UserModel');
+var PostModel = mongoose.model('PostModel');
+//var CommentModel = mongoose.model('CommentModel');
 var UserCredentialModel = mongoose.model('UserCredentialModel');
 var utils = require('../../../../utils/utils.js');
 
@@ -120,4 +122,28 @@ exports.changePassword=function(req,res){
         });
     }
 
+};
+
+exports.getPostsCreatedByUser=function(req,res,next){
+    console.log('trazim kreirane od usera:');
+    console.log(req.user);
+    PostModel.find({author:req.user}).lean().exec(function(err,posts){
+        if(err) res.send(500);
+        res.send(200,posts);
+    });
+};
+
+exports.getPostsVotedByUser=function(req,res,next){
+    console.log('trazim glasane od usera:');
+    console.log(req.user);
+    res.send(200);
+
+};
+
+exports.getPostsCommentedByUser=function(req,res,next){
+
+    UserModel.findOne({id:req.user._id}).populate({path:'votedComments.comment', model:'PostModel'}).exec(function(err, posts){
+        console.log(posts);
+    });
+    res.send(200);
 };

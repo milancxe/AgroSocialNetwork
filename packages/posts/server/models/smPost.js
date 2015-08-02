@@ -25,14 +25,16 @@ var PostModel= new Schema({
         type: Date,
         default: Date.now
     },
-    scoreUp:[{
-        type: Schema.ObjectId,
-        ref: 'UserModel'
-    }],
-    scoreDown:[{
-        type: Schema.ObjectId,
-        ref: 'UserModel'
-    }]
+    scoreUp:{
+        type: Number,
+        default:0,
+        trim: true
+    },
+    scoreDown:{
+        type: Number,
+        default:0,
+        trim: true
+    }
 
 });
 

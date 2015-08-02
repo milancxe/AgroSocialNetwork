@@ -8,7 +8,7 @@ var PostModel = mongoose.model('PostModel');
 
 	
 
-var postUtils= require('./postUtilsServer.js');
+//var postUtils= require('./postUtilsServer.js');
 
 exports.findAllPostsByCreation=function( userId,lastId,next){
 
@@ -16,10 +16,10 @@ exports.findAllPostsByCreation=function( userId,lastId,next){
 
 	PostModel.find(findCriteria).lean().populate({path:'author',model:'UserModel'})
 		.limit(global.config.paginationSize.posts).sort('-created').exec(function(err,posts){
-
-			postUtils.checkUserVotedPost(userId,posts,function (checkedPosts){
+			next(posts);
+			/*postUtils.checkUserVotedPost(userId,posts,function (checkedPosts){
 				next(checkedPosts);
-			});
+			});*/
 	});
 	
 
@@ -28,15 +28,14 @@ exports.findAllPostsByCreation=function( userId,lastId,next){
 
 exports.checkUserVotedPost = function( userId,posts,next){
 
-
+	console.log('pozvan sam da proverim:');
+	console.log(userId);
+	console.log(posts);
 	if(userId && posts) {
-		for(var i=0; i<posts.length;i=i+1){
+		/*for(var i=0; i<posts.length;i=i+1){
 			for(var j=0; j<posts[i].scoreUp.length;j=j+1){
 				if(String(userId)===String(posts[i].scoreUp[j])){
-					//posts[i].toObject().upDownStatus = 1;
-					//posts[i].toObject();
 					posts[i].upDownStatus = 1;
-					console.log('Record',posts[i]);
 				}
 			}
 			for(var j=0; j<posts[i].scoreDown.length;j=j+1){
@@ -44,7 +43,7 @@ exports.checkUserVotedPost = function( userId,posts,next){
 					posts[i].upDownStatus = 2;
 				}
 			}
-		}
+		}*/
 		next(posts);
 	}else{
 		next(posts);

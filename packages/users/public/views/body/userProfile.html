@@ -1,3 +1,12 @@
 <div>
 	 On this page user details will be shown
+	 firstName:{{user.firstName}}
+	 {{user.lastName}}
+	 {{user.username}}
+	<img ng-if="user"img ng-src="{{'/files/profilePicture/160/'+user.profilePicture}}" />
 </div>
+<div>
+	<a ng-click="getCreatedPosts()" class="btn btn default">Created Posts</a>
+	<a ng-click="getVotedPosts()" class="btn btn default">Voted Posts</a>
+	<a ng-click="getCommentedPosts()" class="btn btn default">Commented Posts</a>
+<div>

@@ -4,6 +4,7 @@
 var mongoose = require('mongoose');
 var PostModel = mongoose.model('PostModel');
 var CommentModel = mongoose.model('CommentModel');
+var PostVoteModel = mongoose.model('PostVoteModel');
 var postUtils= require('./postUtilsServer.js');
 var fs = require('fs');
 var _ = require('lodash');
@@ -16,7 +17,17 @@ exports.post = function (req, res, next,id) {
 
 exports.getOnePost = function (req, res) {
 
-	res.send(req.post);
+	if(req.user){
+		var posts=[];
+		posts.push(req.post.toObject());
+		postUtils.checkUserVotedPost(req.user._id,posts,function(checkedPostArray){
+
+			res.send(checkedPostArray[0]);
+		});
+	}else{
+		res.send(req.post);
+	}
+	
 };
 
 exports.getAllPosts=function(req,res){
@@ -29,12 +40,6 @@ exports.getAllPosts=function(req,res){
 
 	});
 
-	/*PostModel.find().populate('author').exec(function (err, posts) {
-  		if (err) return console.error(err);
-  		
-  		res.send(posts);
-	});
-*/
 };
 
 exports.createPost = function (req, res, next) {
@@ -115,7 +120,65 @@ exports.deletePost = function(req,res,next){
 
 exports.voteOnPost = function(req,res,next){
 
-	var voted=false;
+	//check to see If I already voted on post
+	PostVoteModel.findOne({post:req.post,author:req.user}).exec(function(err, postVote){
+		if (err) res.send(500);
+		console.log('objekat je:');
+		console.log(postVote);
+		//console.log(postVote.voteValue);
+		if (postVote){
+
+			console.log('vec je glasao:');
+			if(postVote.voteValue===req.body.voteType){
+				console.log('iste su vrednosti');
+				postVote.remove();
+				if(req.body.voteType===1){
+					req.post.scoreUp=req.post.scoreUp-1;
+				}else{
+					req.post.scoreDown=req.post.scoreDown-1;
+				}
+			}else{
+				console.log('razlicite su vrednosti');
+				postVote.voteValue=req.body.voteType;
+				postVote.save();
+				if(req.body.voteType===1){
+					req.post.scoreDown=req.post.scoreDown-1;
+					req.post.scoreUp=req.post.scoreUp+1;
+				}else{
+					req.post.scoreUp=req.post.scoreUp-1;
+					req.post.scoreDown=req.post.scoreDown+1;
+				}
+			}
+			var response={};
+
+			req.post.save();
+			response.scoreUp=req.post.scoreUp;
+			response.scoreDown=req.post.scoreDown;
+			res.send(200,response);
+
+		}else{
+			var newPostVote = new PostVoteModel();
+			newPostVote.voteValue=req.body.voteType;
+			newPostVote.author=req.user;
+			newPostVote.post=req.post;
+			newPostVote.save(function(err,newPostVote){
+				if(req.body.voteType===1){
+					req.post.scoreUp=req.post.scoreUp+1;
+				}else{
+					req.post.scoreDown=req.post.scoreDown+1;
+				}
+				req.post.save();
+				var response={};
+
+				response.scoreUp=req.post.scoreUp;
+				response.scoreDown=req.post.scoreDown;
+				res.send(200,response);
+
+			});
+		}
+	});
+
+	/*var voted=false;
 	var votedUp=false;
 	var votedDown=false;
 	var votedIndex=-1;
@@ -176,7 +239,7 @@ exports.voteOnPost = function(req,res,next){
 			res.json(200,{scoreUp:post.scoreUp,scoreDown:post.scoreDown});
 		});
 		
-	}
+	}*/
 };
 
 exports.commentOnPost = function(req,res,next){

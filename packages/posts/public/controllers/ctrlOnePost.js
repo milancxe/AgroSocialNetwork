@@ -6,11 +6,14 @@ angular.module('agronet.posts')
 
 		$scope.showAddReplyForm=false;
 
+
 		 new Post().getOne($stateParams.postId,function(post){
 
 			$scope.post =new Post(post);
+			console.log('posle geta');
+			console.log($scope.post);
 			$scope.images=$scope.post.postImage;
-			$scope.score=0+$scope.post.scoreUp.length-$scope.post.scoreDown.length;
+			$scope.score=0+$scope.post.scoreUp-$scope.post.scoreDown;
 
 		});
 		
@@ -19,7 +22,7 @@ angular.module('agronet.posts')
 			$scope.post.votePost($scope.post._id,1,function(response){
 				$scope.post.scoreUp=response.scoreUp;
 				$scope.post.scoreDown=response.scoreDown;
-				$scope.score=0+$scope.post.scoreUp.length-$scope.post.scoreDown.length;
+				$scope.score=0+$scope.post.scoreUp-$scope.post.scoreDown;
 			});
 
 		};
@@ -28,7 +31,7 @@ angular.module('agronet.posts')
 			$scope.post.votePost($scope.post._id,2,function(response){
 				$scope.post.scoreUp=response.scoreUp;
 				$scope.post.scoreDown=response.scoreDown;
-				$scope.score=0+$scope.post.scoreUp.length-$scope.post.scoreDown.length;
+				$scope.score=0+$scope.post.scoreUp-$scope.post.scoreDown;
 			});
 		};
 		
