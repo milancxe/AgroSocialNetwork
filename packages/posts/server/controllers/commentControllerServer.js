@@ -4,6 +4,7 @@
 var mongoose = require('mongoose');
 //var PostModel = mongoose.model('PostModel');
 var CommentModel = mongoose.model('CommentModel');
+var CommentVoteModel = mongoose.model('CommentVoteModel');
 
 exports.comment = function (req, res, next,id) {
 	CommentModel.findOne({ _id: id}, function (err, comment){
@@ -30,117 +31,64 @@ exports.addCommentReply = function(req,res,next){
 
 exports.voteOnComment = function(req,res,next){
 
-	console.log('spicio si glasanje na komentar');
 
-	var voted=false;
-	var votedValue=0;
-	var votedIndex=0;
-	//first to see if I already voted on this post!
-	for(var i=0;i<req.user.votedComments.length;i=i+1){
-		if (req.user.votedComments[i].comment.equals(req.comment._id)){
-			voted=true;
-			votedValue=req.user.votedComments[i].val;
-			votedIndex=i;
+	CommentVoteModel.findOne({author:req.user,comment:req.comment}).exec(function(err, votedComment){
 
-			break;
-		}
+		if(err) res.send(500);
+		if(votedComment){
 
-	}
-	console.log('proverio sam ga');
-	if(voted===false){	
-		var voting={};
-		voting.comment=req.comment._id;
-		voting.val = req.body.value;
-		console.log(voting);
-		req.user.votedComments.push(voting);
-		req.user.save(function(err,comment){
-			if(err) res.json(500,{error:'error occured cannot vote on comment'});
-			if(req.body.value===1){
-				req.comment.scoreUp=req.comment.scoreUp+1;
-				req.comment.save(function(err,comment){
-						if (err) res.json(500,{error:'there was an error with voting'});
-						res.json(200,comment);
-					});
-			}else{
-				req.comment.scoreDown=req.comment.scoreDown+1;
-				req.comment.save(function(err,comment){
-						if (err) res.json(500,{error:'there was an error with voting'});
-						res.json(200,comment);
-					});
-			}
-			
-		});
-
-	}else{
-		//if he already upvoated a comment
-		if(votedValue===1){
-
-			//if i pressed upvote again
-			if(req.body.value===1){
-				console.log('vrednost je 1 treba da stavim na 0 jer je opet stisnuo 1');
-				req.user.votedComments.splice(votedIndex,1);
-				req.user.save(function(err,user){
-					if(err) res.json(500,{error:'there was an error with voting'});
+			if(votedComment.voteValue===req.body.value){
+				votedComment.remove();
+				if(req.body.voteType===1){
 					req.comment.scoreUp=req.comment.scoreUp-1;
-					req.comment.save(function(err,comment){
-						if (err) res.json(500,{error:'there was an error with voting'});
-						res.json(200,comment);
-					});
-				});
-			}else{
-
-
-				req.user.votedComments.splice(votedIndex,1);
-				var voting={};
-				voting.comment=req.comment._id;
-				voting.val = req.body.value;
-				req.user.votedComments.push(voting);
-				req.user.save(function(err,user){
-					if(err) res.json(500,{error:'there was an error with voting'});
-					req.comment.scoreUp=req.comment.scoreUp-1;
-					req.comment.scoreDown=req.comment.scoreDown+1;
-					req.comment.save(function(err,comment){
-						if (err) res.json(500,{error:'there was an error with voting'});
-						res.json(200,comment);
-					});
-				});
-			}
-		}else if(votedValue===2){
-			if(req.body.value===2){
-
-				req.user.votedComments.splice(votedIndex,1);
-				req.user.save(function(err,user){
-					if(err) res.json(500,{error:'there was an error with voting'});
+				}else{
 					req.comment.scoreDown=req.comment.scoreDown-1;
-					req.comment.save(function(err,comment){
-						if (err) res.json(500,{error:'there was an error with voting'});
-						res.json(200,comment);
-					});
-				});
+				}
 			}else{
-				req.user.votedComments.splice(votedIndex,1);
-				var voting={};
-				voting.comment=req.comment._id;
-				voting.val = req.body.value;
-				req.user.votedComments.push(voting);
-				req.user.save(function(err,user){
-					if(err) res.json(500,{error:'there was an error with voting'});
+
+				votedComment.voteValue=req.body.value;
+				votedComment.save();
+				if(req.body.value===1){
 					req.comment.scoreDown=req.comment.scoreDown-1;
 					req.comment.scoreUp=req.comment.scoreUp+1;
-					req.comment.save(function(err,comment){
-						if (err) res.json(500,{error:'there was an error with voting'});
-						res.json(200,comment);
-					});
-				});
+				}else{
+					req.comment.scoreUp=req.comment.scoreUp-1;
+					req.comment.scoreDown=req.comment.scoreDown+1;
+				}
 			}
+			var response={};
+
+			req.comment.save();
+			response.scoreUp=req.comment.scoreUp;
+			response.scoreDown=req.comment.scoreDown;
+			res.send(200,response);
+
 		}else{
-			console.log('something strange happend');
-			res.send(500,{error:'there was an error with voting on comments try again'});
+			var newCommentVote = new CommentVoteModel();
+			newCommentVote.voteValue=req.body.value;
+			newCommentVote.author=req.user;
+			newCommentVote.comment=req.comment;
+			newCommentVote.save(function(err,newCommentVote){
+				if(req.body.value===1){
+					req.comment.scoreUp=req.comment.scoreUp+1;
+				}else{
+					req.comment.scoreDown=req.comment.scoreDown+1;
+				}
+				req.comment.save();
+				var response={};
+
+				response.scoreUp=req.comment.scoreUp;
+				response.scoreDown=req.comment.scoreDown;
+				res.send(200,response);
+
+			});
+
 		}
 
-	}
 
-	/**/
+	});
+
+
 
 };
 
