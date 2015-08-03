@@ -46,17 +46,24 @@ exports.checkUserVotedPost = function( userId,posts,next){
     					break;
 	    			}
 	    		}
-			}else{
-				counter=counter+1;
+
 			}
 			if(posts.length===counter){
 				console.log('saljeM:');
 				console.log(posts);
 				next(posts);
 			}
+			
 		};
 		for(var i=0; i<posts.length;i=i+1){
-			PostVoteModel.findOne({author:userId,post:posts[i]},markVote);
+			if(posts[i].scoreUp!==0 ||posts[i].scoreDown!==0){
+				PostVoteModel.findOne({author:userId,post:posts[i]},markVote);
+			}else{
+				counter=counter+1;
+				if(counter===posts.length){
+					next(posts);
+				}
+			}
 		}
 
 
