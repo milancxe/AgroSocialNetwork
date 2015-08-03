@@ -12,9 +12,11 @@
 			Vote: <a class="btn" href="" ng-click="voteUp()">
 							<i class="glyphicon glyphicon-arrow-up"></i>
 						</a>
+					<span ng-if="post.updownStatus==1">*</span>
 				<a class="btn" href="" ng-click="voteDown()">
 							<i class="glyphicon glyphicon-arrow-down"></i>
 						</a>
+						<span ng-if="post.updownStatus==2">*</span>
 		</div>
 
 		<br></br>
