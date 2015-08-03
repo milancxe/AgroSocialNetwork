@@ -32,29 +32,24 @@ exports.addCommentReply = function(req,res,next){
 
 exports.voteOnComment = function(req,res,next){
 
-	console.log('logujem usera i komentar');
-	console.log(req.user);
-	console.log(req.comment);
-
 	CommentVoteModel.findOne({author:req.user,comment:req.comment}).exec(function(err, votedComment){
 
 		if(err) res.send(500);
-		console.log('objekat je:');
-		console.log(votedComment);
+
 		if(votedComment){
 
 			if(votedComment.voteValue===req.body.value){
-				console.log('votevalue je ista');
+
 				votedComment.remove();
 				if(req.body.value===1){
 					req.comment.scoreUp=req.comment.scoreUp-1;
-					console.log('uklonio sam ga i smanjio skor za scoreUp');
+
 				}else{
 					req.comment.scoreDown=req.comment.scoreDown-1;
-					console.log('uklonio sam ga i smanjio skor za scoreDown');
+
 				}
 			}else{
-				console.log('votevalue je razlicita');
+
 				votedComment.voteValue=req.body.value;
 				votedComment.save();
 				if(req.body.value===1){
@@ -120,7 +115,7 @@ exports.voteOnReplyComment = function(req,res,next){
 
 			if(votedCommentReply.voteValue===req.body.value){
 				votedCommentReply.remove();
-				if(req.body.voteType===1){
+				if(req.body.value===1){
 					req.comment.replies[replyIndex].scoreUp=req.comment.replies[replyIndex].scoreUp-1;
 				}else{
 					req.comment.replies[replyIndex].scoreDown=req.comment.replies[replyIndex].scoreDown-1;
