@@ -2,8 +2,10 @@
 	Score: {{replyScore}}
 	Vote: <a class="btn" href="" ng-click="voteReplyComment(1)">
 					<i class="glyphicon glyphicon-arrow-up"></i>
+					<span ng-if="replyComment.updownStatus==1">*</span>
 				</a>
 		<a class="btn" href="" ng-click="voteReplyComment(2)">
 					<i class="glyphicon glyphicon-arrow-down"></i>
+					<span ng-if="replyComment.updownStatus==2">*</span>					
 				</a>
 </div>
