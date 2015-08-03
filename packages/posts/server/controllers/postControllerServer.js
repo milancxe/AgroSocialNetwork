@@ -3,7 +3,6 @@
 
 var mongoose = require('mongoose');
 var PostModel = mongoose.model('PostModel');
-var CommentModel = mongoose.model('CommentModel');
 var PostVoteModel = mongoose.model('PostVoteModel');
 var postUtils= require('./postUtilsServer.js');
 var fs = require('fs');
@@ -178,93 +177,5 @@ exports.voteOnPost = function(req,res,next){
 		}
 	});
 
-	/*var voted=false;
-	var votedUp=false;
-	var votedDown=false;
-	var votedIndex=-1;
-	//Note:
-	//If i already voted on challenge i cannot vote again,
-
-	//checking to see if he alreadu upvoted
-	for(var i=0;i<req.post.scoreUp.length;i=i+1){
-			if(req.post.scoreUp[i].equals(req.user._id)){
-				votedUp=true;
-				votedIndex=i;
-			}
-	}
-	//checking to see if he already downvoted
-	for(var i=0;i<req.post.scoreDown.length;i=i+1){
-			if(req.post.scoreDown[i].equals(req.user._id)){
-				votedDown=true;
-				votedIndex=i;
-			}
-	}
-
-	//if i want to upvote 
-	if(req.body.voteType===1){
-		if(votedUp){
-			req.post.scoreUp.splice(votedIndex,1);
-			voted=true;
-		}else if(votedDown){
-			req.post.scoreDown.splice(votedIndex,1);
-			req.post.scoreUp.push(req.user);
-			voted=true;
-		}else{
-			req.post.scoreUp.push(req.user);
-			voted=true;
-		}
-	//downvote
-	}else if(req.body.voteType===2){
-		console.log('entered type 2');
-		if(votedUp){
-			console.log('votedUp');
-			req.post.scoreUp.splice(votedIndex,1);
-			req.post.scoreDown.push(req.user);
-			voted=true;
-		}else if(votedDown){
-
-			console.log('votedDown');
-			req.post.scoreDown.splice(votedIndex,1);
-			voted=true;
-		}else{
-			req.post.scoreDown.push(req.user);
-			voted=true;
-		}
-	}else{
-		res.json(500);
-	}
-	if(voted){
-		req.post.save(function(err,post){
-			if(err) res.json(500,{error:'cannot vote on challenge'});
-			res.json(200,{scoreUp:post.scoreUp,scoreDown:post.scoreDown});
-		});
-		
-	}*/
 };
 
-exports.commentOnPost = function(req,res,next){
-
-
-
-	var comment = new CommentModel();
-	comment.text=req.body.commentText;
-	comment.author=req.user;
-	comment.post=req.post;
-	comment.save(function(err,comment){
-		if (err) res.json(500,{error:'Error occured not able to save comment try again'});
-		res.json(200,comment);
-	});
-};
-
-exports.getCommentsOnPost=function(req,res,next){
-
-
-	CommentModel.find({post:req.post._id}).populate('author').exec(function(err,posts){
-
-		CommentModel.populate(posts,{path: 'replies.author', model: 'UserModel'},function(err, posts){
-			if(err) res.send(500,{error:'I cannot find comments'});
-			res.send(200,posts);
-		});
-
-	});
-};

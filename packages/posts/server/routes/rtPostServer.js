@@ -26,8 +26,8 @@ module.exports = function (app) {
         .post(posts.voteOnPost);
 
     app.route('/posts/:postId/comment')
-        .get(posts.getCommentsOnPost)
-        .post(posts.commentOnPost);
+        .get(comments.getCommentsOnPost)
+        .post(comments.commentOnPost);
 
     app.route('/posts/:postId/comment/:commentId')
         .post(comments.addCommentReply);

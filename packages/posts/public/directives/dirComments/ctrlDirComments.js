@@ -7,13 +7,13 @@ angular.module('agronet.posts')
 function($scope, Post, $stateParams, $sce, dialogs,$location){
 	$scope.commentReply={};
 	$scope.newComment={};
-	console.log('logujem komentare iz direktive komments');
+
 
 
 	
 	$scope.post.getPostComments(function(comments){
 		$scope.comments=comments;
-		
+		console.log('logujem komentare iz direktive komments');		
 		console.log($scope.comments);
 	});
 
