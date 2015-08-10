@@ -35,7 +35,11 @@ exports.getCommentsOnPost=function(req,res,next){
 	var lastId= req.body.lastId ? req.body.lastId : null ;
 	var userId = req.user ? req.user._id :null;
 
-
+	console.log(req.body.lastId);
+	console.log(req.body);
+	console.log('zovem findCommentsByCreation sa parametrima:');
+	console.log(lastId);
+	console.log(userId);
 	commentUtils.findCommentsByCreation(req.post._id,userId, lastId ,function(comments){
 
 		res.send(200,comments);

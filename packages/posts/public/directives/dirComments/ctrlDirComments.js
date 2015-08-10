@@ -7,12 +7,30 @@ angular.module('agronet.posts')
 function($scope, Post, $stateParams, $sce, dialogs,$location){
 	$scope.commentReply={};
 	$scope.newComment={};
+	$scope.showLoadMoreComments=false;
 
 
+	$scope.loadMoreComments=function(){
 
+		$scope.post.getPostComments($scope.comments[$scope.comments.length-1]._id , function(response){
+
+			$scope.comments.push.apply($scope.comments,response);
+			if(response.length===10){
+				$scope.showLoadMoreComments=true;	
+
+			}else{
+				$scope.showLoadMoreComments=false;
+			}
+		});
+	};
 	
-	$scope.post.getPostComments(function(comments){
+	$scope.post.getPostComments(null,function(comments){
 		$scope.comments=comments;
+		if(comments.length===10){
+				$scope.showLoadMoreComments=true;
+			}else{
+				$scope.showLoadMoreComments=false;
+		}
 		console.log('logujem komentare iz direktive komments');		
 		console.log($scope.comments);
 	});

@@ -41,11 +41,11 @@ angular.module('agronet.posts').factory('Post', ['$resource','$http',
             });
         };
 
-        PostResource.prototype.getPostComments=function(next){
+        PostResource.prototype.getPostComments=function(lastId,next){
             var post=this;
-            console.log('logujem id posta zbog komentara iz servisa');
-            console.log(post);
-            $http.get('/posts/'+post._id+'/comment')
+            console.log('lastid za komentare:');
+            console.log(lastId);
+            $http.post('/posts/'+post._id+'/getComments',{lastId:lastId})
             .success(function(data, status, headers, config){
                 if (next) next(data);
             });

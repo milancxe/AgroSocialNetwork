@@ -23,7 +23,7 @@ config.fileProfilePicture=function(){
 
 config.paginationSize={
 	posts:10,
-	comments:10,
+	comments:10
 
 };
 

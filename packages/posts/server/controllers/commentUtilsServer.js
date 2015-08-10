@@ -11,12 +11,14 @@ var commentUtils= require('./commentUtilsServer.js');
 
 exports.findCommentsByCreation=function( postId,userId,lastId,next){
 
-
+	console.log('trazim commentare i lasid mi je:');
+	console.log(lastId);
 	var findCriteria=lastId?{post:postId,_id : { '$lt' : lastId } }:{post:postId};
-
+	console.log(findCriteria);
+	console.log(global.config.comments);
 
 	CommentModel.find(findCriteria).lean().populate({path:'author',model:'UserModel'})
-		.limit(global.config.comments).sort('-created').exec(function(err,comments){
+		.limit(global.config.paginationSize.comments).sort('-created').exec(function(err,comments){
 
 			commentUtils.checkUserVotedComments(userId,comments,function (checkedComments){
 				next(checkedComments);
