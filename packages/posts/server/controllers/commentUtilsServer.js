@@ -9,15 +9,15 @@ var CommentVoteModel= mongoose.model('CommentVoteModel');
 var commentUtils= require('./commentUtilsServer.js');
 
 
-exports.findCommentsByCreation=function( userId,lastId,next){
+exports.findCommentsByCreation=function( postId,userId,lastId,next){
 
-	var findCriteria=lastId?{_id : { '$lt' : lastId } }:{};
-	console.log('pogodjena druga funkcija');
+
+	var findCriteria=lastId?{post:postId,_id : { '$lt' : lastId } }:{post:postId};
+
 
 	CommentModel.find(findCriteria).lean().populate({path:'author',model:'UserModel'})
 		.limit(global.config.comments).sort('-created').exec(function(err,comments){
 
-			console.log('prosao find');
 			commentUtils.checkUserVotedComments(userId,comments,function (checkedComments){
 				next(checkedComments);
 			});
@@ -59,8 +59,6 @@ exports.checkUserVotedComments = function( userId,comments,next){
 
 			}
 			if(comments.length===counter){
-				console.log('saljeM:');
-				console.log(comments);
 				next(comments);
 			}
 			
@@ -93,15 +91,12 @@ exports.checkUserVotedCommentReplies=function(userId,replies,next){
 
 			if(markedOne){
 				var ids=replies.map(function(it) { return it._id; });
-				console.log('iz markiranja logujem markiranog:');
-				console.log(markedOne);
-				console.log('logujem mapu');
-				console.log(ids);
+
 				//trcim i trazim da li postoji lajkovan ako postoji postavim mu status
 	    		for(var ind=0;ind<ids.length;ind=ind+1){
 	    			if(String(markedOne.commentReply)===String(ids[ind])){
 	    				replies[ind].updownStatus=markedOne.voteValue;
-	    				console.log('postavio sam mu status');
+
     					break;
 	    			}
 	    		}

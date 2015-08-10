@@ -34,9 +34,9 @@ exports.getCommentsOnPost=function(req,res,next){
 
 	var lastId= req.body.lastId ? req.body.lastId : null ;
 	var userId = req.user ? req.user._id :null;
-	console.log('pogodjeno trazenje komentara');
 
-	commentUtils.findCommentsByCreation(userId, lastId ,function(comments){
+
+	commentUtils.findCommentsByCreation(req.post._id,userId, lastId ,function(comments){
 
 		res.send(200,comments);
 

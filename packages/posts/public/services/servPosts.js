@@ -43,6 +43,8 @@ angular.module('agronet.posts').factory('Post', ['$resource','$http',
 
         PostResource.prototype.getPostComments=function(next){
             var post=this;
+            console.log('logujem id posta zbog komentara iz servisa');
+            console.log(post);
             $http.get('/posts/'+post._id+'/comment')
             .success(function(data, status, headers, config){
                 if (next) next(data);

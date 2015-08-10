@@ -6,6 +6,7 @@ var PostModel = mongoose.model('PostModel');
 //var CommentModel = mongoose.model('CommentModel');
 var UserCredentialModel = mongoose.model('UserCredentialModel');
 var utils = require('../../../../utils/utils.js');
+var usersUtils = require('./usersUtils.js');
 
 exports.user= function(req, res, next,id){
 
@@ -134,16 +135,24 @@ exports.getPostsCreatedByUser=function(req,res,next){
 };
 
 exports.getPostsVotedByUser=function(req,res,next){
-    console.log('trazim glasane od usera:');
-    console.log(req.user);
-    res.send(200);
+
+    var lastId= req.body.lastId ? req.body.lastId : null ;
+    var userId = req.user ? req.user._id :null;
+    usersUtils.findPostsVotedByUser(userId, lastId ,function(posts){
+
+        res.send(200,posts);
+
+    });
 
 };
 
 exports.getPostsCommentedByUser=function(req,res,next){
 
-    UserModel.findOne({id:req.user._id}).populate({path:'votedComments.comment', model:'PostModel'}).exec(function(err, posts){
-        console.log(posts);
+    var lastId= req.body.lastId ? req.body.lastId : null ;
+    var userId = req.user ? req.user._id :null;
+    usersUtils.findPostsCommentedByUser(userId, lastId ,function(posts){
+
+        res.send(200,posts);
+
     });
-    res.send(200);
 };
