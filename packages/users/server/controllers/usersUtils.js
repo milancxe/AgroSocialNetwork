@@ -9,12 +9,13 @@ exports.findPostsVotedByUser = function( userId,lastId,next){
 
 	var findCriteria=lastId?{author:userId, _id : { '$lt' : lastId } }:{};
 
-	PostVoteModel.find(findCriteria).lean().populate({path:'author',model:'UserModel'})
-		.limit(global.config.paginationSize.posts).sort('-created').exec(function(err,posts){
+	PostVoteModel
+		.find(findCriteria)
 
-
-			next(posts);
-
+		.distinct('post',function(error,ids) {
+		   PostModel.find({'_id':{$in : ids}}).limit(global.config.paginationSize.posts).sort('-created').exec(function(err,posts){ 
+		     next(posts);
+		   });
 	});
 
 };
