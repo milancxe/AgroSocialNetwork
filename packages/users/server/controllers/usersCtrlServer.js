@@ -126,8 +126,6 @@ exports.changePassword=function(req,res){
 };
 
 exports.getPostsCreatedByUser=function(req,res,next){
-    console.log('trazim kreirane od usera:');
-    console.log(req.user);
 
     var lastId= req.body.lastId ? req.body.lastId : null ;
     var userId = req.user ? req.user._id :null;

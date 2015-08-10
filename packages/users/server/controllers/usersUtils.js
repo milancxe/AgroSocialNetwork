@@ -35,15 +35,27 @@ exports.findPostsVotedByUser = function( userId,lastId,next){
 
 exports.findPostsCommentedByUser = function( userId,lastId,next){
 
-	var findCriteria=lastId?{author:userId, _id : { '$lt' : lastId } }:{};
+	/*var findCriteria=lastId?{author:userId, _id : { '$lt' : lastId } }:{};*/
+	var index=0;
 
+	var endVal=10;
 	CommentModel
-		.find(findCriteria)
+		.find({author:userId})
 
 		.distinct('post',function(error,ids) {
-		   PostModel.find({'_id':{$in : ids}}).limit(global.config.paginationSize.posts).sort('-created').exec(function(err,posts){ 
-		     next(posts);
-		   });
+			for(var i=0;i<ids.length;i=i+1){
+		   		if(String(ids[i])===String(lastId)){
+		   			index=i+1;
+		   		}
+		   	}
+		   	if(lastId!==0){
+		   		endVal = ids.length;
+		   	}
+		   	var pom =ids.slice(index,endVal);
+
+		   	PostModel.find({'_id':{$in : pom}}).limit(global.config.paginationSize.posts).sort('-created').exec(function(err,posts){ 
+		    	next(posts);
+		   	});
 	});
 
 
