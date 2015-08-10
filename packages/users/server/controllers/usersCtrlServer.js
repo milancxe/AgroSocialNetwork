@@ -128,7 +128,12 @@ exports.changePassword=function(req,res){
 exports.getPostsCreatedByUser=function(req,res,next){
     console.log('trazim kreirane od usera:');
     console.log(req.user);
-    PostModel.find({author:req.user}).lean().exec(function(err,posts){
+
+    var lastId= req.body.lastId ? req.body.lastId : null ;
+    var userId = req.user ? req.user._id :null;
+
+    var findCriteria=lastId?{author:userId,_id : { '$lt' : lastId } }:{author:userId};
+    PostModel.find(findCriteria).lean().limit(global.config.paginationSize.posts).sort('-created').exec(function(err,posts){
         if(err) res.send(500);
         res.send(200,posts);
     });

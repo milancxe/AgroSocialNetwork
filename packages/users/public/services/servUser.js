@@ -75,9 +75,9 @@ angular.module('agronet.users').factory('User', ['$resource','$http',
 
         };
 
-        UserResource.prototype.getPostsCreatedByUser=function(next){
+        UserResource.prototype.getPostsCreatedByUser=function(lastId,next){
             var userId = this._id;
-            $http.post('/users/userProfile/'+userId+'/createdPosts',{userId:userId})
+            $http.post('/users/userProfile/'+userId+'/createdPosts',{lastId:lastId,userId:userId})
             .success(function(data, status, headers, config){
                 if (next) next(data);
             }).
@@ -89,9 +89,9 @@ angular.module('agronet.users').factory('User', ['$resource','$http',
 
         };
 
-        UserResource.prototype.getPostsVotedByUser=function(next){
+        UserResource.prototype.getPostsVotedByUser=function(lastId,next){
             var userId = this._id;
-            $http.post('/users/userProfile/'+userId+'/votedPosts',{userId:userId})
+            $http.post('/users/userProfile/'+userId+'/votedPosts',{lastId:lastId,userId:userId})
             .success(function(data, status, headers, config){
                 if (next) next(data);
             }).
@@ -103,9 +103,9 @@ angular.module('agronet.users').factory('User', ['$resource','$http',
 
         };
 
-        UserResource.prototype.getPostsCommentedByUser=function(next){
+        UserResource.prototype.getPostsCommentedByUser=function(lastId,next){
             var userId = this._id;
-            $http.post('/users/userProfile/'+userId+'/commentedPosts',{userId:userId})
+            $http.post('/users/userProfile/'+userId+'/commentedPosts',{lastId:lastId,userId:userId})
             .success(function(data, status, headers, config){
                 if (next) next(data);
             }).

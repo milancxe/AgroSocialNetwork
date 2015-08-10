@@ -10,3 +10,16 @@
 	<a ng-click="getVotedPosts()" class="btn btn default">Voted Posts</a>
 	<a ng-click="getCommentedPosts()" class="btn btn default">Commented Posts</a>
 <div>
+<div>
+	<h4 class="text-center">Posts</h4 class="row">
+	
+    <!--Body content-->
+    <ul class="ul">
+        <li ng-repeat="post in allPosts">
+            <div ng-show-small-post post="post" all-posts="allPosts"/>
+        </li>
+    </ul>
+    <div>
+    	<a href="" ng-if="showLoadMore" class="btn btn default" ng-click="loadMore()">load more posts</a>
+	</div>
+</div>
