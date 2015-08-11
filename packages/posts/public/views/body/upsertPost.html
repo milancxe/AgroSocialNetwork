@@ -55,7 +55,7 @@
 
 	                    <li ng-repeat="video in post.contentVideo"  >
 	                    	{{video.id}}
-	                        <div ng-youtube-video="{{video._id}}"></div>
+	                        <div ng-youtube-video video-id="{{video.id}}"></div>
 	                        <a class="btn" data-ng-click="removeVideo(video.index)">
 	                            <i class="glyphicon glyphicon-trash"></i>
 	                        </a>
