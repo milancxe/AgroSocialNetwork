@@ -45,6 +45,15 @@ angular.module('agronet.posts').config(['$stateProvider',
                 }
 
 
+            })
+            .state('ml.rhf.pleaseLogin',{
+                url:'/error/requiresLogin',
+                views:{
+                    'view_body@ml':{
+                        templateUrl:'posts/public/views/body/errorPage.html',
+                        controller:'ctrlError'
+                    }
+                }
             });
 
     }

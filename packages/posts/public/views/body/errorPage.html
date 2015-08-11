@@ -1,0 +1,100 @@
+<div>
+	<h1>Please Login or Register</h1>
+
+		<div ng-controller="ctrlLogin" class="row">
+			<div>
+		        <form id="login_form" ng-submit="loginUser()">
+
+		            <div >
+
+		                <input required id="email" type="email" name="email" placeholder="email"
+		                       ng-model="loginData.email">
+
+
+		                <input required id="password" type="password" name="password" placeholder="Password"
+		                       ng-model="loginData.password">
+		                <label>Remember me:
+		                  <input type="checkbox" ng-model="loginData.remember_me">
+		                </label><br/>
+
+		                <button type="submit" class="submit_button">Login</button>
+		            
+		            </div>
+		        </form>
+		    </div>
+		<div>
+
+		<br></br>
+
+		<div ng-controller="ctrlRegister">
+		    <div class="alert alert-danger animated fadeIn" ng-show="error.general">{{error.general}}</div>
+		    <form id="register_form" ng-submit="createUser()">
+		        <h2>Sign Up</h2>
+		        <div class="row input-wrapper">
+		            <label class="col-lg-2 control-label">Username</label>
+		            <input required id="username" type="text" name="username" placeholder="Username"
+		                   ng-model="editUser.username">
+		            <div ng-show="error.username">{{error.username}}</div>
+		        </div>
+
+		        <div class="row input-wrapper">
+		            <label class="col-lg-2 control-label">First name</label>
+		            <input required id="firstName" type="text" name="firstName" placeholder="First name"
+		                   ng-model="editUser.firstName">
+		            <div ng-show="error.firstName" >{{error.firstName}}</div>
+		        </div>
+
+		        <div class="row input-wrapper">
+		            <label class="col-lg-2 control-label">Last name</label>
+		            <input required id="lastName" type="text" name="lastName" placeholder="Last name"
+		                   ng-model="editUser.lastName">
+
+		            <div ng-show="error.lastName" >{{error.lastName}}</div>
+		        </div>
+		        <!--do ovde-->
+		        <div class="row input-wrapper">
+		            <label class="col-lg-2 control-label">Email</label>
+		            <input required id="email" type="email" name="email" placeholder="Email Address"
+		                   ng-model="editUser.email">
+		            <div ng-show="error.email" >{{error.email}}</div>
+		        </div>
+
+		        <div class="row input-wrapper">
+		            <label class="col-lg-2 control-label">Password</label>
+		            <input required id="password_block" name="password" type="password"
+		                   placeholder="Password" ng-model="editUser.password">
+		            <div ng-show="error.password" >{{error.password}}</div>
+		        </div>
+		        <div class="row input-wrapper">
+		            <label class="col-lg-2 control-label">Confirm password</label>
+		            <input required id="confirm_password" name="confirm_password" type="password"
+		                   placeholder="Confirm password" ng-model="editUser.confirm_password">
+		            <div ng-show="error.confirm_password">{{error.confirm_password}}</div>
+		        </div>
+		        Choose profile picture:
+		        <div class="row input-wrapper form-group">
+		                <input type="file" nv-file-select="" uploader="uploader" accept="image/*"/><br/>
+		                <ul>
+		                    <li ng-repeat="item in uploader.queue">
+		                        Name: <span ng-bind="item.file.name"></span><br/>
+		                        <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+		                        <div class="progress" style="margin-bottom: 0;">
+		                                <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+		                        </div>
+		                        <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+		                            <span class="glyphicon glyphicon-trash"></span> Remove
+		                        </button>
+		                    </li>
+		                </ul>
+		                <div class="progress" style="margin-bottom: 0;">
+		                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }" style="width: 0%;"></div>
+		                </div>
+		        </div> 
+		        
+
+		        <div class="row button_register">
+		            <button type="submit" class="submit_button">Sign up</button>
+		        </div>
+		    </form>
+		</div>
+</div>

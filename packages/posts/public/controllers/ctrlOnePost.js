@@ -10,9 +10,8 @@ angular.module('agronet.posts')
 		 new Post().getOne($stateParams.postId,function(post){
 
 			$scope.post =new Post(post);
-			console.log('posle geta');
-			console.log($scope.post);
 			$scope.images=$scope.post.postImage;
+			$scope.videos=$scope.post.contentVideo;
 			$scope.score=0+$scope.post.scoreUp-$scope.post.scoreDown;
 
 		});

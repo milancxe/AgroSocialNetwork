@@ -29,6 +29,16 @@ angular.module('agronet.users').config(['$stateProvider',
 
 
             })
+           /* .state('ml.rhf.user',{
+                url:'/',
+                views: {
+                    'view_header@ml': {templateUrl: 'users/public/views/headers/loggedUserHeader.html'},
+                    /*resolve: {
+                        loggedin: checkLoggedin
+                    }
+                }
+
+            })*/
             .state('ml.rhf.editProfile',{
                 url:'/users/editProfile',
                 views:{

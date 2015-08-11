@@ -3,7 +3,7 @@
 var users = require('../controllers/usersCtrlServer.js');
 var utils = require('../../../../utils/utils.js');
 var passport=require('passport');
-
+var auth = require('../../../../utils/utilsAuthorization.js');
 module.exports = function (app) {
 
 	app.route('/userDetail')
@@ -55,14 +55,14 @@ module.exports = function (app) {
     });
 
     app.route('/logout')
-    	.get(users.logoutUser);
+    	.get(auth.requiresLogin,users.logoutUser);
 
 
     app.route('/users/editProfile')
-        .post(users.editProfile);
+        .post(auth.requiresLogin,users.editProfile);
 
     app.route('/users/:userId/changePassword')
-        .post(users.changePassword);
+        .post(auth.requiresLogin,users.changePassword);
 
     app.route('/users/:userId/userProfile')
         .post(users.getUser);

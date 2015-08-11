@@ -7,6 +7,7 @@ angular.module('agronet.posts')
 	directive.replace=true;
 	directive.scope={
 		allImages:'=',
+		videos:'='
 	};
 	directive.templateUrl='system/public/directives/imageGaleryDirective/tmplDirImageGalery.html';
 	directive.controller='ctrlImageGalery';

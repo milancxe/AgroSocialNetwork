@@ -1,27 +1,34 @@
 'use strict';
 
 angular.module('agronet.users')
-.controller('ctrlLogin',['$scope','$rootScope', '$stateParams','$state', 'User',
-function($scope, $rootScope, $stateParams, $state , User){
+.controller('ctrlLogin',['$scope','$rootScope','$state', '$stateParams', 'User','$http',
+function($scope, $rootScope, $state , $stateParams, User,$http){
 	
-	$scope.loginData ={};
 
-	$scope.loginUser=function(){
-			console.log($scope.loginData);
-			new User().loginUser($scope.loginData, function(loggedinUser){
-				$rootScope.user = new User(loggedinUser);
-				$scope.user=$rootScope.user;
-				console.log('sad cu da picim tranziciju');
-				console.log($state.current);
-				console.log($scope.user);
-	            $state.transitionTo($state.current, $stateParams, {
-	                reload: true,
-	                inherit: true,
-	                notify: true
-	            });
-			});
-	};
-
+	$scope.loginerror=null;
+        
+        // Register the login() function
+        $scope.loginUser = function () {
+            $http.post('/userLogin', {
+                email: $scope.loginData.email,
+                password: $scope.loginData.password,
+                remember_me: $scope.loginData.remember_me
+            }).success(function (response) {
+                    
+                    
+                    $scope.loginError = 0;
+                    var loggedUser = new User(response.user);
+                    $rootScope.user = loggedUser;
+                    $state.transitionTo($state.current, $stateParams, {
+                        reload: true,
+                        inherit: true
+                    });
+                })
+                .error(function () {
+                    $scope.loginerror = 'Authentication failed.';
+                });
+        };
+    
 
 
 }]);

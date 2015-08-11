@@ -34,7 +34,18 @@ var PostModel= new Schema({
         type: Number,
         default:0,
         trim: true
-    }
+    },
+    contentVideo: [{
+        typeOfVideo:{
+            type: String,
+            required: true
+        },
+        id: {
+            type: String,
+            required: true
+        },
+        _id: false
+    }]
 
 });
 

@@ -22,7 +22,7 @@
                     <ul class="nav navbar-nav navbar-right">
                           <li>
                               <div ng-if='user' data-ng-controller="ctrlLogin">
-                                  <img ng-src="{{'/files/profilePicture/32/'+user.profilePicture}}" />
+                                  <img ng-if='user' ng-src="{{'/files/profilePicture/32/'+user.profilePicture}}" />
                               </div>
                           </li>
                           <li><a role="button" class="header_button" href="#!/users/{{user._id}}/changePassword"> Change Password </a></li>

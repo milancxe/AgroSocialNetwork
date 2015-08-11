@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('agronet.posts').factory('Post', ['$resource','$http',
-    function($resource,$http) {
+angular.module('agronet.posts').factory('Post', ['$resource','$http','$state',
+    function($resource,$http,$state) {
         var PostResource = $resource('/posts/:postId',{
 
                 postId:'@_id'
@@ -30,6 +30,12 @@ angular.module('agronet.posts').factory('Post', ['$resource','$http',
             $http.post('posts/vote/'+postId,{ voteType:voteType })
             .success(function(data, status, headers, config){
                 if (next) next(data);
+            }).
+            error(function(data, status, headers, config) {
+                console.log('error has occured while voting');
+                $state.go('ml.rhf.pleaseLogin');
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
             });
         };
 
@@ -43,8 +49,6 @@ angular.module('agronet.posts').factory('Post', ['$resource','$http',
 
         PostResource.prototype.getPostComments=function(lastId,next){
             var post=this;
-            console.log('lastid za komentare:');
-            console.log(lastId);
             $http.post('/posts/'+post._id+'/getComments',{lastId:lastId})
             .success(function(data, status, headers, config){
                 if (next) next(data);

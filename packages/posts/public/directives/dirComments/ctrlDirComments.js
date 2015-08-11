@@ -3,8 +3,8 @@
 
 
 angular.module('agronet.posts')
-.controller('ctrlDirComments',['$scope', 'Post', '$stateParams', '$sce', 'dialogs','$location',
-function($scope, Post, $stateParams, $sce, dialogs,$location){
+.controller('ctrlDirComments',['$scope', 'Post','$rootScope', '$stateParams', '$sce', 'dialogs','$location',
+function($scope, Post,$rootScope, $stateParams, $sce, dialogs,$location){
 	$scope.commentReply={};
 	$scope.newComment={};
 	$scope.showLoadMoreComments=false;
@@ -31,12 +31,16 @@ function($scope, Post, $stateParams, $sce, dialogs,$location){
 			}else{
 				$scope.showLoadMoreComments=false;
 		}
-		console.log('logujem komentare iz direktive komments');		
-		console.log($scope.comments);
+		
 	});
 
 	$scope.addComment=function(){
 		$scope.post.addComment($scope.newComment.text,function(response){
+			if(!$scope.comments){
+				$scope.comments=[];
+			}
+
+			response.author=$rootScope.user;
 			$scope.comments.push(response);
 			$scope.newComment={};
 		});

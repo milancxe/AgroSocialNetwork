@@ -9,4 +9,9 @@
 			<img ng-src="{{'/files/post/160/'+image}}" />
 		</div>
 	</div>
+	{{videoId}}
+	<div ng-if="videoId"  ng-youtube-video video-id="{{videoId}}"></div>
+	<div ng-repeat="video in videos" class="c-img-cover-item">
+			<img ng-src="{{'http://img.youtube.com/vi/'+video.id+'/default.jpg'}}" ng-click="showItem(images.length+$index);" />
+	</div>
 </div>

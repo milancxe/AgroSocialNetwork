@@ -71,6 +71,42 @@ angular.module('agronet.posts')
         };
 
 
+
+    	/*$scope.addVideo();
+        if(create) {
+            $scope.post.$save(function (response) {
+                uploadPhotos($scope.uploader,response._id);
+            });
+        }else{
+            $scope.post .$update(function() {
+                uploadPhotos($scope.uploader,$scope.post._id);
+            });
+        }*/
+        $scope.addVideo = function() {
+	        if($scope.contentVideoAddress &&
+	        	$scope.contentVideoAddress !== null && $scope.contentVideoAddress.trim() !== '') {
+	            //if it is a youtube video
+	            if($scope.contentVideoAddress.lastIndexOf('https://www.youtube.com', 0) === 0){
+	                var videoId=$scope.contentVideoAddress.split('&')[0].split('=')[1];
+	                var video = {
+	                    typeOfVideo: 'youtube',
+	                    id: videoId
+	                };
+	                if(!$scope.post.contentVideo){
+	                    $scope.post.contentVideo=[];
+	                }
+	                $scope.post.contentVideo.push(video);
+	            }
+	            $scope.contentVideoAddress = '';
+	            //TODO show error if it is not youtube video
+	            console.log($scope.post.contentVideo);
+	        }
+    	};
+
+    	$scope.removeVideo = function(index) {
+        	$scope.post.contentVideo.splice(index, 1);
+    	};
+        	
 	
 		$scope.savePost = function(){
 			if(create){				
