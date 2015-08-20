@@ -16,39 +16,42 @@
                         <li><a href="#">Left</a></li>
                         <li><a href="#about">Left</a></li>
                     </ul> -->
-                    <ul class="nav navbar-nav navbar-right">
+                    <!-- <ul class="nav navbar-nav navbar-right"> -->
                       <div class="dropdown ">
-                                                      <a class="header_button dropdown-toggle" type="button" id="signInMenu" data-toggle="dropdown">Sign In
-                                                      <span class="caret"></span></a>
-                                                            <ul class="dropdown-menu dropdown_dialog" role="menu" aria-labelledby="signInMenu">
-                                                                
-                                                                    <div ng-controller="ctrlLogin" class="row">
-                                                                        <form id="login_form" ng-submit="loginUser()">
+                              <a class="header_button" type="button" id="signInMenu" data-toggle="dropdown">Sign In
+                                  <span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu dropdown_dialog" role="menu" aria-labelledby="signInMenu">
+                                
+                                    <div ng-controller="ctrlLogin" class="row">
+                                        <form id="login_form" class="formBasic" ng-submit="loginUser()">
 
-                                                                            <div >
+                                            <div >
 
-                                                                                <input required id="email" type="email" name="email" placeholder="email"
-                                                                                       ng-model="loginData.email">
+                                                <input class="inputSignIn" required id="email" type="email" name="email" placeholder="email"
+                                                       ng-model="loginData.email">
 
 
-                                                                                <input required id="password" type="password" name="password" placeholder="Password"
-                                                                                       ng-model="loginData.password">
-                                                                                <label>Remember me:
-                                                                                  <input type="checkbox" ng-model="loginData.remember_me">
-                                                                                </label><br/>
+                                                <input class="inputSignIn" required id="password" type="password" name="password" placeholder="Password"
+                                                       ng-model="loginData.password">
+                                                <div class="inputRememberMe">
+                                                    <label  >Remember me:
+                                                      <input  type="checkbox" ng-model="loginData.remember_me">
+                                                    </label>
+                                                </div>
+                                                <button type="submit" id="loginButton" class="submit_button">Login</button>
+                                            
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href='/#!/register' class="btn"  type="button" id="register" >Register</a>
+                                </li>
+                            </ul>
 
-                                                                                <button type="submit" class="submit_button">Login</button>
-                                                                            
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-                                                                </li>
-                                                                <li>
-                                                                    <a href='/#!/register' class="btn" type="button" id="register" >Register</a>
-                                                                </li>
-                                                            </ul>
-                                                    </div>
-                    </ul>
+                      </div>
+                    <!-- </ul> -->
                   </div>
                 </nav>
           </div>

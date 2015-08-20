@@ -8,20 +8,62 @@
 		
 };
 
-.header_button{
-	.text-center;
+.header_button {
+	position: absolute;
+	right:20px;
+	width: 100px;
 	background:transparent;
 	color:white !important;
 	font-size: 16px;
 	padding:5px !important;
 	text-align:center;
 	cursor:pointer;
-	display:block;
-	margin-top: 5px
+	display:inline-block;
+	margin-top: 5px;
+    border-color: black;
+    border: 2px solid;
+    border-radius: 0 5px 0 5px;
+    &:hover{
+    	text-decoration:none !important;
+    }
 };
 
 .dropdown_dialog{
+	.c-global-navbar-color;
+	position:absolute;
+	padding-top:50px;
 	padding: 20px;
 	min-width: 270px;
+	top: 40px;
+    right: 0px;
+    width: 150px;
 
+};
+
+#register{
+        background: white;
+    border: 2px solid;
+    border-color: #006600;
+    font-style: inherit;
+    /* font-family: initial; */
+    font-size: 16px;
+    font-weight: 200;
+    margin-left: 10px;
+    width: 85%;
+    padding: 5px;
+    width: 80%;
+    font-family: cursive;
+    color: #006600;
+
+};
+
+#loginButton{
+	width: 50%;
+    background: white;
+    border-radius: 5px;
+    border: 2px solid;
+    border-color: green;
+    font-size: 16px;
+    font-family: cursive;
+    color: #006600;
 };
