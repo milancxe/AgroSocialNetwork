@@ -1,7 +1,7 @@
 <div>
     <div class="alert alert-danger animated fadeIn" ng-show="error.general">{{error.general}}</div>
-    <form id="register_form" ng-submit="createUser()">
-        <h2>Sign Up</h2>
+    <form id="register_form" class="register_form" ng-submit="createUser()">
+        <h1>Sign Up</h1>
         <div class="row input-wrapper">
             <label class="col-lg-2 control-label">Username</label>
             <input required id="username" type="text" name="username" placeholder="Username"

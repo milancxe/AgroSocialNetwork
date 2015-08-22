@@ -3,7 +3,6 @@
     <nav class="navbar-default agronet_header" role="navigation">
 
             <div class="container ">
-                
                   <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                       <span class="icon-bar"></span>
@@ -12,25 +11,35 @@
                     </button>    
                   </div>
                   <a class="navbar-brand" href="#!/" > Agronet</a>
+
+                  <div class="picture_menu" ng-if='user' data-ng-controller="ctrlLogin">
+                          <img ng-if='user' ng-src="{{'/files/profilePicture/32/'+user.profilePicture}}" />
+                  </div>
                   <div class="navbar-collapse collapse">
-                    <!-- <ul class="nav navbar-nav navbar-left">
-                        <li><a href="#">Left</a></li>
-                        <li><a href="#about">Left</a></li>
-                    </ul> -->
-                  
+                        <div class="dropdown">
 
-                    <ul class="nav navbar-nav navbar-right">
-                          <li>
-                              <div ng-if='user' data-ng-controller="ctrlLogin">
-                                  <img ng-if='user' ng-src="{{'/files/profilePicture/32/'+user.profilePicture}}" />
-                              </div>
-                          </li>
-                          <li><a role="button" class="header_button" href="#!/users/{{user._id}}/changePassword"> Change Password </a></li>
-                          <li><a role="button" class="header_button" ui-sref="ml.rhf.editProfile"> Edit Profile </a></li>
-                      		<li><a role="button" class="header_button" ui-sref="ml.rhf.newPost"> Create post </a></li>
+                              <a class="header_button" type="button" id="loggedMenu" data-toggle="dropdown">Details
+                                  <span class="caret"></span></a>
+                            
+                              
+                                  <ul class="dropdown-menu dropdown_dialog_user" role="menu" aria-labelledby="loggedMenu">
+                                    
+                                    
 
-							            <li> <a ng-click="logoutUser()" class="header_button" role= "button" ng-controller="ctrlLogout">Logout</a></li>
-                    </ul>
+                                    <div >
+                                      <li>
+                                        <a href="#!/users/{{user._id}}/changePassword" class="dropdown_user_button"  type="button"  >change password</a>
+                                      </li>
+                                      <li>
+                                        <a ui-sref="ml.rhf.editProfile" class="dropdown_user_button"  type="button"  >edit profile</a>
+                                      </li>
+                                      <li>
+                                          <a ng-click="logoutUser()" class="dropdown_user_button" role= "button" ng-controller="ctrlLogout">Logout</a>
+                                      </li>
+                                    </div>
+                                  </ul>
+                              
+                        </div>
                   </div>
                 </nav>
           </div>
