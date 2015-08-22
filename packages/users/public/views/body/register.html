@@ -2,50 +2,60 @@
     <div class="alert alert-danger animated fadeIn" ng-show="error.general">{{error.general}}</div>
     <form id="register_form" class="register_form" ng-submit="createUser()">
         <h1>Sign Up</h1>
-        <div class="row input-wrapper">
-            <label class="col-lg-2 control-label">Username</label>
+        <div class="">
+            <label class="">Username</label>
             <input required id="username" type="text" name="username" placeholder="Username"
                    ng-model="editUser.username">
             <div ng-show="error.username">{{error.username}}</div>
         </div>
 
-        <div class="row input-wrapper">
-            <label class="col-lg-2 control-label">First name</label>
+        <div class="">
+            <label class="">First name</label>
             <input required id="firstName" type="text" name="firstName" placeholder="First name"
                    ng-model="editUser.firstName">
             <div ng-show="error.firstName" >{{error.firstName}}</div>
         </div>
 
-        <div class="row input-wrapper">
-            <label class="col-lg-2 control-label">Last name</label>
+        <div class="">
+            <label class="">Last name</label>
             <input required id="lastName" type="text" name="lastName" placeholder="Last name"
                    ng-model="editUser.lastName">
 
             <div ng-show="error.lastName" >{{error.lastName}}</div>
         </div>
         <!--do ovde-->
-        <div class="row input-wrapper">
-            <label class="col-lg-2 control-label">Email</label>
+        <div class="">
+            <label class="">Email</label>
             <input required id="email" type="email" name="email" placeholder="Email Address"
                    ng-model="editUser.email">
             <div ng-show="error.email" >{{error.email}}</div>
         </div>
 
-        <div class="row input-wrapper">
-            <label class="col-lg-2 control-label">Password</label>
-            <input required id="password_block" name="password" type="password"
+        <div class="textarea">
+            <label class="">Password</label>
+            <input class="textarea" required id="password_block" name="password" type="password"
                    placeholder="Password" ng-model="editUser.password">
             <div ng-show="error.password" >{{error.password}}</div>
         </div>
-        <div class="row input-wrapper">
-            <label class="col-lg-2 control-label">Confirm password</label>
+        <div class="textarea">
+            <label class="">Confirm password</label>
             <input required id="confirm_password" name="confirm_password" type="password"
                    placeholder="Confirm password" ng-model="editUser.confirm_password">
             <div ng-show="error.confirm_password">{{error.confirm_password}}</div>
         </div>
-        Choose profile picture:
-        <div class="row input-wrapper form-group">
-                <input type="file" nv-file-select="" uploader="uploader" accept="image/*"/><br/>
+
+
+        
+        <div class="">
+                <!-- <label>Choose profile picture:</label>
+                <input class="fileUpload"  type="file" nv-file-select="" uploader="uploader" accept="image/*"/> -->
+
+                <label >Upload Profile Picture</label>
+                <div class="fileUpload btn button">
+                    <span>Browse</span>
+                    <input id="uploadBtn" type="file" class="upload" nv-file-select="" uploader="uploader" accept="image/*"/>
+                </div>
+
                 <ul>
                     <li ng-repeat="item in uploader.queue">
                         Name: <span ng-bind="item.file.name"></span><br/>
@@ -58,14 +68,14 @@
                         </button>
                     </li>
                 </ul>
-                <div class="progress" style="margin-bottom: 0;">
+                <!-- <div ng-if="item" class="progress" style="margin-bottom: 0;">
                     <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }" style="width: 0%;"></div>
-                </div>
+                </div> -->
         </div> 
         
 
-        <div class="row button_register">
-            <button type="submit" class="submit_button">Sign up</button>
+        <div >
+            <button  class="button submit_button button_submit"  type="submit" >Sign up</button>
         </div>
     </form>
 </div>

@@ -37,11 +37,12 @@
     margin-top: 10px;
     color: #5E5E5E;
 }
-.register_form input[type="text"], .register_form input[type="email"], .register_form textarea, .register_form select {
+.register_form input[type="text"], .register_form input[type="email"] ,.register_form input[type="password"], .register_form textarea, .register_form select {
     color: #555;
     height: 30px;
     line-height:15px;
     width: 100%;
+    max-width:300px;
     padding: 0px 0px 0px 10px;
     margin-top: 2px;
     border: 1px solid #E5E5E5;
@@ -50,6 +51,7 @@
     -webkit-box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);
     box-shadow: inset 1px 1px 2px rgba(238, 238, 238, 0.2);
     font: normal 14px/14px Arial, Helvetica, sans-serif;
+    border-radius:5px;
 }
 .register_form textarea{
     height:100px;
@@ -67,15 +69,45 @@
     height:30px;
 }
 .register_form .button {
-    background-color: #9DC45F;
+    background-color: white;
+    border: 1px solid @c-green-border;
+    color:@c-green-border;
+    //background-color: linear-gradient(to bottom,  #24B307 0%,#008d00 100%);
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-border-radius: 5px;
-    border: none;
+  //  border: none;
     padding: 10px 25px 10px 25px;
-    color: #FFF;
+    //color: #FFF;
     text-shadow: 1px 1px 1px #949494;
 }
 .register_form .button:hover {
-    background-color:#80A24A;
+    background-color:#008d00;
 }
+
+.register_form .button_submit{
+    display:inline-block;
+    font-size:16px;
+    font-weight:bold;    
+    border-bottom: 5px solid;
+        margin-top: 15px;
+};
+
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+//    background: linear-gradient(to bottom,  #24B307 0%,#008d00 100%);
