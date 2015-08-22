@@ -11,10 +11,18 @@
 
 	<div ng-if="comments" ng-repeat="comment in comments">
 
-		<div ng-if="comment">
-		 	<h4> comment author: {{comment.author.username}}</h4>
-			<h4> comment text:{{comment.text}}</h4>
-			<div ng-vote-comment comment='comment'></div>
+		<div ng-if="comment" class="basic_comment">
+
+			<div class="author_picture" ng-if='comment.author' data-ng-controller="ctrlLogin">
+                          <img ng-if='comment.author' ng-src="{{'/files/profilePicture/100/'+comment.author.profilePicture}}" />
+            </div>
+            <div class="comment_details">
+					 	<a href="#!/users/userProfile/{{comment.author._id}}">{{comment.author.username}}</a>
+					 	<div class="comment_text">
+							{{comment.text}}
+						<div>
+						<div ng-vote-comment comment='comment'></div>
+			</div>
 			replies:
 			<div ng-if="comment.replies" class="text-center" ng-repeat="reply in comment.replies">
 				autorrr:  {{reply.author.username}}
