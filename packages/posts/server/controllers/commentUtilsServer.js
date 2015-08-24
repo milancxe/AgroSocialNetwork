@@ -17,7 +17,7 @@ exports.findCommentsByCreation=function( postId,userId,lastId,next){
 	console.log(findCriteria);
 	console.log(global.config.comments);
 
-	CommentModel.find(findCriteria).lean().populate({path:'author',model:'UserModel'})
+	CommentModel.find(findCriteria).lean().populate({path:'author',model:'UserModel'}).populate({path:'replies.author',model:'UserModel'})
 		.limit(global.config.paginationSize.comments).sort('-created').exec(function(err,comments){
 
 			commentUtils.checkUserVotedComments(userId,comments,function (checkedComments){

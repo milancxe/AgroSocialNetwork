@@ -11,16 +11,21 @@
                     </button>    
                   </div>
                   <a class="navbar-brand" href="#!/" > Agronet</a>
-
+                  
                   <div class="picture_menu" ng-if='user' data-ng-controller="ctrlLogin">
                           <img ng-if='user' ng-src="{{'/files/profilePicture/32/'+user.profilePicture}}" />
                   </div>
                   <div class="navbar-collapse collapse">
                         <div class="dropdown">
-
-                              <a class="header_button" type="button" id="loggedMenu" data-toggle="dropdown">Details
-                                  <span class="caret"></span></a>
-                            
+                            <div>
+                              <a role="button" class="create_post_button" ui-sref="ml.rhf.newPost"> Create post </a>
+                            </div>
+                              <!-- <a class="header_button" type="button" id="loggedMenu" data-toggle="dropdown">Details
+                                  <span class="caret"></span></a> -->
+                                  <a class="sett" id="loggedMenu" data-toggle="dropdown">
+                                    <span class="glyphicon glyphicon-cog"></span>
+                                    <span class="caret caret_containter"></span>
+                                  </a>
                               
                                   <ul class="dropdown-menu dropdown_dialog_user" role="menu" aria-labelledby="loggedMenu">
                                     

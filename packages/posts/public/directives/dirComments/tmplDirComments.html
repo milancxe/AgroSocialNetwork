@@ -17,17 +17,27 @@
                           <img ng-if='comment.author' ng-src="{{'/files/profilePicture/100/'+comment.author.profilePicture}}" />
             </div>
             <div class="comment_details">
-					 	<a href="#!/users/userProfile/{{comment.author._id}}">{{comment.author.username}}</a>
+
+					 	<a class="user_profile_link" href="#!/users/userProfile/{{comment.author._id}}">{{comment.author.username}}</a>
 					 	<div class="comment_text">
 							{{comment.text}}
 						<div>
 						<div ng-vote-comment comment='comment'></div>
 			</div>
-			replies:
-			<div ng-if="comment.replies" class="text-center" ng-repeat="reply in comment.replies">
-				autorrr:  {{reply.author.username}}
-				tekstttt:  {{reply.text}}
-				<div ng-vote-reply-comment post="post" reply-comment="reply"></div>
+			
+			<div ng-if="comment.replies"  ng-repeat="reply in comment.replies">
+				 <div class="reply_author_picture" ng-if='comment.author' data-ng-controller="ctrlLogin">
+                          <img ng-if='comment.author' ng-src="{{'/files/profilePicture/100/'+reply.author.profilePicture}}" />
+            	</div>
+            	
+				<div class="reply_body">
+
+					<a class="user_profile_link" href="#!/users/userProfile/{{comment.author._id}}">{{reply.author.username}}</a>
+					 <div clas="reply_text">
+					 	{{reply.text}}
+					 </div>
+					<div ng-vote-reply-comment post="post" reply-comment="reply"></div>
+				</div>
 			</div>
 			<a class=" btn " ng-click="showAddReplyForm=!showAddReplyForm">Add Reply</a>
 			<div class="row" ng-if="showAddReplyForm">
