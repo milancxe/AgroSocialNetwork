@@ -1,0 +1,15 @@
+<div class="containter">
+
+        <div ng-if="foundPosts">
+			<h4 class="text-center">Found Posts</h4 class="row">
+            <!--Body content-->
+            <ul class="ul">
+                <li ng-repeat="post in foundPosts">
+                    <div ng-show-small-post post="post" all-posts="foundPosts"/>
+                </li>
+            </ul>
+        </div>
+    <div>
+    <!-- <a href="" ng-if="showLoadMore" class="btn btn default" ng-click="loadMore()">load more posts</a> -->
+	</div>
+</div>

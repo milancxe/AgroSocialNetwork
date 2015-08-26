@@ -117,6 +117,15 @@ exports.deletePost = function(req,res,next){
 
 };
 
+exports.searchPosts = function(req,res,next){
+	console.log('spucao me je da trazim:');
+	console.log(req.body);
+	postUtils.findPost(req.body.searchText,function(foundPosts){
+		res.json(foundPosts);
+	});
+
+};
+
 exports.voteOnPost = function(req,res,next){
 
 	//check to see If I already voted on post
@@ -178,4 +187,5 @@ exports.voteOnPost = function(req,res,next){
 	});
 
 };
+
 

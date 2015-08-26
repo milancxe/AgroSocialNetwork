@@ -45,6 +45,17 @@ angular.module('agronet.posts').config(['$stateProvider',
                 }
 
 
+            }).state('ml.rhf.searchPosts',{
+
+                url:'/searchPosts?searchText',
+                views:{
+                    'view_body@ml':{
+                        templateUrl:'posts/public/views/body/searchPosts.html',
+                        controller:'searchController'
+                    }
+                }
+
+
             })
             .state('ml.rhf.pleaseLogin',{
                 url:'/error/requiresLogin',

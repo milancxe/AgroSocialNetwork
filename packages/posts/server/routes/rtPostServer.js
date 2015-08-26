@@ -20,6 +20,9 @@ module.exports = function (app) {
         .put(auth.requiresLogin,posts.update)
         .delete(auth.requiresLogin,posts.deletePost);
 
+    app.route('/posts/search')
+        .post(posts.searchPosts);
+
     /*app.route('/posts/:postId/deleteImage')
     	.post(posts.deleteImageFromPost);*/
 

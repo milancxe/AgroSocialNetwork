@@ -82,7 +82,16 @@ angular.module('agronet.posts').factory('Post', ['$resource','$http','$state',
                 if (next) next(data);
             });
         };
+
         
+        
+        PostResource.prototype.searchPosts=function(searchText,next){
+
+            $http.post('/posts/search',{ searchText:searchText})
+            .success(function(data, status, headers, config){
+                if (next) next(data);
+            });
+        };
 
         return PostResource;
 	}

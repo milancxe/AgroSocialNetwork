@@ -8,6 +8,7 @@ angular.module('agronet.posts')
 		$scope.showLoadMore=false;
 
 
+
 		new Post().getAll(null,function(allPosts){
 
 			$scope.allPosts=allPosts;
@@ -17,6 +18,7 @@ angular.module('agronet.posts')
 				$scope.showLoadMore=false;
 			}
 		});
+
 
 		$scope.loadMore=function(){
 

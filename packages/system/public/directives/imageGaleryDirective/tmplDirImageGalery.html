@@ -1,29 +1,29 @@
 <div class="container post_basic" >
 
-	<div class="row text-center">
-		
-		<div ng-if="picture">
-			<img ng-src="{{'/files/post/851/'+selectedImage}}" />
-		</div>
-		<div ng-if="video">
-			<div ng-if="videoId"  ng-youtube-video video-id="{{videoId}}"></div>
-		</div>
+	<div class="picture_one_post text-center" >
+			<img ng-if="picture"  ng-src="{{'/files/post/851/'+selectedImage}}" />
+			<div ng-if="video"  ng-youtube-video video-id="{{videoId}}"></div>
+
 	</div>
 
-	<div>
-		<a ng-click="nextOne(-1)"> <span class="glyphicon glyphicon-chevron-left" > </span></a>
-		
-		<a ng-click="nextOne(1)"><span class="glyphicon glyphicon-chevron-right" ></span></a>
-	</div>
-	<div class="row">
+	<div class="arrows" >
+		<div class="left_arrow">
+			<a   ng-click="nextOne(-1)"> <span class="glyphicon glyphicon-chevron-left" > </span></a>
+		</div>
+		<div class="center">		</div>
 
-		<div class="coll-md-4" ng-repeat="image in allImages" ng-click="selectImage(image)">
+		<div class="right_arrow">
+			<a ng-click="nextOne(1)"><span class="glyphicon glyphicon-chevron-right" ></span></a>
+		</div>
+	</div >
+
+		<div class="small_picture" ng-repeat="image in allImages" ng-click="selectImage(image)">
 			<img ng-src="{{'/files/post/160/'+image}}" />
 		</div>
-	</div>
+
 <!-- 	<div ng-if="videoId"  ng-youtube-video video-id="{{videoId}}"></div> -->
-	<div ng-repeat="video in videos" class="c-img-cover-item">
+	<div class="small_video" ng-repeat="video in videos">
 			<!-- <img ng-src="{{'http://img.youtube.com/vi/'+video.id+'/default.jpg'}}" ng-click="showVideo(video);" /> -->
-			<div ng-youtube-video video-id="{{video.id}}" ng-click="showVideo(video)"></div> 
+			<div ng-if="video" ng-youtube-video video-id="{{video.id}}" ng-click="showVideo(video)"></div> 
 	</div>
 </div>

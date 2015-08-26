@@ -27,6 +27,21 @@ exports.findAllPostsByCreation=function( userId,lastId,next){
 
 };
 
+exports.findPost = function( searchText,next){
+
+
+
+	var re = new RegExp('.*'+searchText+'.*','i');
+
+	console.log(re);
+	PostModel.find({title:re}).exec(function(err,foundPosts){
+		console.log('nasao sam:');
+		console.log(foundPosts);
+		next(foundPosts);
+	});
+
+};
+
 exports.checkUserVotedPost = function( userId,posts,next){
 
 
