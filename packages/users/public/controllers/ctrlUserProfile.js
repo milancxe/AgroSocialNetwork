@@ -10,10 +10,16 @@ function($scope, $rootScope, $stateParams, $state , User){
 	$scope.showVotedPosts=false;
 	$scope.showCommentedPosts=false;
 	$scope.showLoadMore=false;
+	$scope.allowEdit=false;
 
 	new User().getUserProfile($stateParams.userId,function(response){
 		console.log(response);
 		$scope.user = new User(response);	
+		console.log('poredim idijeve');
+		if($rootScope.user._id===$scope.user._id){
+			console.log('dobar je');
+			$scope.allowEdit=true;
+		}
 	});
 
 	$scope.getCreatedPosts=function(){

@@ -1,26 +1,28 @@
-<div class="container post_basic" >
-	<div class="row text-center">
-		<div ng-click="showPost()"><h4>Title:{{post.title}}</h4></div>
-		<div ng-click="showPost()">Description:{{post.description}}</div>
-	</div>
-	<div class="row ">
-		<div class="col-md-8">
+<div class="post_basic" >
+
+	<div class="small_post_title" ng-click="showPost()">{{post.title}}</div>
+
+
+
+	<div class="">
+		<div class="small_post_image">
 			<img  ng-src="{{'/files/post/484/'+post.postImage[0]}}"  ng-click="showPost()"/>
 		</div>
-		<div class="col-md-4">
-			<h5> 
-				author:<a href="#!/users/userProfile/{{post.author._id}}">{{post.author.username}}</a>
+		<div class="small_post_author">
+			
+				<a href="#!/users/userProfile/{{post.author._id}}">{{post.author.username}}</a>
 				 
-				<span >
+			    <span ng-if="allowEdit">
 					<a class="btn" href="/#!/posts/{{post._id}}/edit">
 						<i class="glyphicon glyphicon-edit"></i>
 					</a>
 					<a class="btn" ng-click="remove(post)">
 						<i class="glyphicon glyphicon-trash"></i>
 					</a>
-				</span>
-				
-			</h5>
+				</span> 
 		</div>
+
+
+		<div class="small_post_description" ng-click="showPost()">{{post.description}}</div>
 	</div>
 </div>
