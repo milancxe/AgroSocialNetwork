@@ -1,11 +1,16 @@
-<div>
-	I will change my profile picture on this page
-	<div>
+<div id="register_form" class="register_form text-center">
+    <h1> Change your profile picture</h1>
+	<div class="">
 		<img ng-src="{{'/files/profilePicture/160/'+user.profilePicture}}" />
 	</div>
-	Change profile picture:
-    <div class="row input-wrapper form-group">
-            <input type="file" nv-file-select="" uploader="uploader" accept="image/*"/><br/>
+
+    <div class="">
+            <!-- <input type="file" nv-file-select="" uploader="uploader" accept="image/*"/><br/> -->
+            <label>Select new picture</label>
+            <div class="fileUpload btn button">
+                    <span>Browse</span>
+                    <input id="uploadBtn" type="file" class="upload" nv-file-select="" uploader="uploader" accept="image/*"/>
+                </div>
             <ul>
                 <li ng-repeat="item in uploader.queue">
                     Name: <span ng-bind="item.file.name"></span><br/>
@@ -22,7 +27,7 @@
                 <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }" style="width: 0%;"></div>
             </div>
             <div class="alert alert-danger animated fadeIn" ng-show="error.multipleImages">{{error.multipleImages}}</div>
-            <button type="button" class="btn btn-default btn-xs" ng-click="ChangeProfilePicture()"> Change Picture </button>
+            <button type="button" class="button submit_button button_submit" ng-click="ChangeProfilePicture()"> Change Picture </button>
 
     </div> 
 </div>
