@@ -1,33 +1,37 @@
 <div ng-init="init()">
-	<form id="newPost_form" ng-submit="savePost()">
-	        <h2>Create new post</h2>
-	        <div class="row input-wrapper">
-	            <label class="col-lg-2 control-label">Title</label>
+	<form id="create_post_form" class="create_post_form" ng-submit="savePost()">
+	        <h1>Create new post</h1>
+	        <div class="">
+	            <label class="">Title</label>
 	            <input required id="title" type="text" name="title" placeholder="Title"
 	                   ng-model="post.title">
 	            <div ng-show="error.title">{{error.title}}</div>
 	        </div>
 
-	        <div class="row input-wrapper">
-	            <label class="col-lg-2 control-label">Description</label>
+	        <div class="">
+	            <label class="">Description</label>
 	            <input required id="description" type="text" name="description" placeholder="Description"
 	                   ng-model="post.description">
 	            <div ng-show="error.description">{{error.description}}</div>
 	        </div>
 
 	        
-        	<div class="row" ng-if='!create'>
-				<div class="coll-md-4" ng-repeat="image in post.postImage">
+        	<div class="" ng-if='!create'>
+				<div class="" ng-repeat="image in post.postImage">
 					<img ng-src="{{'/files/post/160/'+image}}" />
 					<button type="button" class="btn btn-danger btn-xs" ng-click="removeImage(image)">
                             <span class="glyphicon glyphicon-trash"></span> Remove Image
                     </button>
-				</div>
+				</div> 
 			</div>
         
 
 		    <div>
-		        <input type="file" nv-file-select="" uploader="uploader" accept="image/*" multiple/><br/>
+		       <!--  <input type="file" nv-file-select="" uploader="uploader" accept="image/*" multiple/><br/> -->
+		        <div class="fileUpload btn button">
+                    <span>Browse</span>
+                    <input id="uploadBtn" type="file" class="upload" nv-file-select="" uploader="uploader" accept="image/*" multiple/>
+                </div>
 		        <ul>
 		            <li ng-repeat="item in uploader.queue">
 		                Name: <span ng-bind="item.file.name"></span><br/>
@@ -40,21 +44,20 @@
                         </button>
 		            </li>
 		        </ul>
-		        <div class="progress" style="margin-bottom: 0;">
+		        <!-- <div class="progress" style="margin-bottom: 0;">
 	                <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }" style="width: 0%;"></div>
-	            </div>
+	            </div> -->
 		    </div> 
 		    <div class="form-group">
-	            <label for="contentVideo" class="col-md-4 control-label">Add Video to your post</label>
-	            <div class="col-md-8">
-	                <input name="contentVideo" type="text" class="form-control" data-ng-model="contentVideoAddress" id="contentVideo" placeholder="Youtube link">
+	            <label for="contentVideo" class="">Add Video to your post</label>
+	            <div class="create_form_video_container">
+	                <input name="contentVideo" type="text" class="" data-ng-model="contentVideoAddress" id="contentVideo" placeholder="Youtube link">
 	                <a class="btn" data-ng-click="addVideo()">
 	                    <i class="glyphicon glyphicon-plus">Add this video to Challenge</i>
 	                </a>
-	                <ul> 
+	                <ul class="ul"> 
 
 	                    <li ng-repeat="video in post.contentVideo"  >
-	                    	{{video.id}}
 	                        <div ng-youtube-video video-id="{{video.id}}"></div>
 	                        <a class="btn" data-ng-click="removeVideo(video.index)">
 	                            <i class="glyphicon glyphicon-trash"></i>
@@ -65,8 +68,8 @@
         	</div>
 	        
 
-	        <div class="row button_register">
-	            <button type="submit" class="submit_button">Sign up</button>
+	        <div class="button_register">
+	            <button type="submit" class="button submit_button button_submit">Create Post</button>
 	        </div>
 	    </form>
 
