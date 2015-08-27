@@ -19,7 +19,7 @@ function($scope, Post, $stateParams, $sce, dialogs,$location){
 
 
 */
-
+	
 	$scope.showPost=function(){
 		 $location.path('/posts/'+$scope.post._id);
 	};

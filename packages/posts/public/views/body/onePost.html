@@ -1,28 +1,29 @@
 <div ng-controller="ctrlOnePost">
-<div ng-if="post">
+	<div ng-if="post">
 
-	 	<h2 class="row"> post title:{{post.title}}</h2>
-	 	<h2 class="row"> post description:{{post.description}}</h2>
+		 	<div class="post_title">{{post.title}}</div>
+		 	
 
-		<div ng-Image-Galery all-images="images" videos="videos" ng-if="images">
-		</div>
-		<div>
-			{{score}}
+			<div ng-Image-Galery all-images="images" videos="videos" ng-if="images"></div>
 
-			<a class="btn" href="" ng-click="voteUp()">
-					<i ng-if="post.updownStatus!==1" class="glyphicon glyphicon-arrow-up"></i>
-					<i ng-if="post.updownStatus==1" class="glyphicon glyphicon-arrow-up voted_color"></i>
-			</a>
-							<!-- <span ng-if="post.updownStatus==1">*</span> -->
-			<a class="btn" href="" ng-click="voteDown()">
-					<i ng-if="post.updownStatus!==2" class="glyphicon glyphicon-arrow-down "></i>
-					<i ng-if="post.updownStatus==2" class="glyphicon glyphicon-arrow-down voted_color"></i>
-			</a>
-						<!-- <span ng-if="post.updownStatus==2">*</span> -->
-		</div>
+			<div class="score">
+				{{score}}
 
-		<br></br>
-		
+				<a class="btn" href="" ng-click="voteUp()">
+						<i ng-if="post.updownStatus!==1" class="glyphicon glyphicon-arrow-up"></i>
+						<i ng-if="post.updownStatus==1" class="glyphicon glyphicon-arrow-up voted_color"></i>
+				</a>
+								<!-- <span ng-if="post.updownStatus==1">*</span> -->
+				<a class="btn" href="" ng-click="voteDown()">
+						<i ng-if="post.updownStatus!==2" class="glyphicon glyphicon-arrow-down "></i>
+						<i ng-if="post.updownStatus==2" class="glyphicon glyphicon-arrow-down voted_color"></i>
+				</a>
+							<!-- <span ng-if="post.updownStatus==2">*</span> -->
+			</div>
+
+
+			<div class="post_description"> {{post.description}}</div>
+			
 
 
 
