@@ -1,38 +1,41 @@
 <div>
     <div class="alert alert-danger animated fadeIn" ng-show="error.general">{{error.general}}</div>
-    <form id="register_form" ng-submit="editProfileData()">
-        <h2>Edit Your Details</h2>
-        <div class="row input-wrapper">
-            <label class="col-lg-2 control-label">Username</label>
+    <form id="register_form" class="register_form" ng-submit="editProfileData()">
+        <h1>Edit Your Details</h1>
+        <div class="">
+            <label class="">Username</label>
             <input required id="username" type="text" name="username" placeholder="Username"
                    ng-model="editUser.username">
             <div ng-show="error.username">{{error.username}}</div>
         </div>
 
-        <div class="row input-wrapper">
-            <label class="col-lg-2 control-label">First name</label>
+        <div class="">
+            <label class="">First name</label>
             <input required id="firstName" type="text" name="firstName" placeholder="First name"
                    ng-model="editUser.firstName">
             <div ng-show="error.firstName" >{{error.firstName}}</div>
         </div>
 
-        <div class="row input-wrapper">
+        <div class="">
             <label class="col-lg-2 control-label">Last name</label>
             <input required id="lastName" type="text" name="lastName" placeholder="Last name"
                    ng-model="editUser.lastName">
 
             <div ng-show="error.lastName" >{{error.lastName}}</div>
         </div>
+        <div>
+        <label class="">Profile picture:</label>
+            <img ng-src="{{'/files/profilePicture/160/'+editUser.profilePicture}}" />
+            <div class="change_profile_picture">
+                <a role="button" href="#!/users/{{user._id}}/changeProfilePicture">Change Profile Picture</a>
+            </div>
+        </div>
 
-        <img ng-src="{{'/files/profilePicture/160/'+editUser.profilePicture}}" />
 
-
-
-
-        <div class="row button_register">
-            <button type="submit" class="submit_button">Save</button>
+        <div class="">
+            <button type="submit" class="button submit_button button_submit">Save</button>
         </div>
 
     </form>
-    <a role="button" href="#!/users/{{user._id}}/changeProfilePicture">Change Profile Picture</a>
+
 </div>
