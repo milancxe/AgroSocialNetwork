@@ -9,9 +9,15 @@
 			<img  ng-src="{{'/files/post/484/'+post.postImage[0]}}"  ng-click="showPost()"/>
 		</div>
 		<div class="small_post_author">
-			
+				
+				<div class="">
+					<img ng-if="post.author"  ng-src="{{'/files/profilePicture/32/'+post.author.profilePicture}}"  ng-click="showPost()"/>
+				</div>
 				<a href="#!/users/userProfile/{{post.author._id}}">{{post.author.username}}</a>
 				 
+				<div ng-vote-post post="post">
+				</div>
+
 			    <span ng-if="allowEdit">
 					<a class="btn" href="/#!/posts/{{post._id}}/edit">
 						<i class="glyphicon glyphicon-edit"></i>
