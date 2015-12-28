@@ -1,5 +1,97 @@
 <div class="container post_basic" >
 
+	<div class="carousel-inner  text-center" >
+			<img ng-show="picture"  ng-src="{{'/files/post/851/'+selectedImage}}" />
+			<div ng-show="video"  ng-youtube-video video-id="{{videoId}}"></div>
+		<div class="" >
+			<div class="left carousel-control">
+				<a   ng-click="nextOne(-1)"> <span class="glyphicon glyphicon-chevron-left" > </span></a>
+			</div>
+			<div class="center">		</div>
+
+			<div class="right carousel-control">
+				<a ng-click="nextOne(1)"><span class="glyphicon glyphicon-chevron-right" ></span></a>
+			</div>
+		</div >
+	</div>
+	Pictures:
+	
+	<div id="carousel-example-2" class="carousel slide alternative" >
+	  <!-- Indicators -->
+	  <ol class="carousel-indicators">
+	    <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+	    <li data-target="#carousel-example-2" data-slide-to="1"></li>
+	  </ol>
+	  <!-- Wrapper for slides -->
+	  <div class="carousel-inner">
+	    <div class="item active">
+	      <div class="row" >
+	       		<div class="col-md-3" ng-repeat="image in allImages | startFrom:currentPage*pageSize | limitTo:pageSize" ng-click="selectImage(image)">
+	        		<img ng-src="{{'/files/post/160/'+image}}" style="max-width:100%;">
+	        	</div>
+	      </div>
+	    </div>
+	  </div>
+	  <!-- Controls -->
+	  <btn class="left carousel-control" href="" ng-show="currentPage > 0" ng-click="currentPage=currentPage-1">
+	    <span class="glyphicon glyphicon-chevron-left" ></span>
+	  </btn>
+
+	  <a class="right carousel-control" href="" ng-show="currentPage < numberOfPages()-1" ng-click="currentPage=currentPage+1">
+	    <span class="glyphicon glyphicon-chevron-right"></span>
+	  </a>
+	</div>
+
+	Videos:
+
+	<div id="carousel-example-2" class="carousel slide alternative" >
+	  <!-- Indicators -->
+	  <ol class="carousel-indicators">
+	    <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+	    <li data-target="#carousel-example-2" data-slide-to="1"></li>
+	  </ol>
+	  <!-- Wrapper for slides -->
+	  <div class="carousel-inner">
+	    <div class="item active">
+	      <div class="row" >
+	       		<div class="col-md-3" ng-repeat="video in videos | startFrom:currentPageVideo*pageSize | limitTo:pageSize" ng-click="showVideo(video)">
+	        		<img ng-src="{{'http://img.youtube.com/vi/'+video.id+'/default.jpg'}}" ng-click="showVideo(video)" style="max-width:100%;">
+	        	</div>
+	      </div>
+	    </div>
+	  </div>
+	  <!-- Controls -->
+	  <btn class="left carousel-control" href="" ng-show="currentPageVideo > 0" ng-click="currentPageVideo=currentPageVideo-1">
+	    <span class="glyphicon glyphicon-chevron-left" ></span>
+	  </btn>
+
+	  <a class="right carousel-control" href="" ng-show="currentPageVideo < numberOfPagesVideo()-1" ng-click="currentPageVideo=currentPageVideo+1">
+	    <span class="glyphicon glyphicon-chevron-right"></span>
+	  </a>
+	</div>
+<!-- 	<div class="small_video" ng-repeat="video in videos"> 
+			 <img ng-src="{{'http://img.youtube.com/vi/'+video.id+'/default.jpg'}}" ng-click="showVideo(video);" /> 
+	</div>
+ -->
+
+
+
+
+<!-- 	<div class="row">
+		<div class="" ng-repeat="image in allImages" ng-click="selectImage(image)">
+			<img ng-src="{{'/files/post/160/'+image}}" />
+		</div> -->
+
+	<!-- 	<div ng-if="videoId"  ng-youtube-video video-id="{{videoId}}"></div> -->
+<!-- 		<div class="" ng-repeat="video in videos">
+				<img ng-src="{{'http://img.youtube.com/vi/'+video.id+'/default.jpg'}}" ng-click="showVideo(video);" />
+				<div ng-if="video" ng-youtube-video video-id="{{video.id}}" ng-click="showVideo(video)"></div> 
+		</div>
+	</div> -->
+	<!--
+moje staro
+ <div class="container post_basic" >
+
 	<div class="picture_one_post text-center" >
 			<img ng-if="picture"  ng-src="{{'/files/post/851/'+selectedImage}}" />
 			<div ng-if="video"  ng-youtube-video video-id="{{videoId}}"></div>
@@ -19,11 +111,13 @@
 
 		<div class="small_picture" ng-repeat="image in allImages" ng-click="selectImage(image)">
 			<img ng-src="{{'/files/post/160/'+image}}" />
-		</div>
+		</div> -->
 
 <!-- 	<div ng-if="videoId"  ng-youtube-video video-id="{{videoId}}"></div> -->
-	<div class="small_video" ng-repeat="video in videos">
+<!-- 	<div class="small_video" ng-repeat="video in videos"> -->
 			<!-- <img ng-src="{{'http://img.youtube.com/vi/'+video.id+'/default.jpg'}}" ng-click="showVideo(video);" /> -->
-			<div ng-if="video" ng-youtube-video video-id="{{video.id}}" ng-click="showVideo(video)"></div> 
+<!-- 			<div ng-if="video" ng-youtube-video video-id="{{video.id}}" ng-click="showVideo(video)"></div> 
 	</div>
+</div> -->
 </div>
+

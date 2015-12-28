@@ -18,6 +18,7 @@ function($scope, Post, $stateParams, $sce, dialogs,$location){
 			$scope.post.scoreUp=response.scoreUp;
 			$scope.post.scoreDown=response.scoreDown;
 			$scope.score=0+$scope.post.scoreUp-$scope.post.scoreDown;
+			$scope.post.updownStatus=response.updownStatus;
 		});
 
 	};
@@ -27,6 +28,7 @@ function($scope, Post, $stateParams, $sce, dialogs,$location){
 			$scope.post.scoreUp=response.scoreUp;
 			$scope.post.scoreDown=response.scoreDown;
 			$scope.score=0+$scope.post.scoreUp-$scope.post.scoreDown;
+			$scope.post.updownStatus=response.updownStatus;
 		});
 	};
 

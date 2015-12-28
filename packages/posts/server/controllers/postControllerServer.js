@@ -118,8 +118,6 @@ exports.deletePost = function(req,res,next){
 };
 
 exports.searchPosts = function(req,res,next){
-	console.log('spucao me je da trazim:');
-	console.log(req.body);
 	postUtils.findPost(req.body.searchText,function(foundPosts){
 		res.json(foundPosts);
 	});
@@ -131,30 +129,28 @@ exports.voteOnPost = function(req,res,next){
 	//check to see If I already voted on post
 	PostVoteModel.findOne({post:req.post,author:req.user}).exec(function(err, postVote){
 		if (err) res.send(500);
-		console.log('objekat je:');
-		console.log(postVote);
+		var updownStatus={};
 		//console.log(postVote.voteValue);
 		if (postVote){
-
-			console.log('vec je glasao:');
 			if(postVote.voteValue===req.body.voteType){
-				console.log('iste su vrednosti');
 				postVote.remove();
 				if(req.body.voteType===1){
 					req.post.scoreUp=req.post.scoreUp-1;
 				}else{
 					req.post.scoreDown=req.post.scoreDown-1;
 				}
+				updownStatus=0;
 			}else{
-				console.log('razlicite su vrednosti');
 				postVote.voteValue=req.body.voteType;
 				postVote.save();
 				if(req.body.voteType===1){
 					req.post.scoreDown=req.post.scoreDown-1;
 					req.post.scoreUp=req.post.scoreUp+1;
+					updownStatus=1;
 				}else{
 					req.post.scoreUp=req.post.scoreUp-1;
 					req.post.scoreDown=req.post.scoreDown+1;
+					updownStatus=2;
 				}
 			}
 			var response={};
@@ -162,6 +158,7 @@ exports.voteOnPost = function(req,res,next){
 			req.post.save();
 			response.scoreUp=req.post.scoreUp;
 			response.scoreDown=req.post.scoreDown;
+			response.updownStatus=updownStatus;
 			res.send(200,response);
 
 		}else{
@@ -172,14 +169,17 @@ exports.voteOnPost = function(req,res,next){
 			newPostVote.save(function(err,newPostVote){
 				if(req.body.voteType===1){
 					req.post.scoreUp=req.post.scoreUp+1;
+					updownStatus=1;
 				}else{
 					req.post.scoreDown=req.post.scoreDown+1;
+					updownStatus=2;
 				}
 				req.post.save();
 				var response={};
 
 				response.scoreUp=req.post.scoreUp;
 				response.scoreDown=req.post.scoreDown;
+				response.updownStatus=updownStatus;
 				res.send(200,response);
 
 			});

@@ -1,8 +1,13 @@
 'use strict';
 
 
-
 angular.module('agronet.posts')
+.filter('startFrom', function() {
+    return function(input, start) {
+       // start = +start; //parse to int
+        return input.slice(start);
+    };
+})
 .controller('ctrlImageGalery',['$scope', 'Post', '$stateParams', '$sce', 'dialogs','$location',
 function($scope, Post, $stateParams, $sce, dialogs,$location){
 
@@ -13,7 +18,8 @@ function($scope, Post, $stateParams, $sce, dialogs,$location){
 		$scope.picture=true;
 	}
 	$scope.selectImage=function(image){
-
+		$scope.video=false;
+		$scope.picture=true;
 		$scope.selectedImage=image;
 	};
 
@@ -58,6 +64,14 @@ function($scope, Post, $stateParams, $sce, dialogs,$location){
 		$scope.videoId=videoObject.id;
 	};
 
+	$scope.currentPage = 0;
+    $scope.pageSize = 4;
+    $scope.numberOfPages=function(){
+        return Math.ceil($scope.allImages.length/$scope.pageSize);                
+    };
 	
-	
+	$scope.currentPageVideo=0;
+    $scope.numberOfPagesVideo=function(){
+        return Math.ceil($scope.videos.length/$scope.pageSize);                
+    };
 }]);

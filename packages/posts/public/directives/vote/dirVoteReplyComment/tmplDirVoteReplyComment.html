@@ -1,11 +1,11 @@
 <div>
 	Score: {{replyScore}}
 	Vote: <a class="btn" href="" ng-click="voteReplyComment(1)">
-					<i class="glyphicon glyphicon-arrow-up"></i>
-					<span ng-if="replyComment.updownStatus==1">*</span>
+					<i ng-if="replyComment.updownStatus!==1" class="glyphicon glyphicon-arrow-up"></i>
+				<i ng-if="replyComment.updownStatus==1" class="glyphicon glyphicon-arrow-up voted_color"></i>
 				</a>
 		<a class="btn" href="" ng-click="voteReplyComment(2)">
-					<i class="glyphicon glyphicon-arrow-down"></i>
-					<span ng-if="replyComment.updownStatus==2">*</span>					
+					<i ng-if="replyComment.updownStatus!==2" class="glyphicon glyphicon-arrow-down"></i>
+				<i ng-if="replyComment.updownStatus==2" class="glyphicon glyphicon-arrow-down voted_color"></i>
 				</a>
 </div>

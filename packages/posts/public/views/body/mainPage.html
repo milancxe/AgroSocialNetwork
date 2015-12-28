@@ -1,10 +1,35 @@
-<div class="containter">
+
+
+<div id="content" class="container">
+
+        <div>
+            <!-- <div class="main_title">Posts of other people</div> -->
+            
+            <!--Body content-->
+            <div class="row margin-vert-30">
+                <div class="col-md-9">
+                    <ul class="ul">
+                        <li ng-repeat="post in allPosts">
+                            <div ng-show-small-post post="post" all-posts="allPosts"/>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    <div class="load-posts">
+    <a href="" ng-if="showLoadMore" class="btn btn-primary" ng-click="loadMore()">load more posts</a>
+    </div>
+</div> 
+
+
+<!-- moje staro: -->
+<!-- <div class="containter">
 
         <div>
 			<div class="main_title">Posts of other people</div>
 			
             <!--Body content-->
-            <ul class="ul">
+            <!-- <ul class="ul">
                 <li ng-repeat="post in allPosts">
                     <div ng-show-small-post post="post" all-posts="allPosts"/>
                 </li>
@@ -13,4 +38,4 @@
     <div>
     <a href="" ng-if="showLoadMore" class="btn btn default" ng-click="loadMore()">load more posts</a>
 	</div>
-</div>
+</div> -->

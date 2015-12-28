@@ -1,5 +1,57 @@
 <div class="post_basic" >
 
+	<div class="portfolio-group col-md-12 margin-top-30 no-padding">
+		<div class="portfolio-item code">
+			<!-- <div class="small_post_title" ng-click="showPost()">{{post.title}}</div> -->
+			<!-- <div class="panel-group alternative">
+			<div class="panel-heading" ng-click="showPost()"><h4 class="panel-title"> <a class="accordion-toggle">{{post.title}}</a></h4></div>
+			</div> -->
+
+
+			<div class="image-hover">
+						<div class="blog-item-header">
+				<div class="panel-heading" ng-click="showPost()"><h4 class="panel-title"> <a class="accordion-toggle">{{post.title}}</a></h4></div>
+			</div>
+				<div class="overlay">
+					<div class="small_post_image">
+						<img  ng-src="{{'/files/post/484/'+post.postImage[0]}}"  ng-click="showPost()"/>
+					</div>
+
+
+					<div class="list-group-item">
+						<div class="row">
+							<!-- <div class="small_post_author"> -->
+									
+									<div class="col-md-2">
+										<img class="media-object blog-item-footer blog-recent-comments img alt" ng-if="post.author"  ng-src="{{'/files/profilePicture/32/'+post.author.profilePicture}}"  ng-click="showPost()"/>
+										<a href="#!/users/userProfile/{{post.author._id}}">{{post.author.username}}</a>
+									</div>
+									<div class="col-md-8">
+
+										<h3 class="">{{post.description}}</h3>
+											<!-- <div class="small_post_description" ng-click="showPost()">{{post.description}}</div> -->
+									</div>
+									<div class="col-md-2">
+										<div ng-vote-post post="post"></div>
+
+									    <span ng-if="allowEdit">
+											<a class="" href="/#!/posts/{{post._id}}/edit">
+												<i class="glyphicon glyphicon-edit"></i>
+											</a>
+											<a class="" ng-click="remove(post)">
+												<i class="glyphicon glyphicon-trash"></i>
+											</a>
+										</span>
+									</div> 
+							</div>
+						<!-- </div> -->
+					</div>
+
+		</div>
+	</div>
+	<!-- moje staro: -->
+<!-- <div class="post_basic" >
+
 	<div class="small_post_title" ng-click="showPost()">{{post.title}}</div>
 
 
@@ -31,4 +83,5 @@
 
 		<div class="small_post_description" ng-click="showPost()">{{post.description}}</div>
 	</div>
+</div> -->
 </div>

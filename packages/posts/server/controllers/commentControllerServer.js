@@ -46,7 +46,6 @@ exports.getCommentsOnPost=function(req,res,next){
 
 exports.addCommentReply = function(req,res,next){
 
-
 	console.log(req.body.commentReplyText);
 	var replyComment={};
 	replyComment.author=req.user;
@@ -56,7 +55,9 @@ exports.addCommentReply = function(req,res,next){
 
 	req.comment.save(function(err,comment){
 		if(err) res.json(500,{error:'cannot add reply on comment'});
-		res.json(req.comment.replies);
+			CommentModel.populate(comment, {path:'replies.author',model:'UserModel'},function(err, comment){
+				res.json(comment.replies);
+			});
 	});
 };
 
@@ -65,6 +66,7 @@ exports.voteOnComment = function(req,res,next){
 	CommentVoteModel.findOne({author:req.user,comment:req.comment}).exec(function(err, votedComment){
 
 		if(err) res.send(500);
+		var updownStatus = {};
 
 		if(votedComment){
 
@@ -73,10 +75,10 @@ exports.voteOnComment = function(req,res,next){
 				votedComment.remove();
 				if(req.body.value===1){
 					req.comment.scoreUp=req.comment.scoreUp-1;
-
+					updownStatus=0;
 				}else{
 					req.comment.scoreDown=req.comment.scoreDown-1;
-
+					updownStatus=0;
 				}
 			}else{
 
@@ -85,9 +87,11 @@ exports.voteOnComment = function(req,res,next){
 				if(req.body.value===1){
 					req.comment.scoreDown=req.comment.scoreDown-1;
 					req.comment.scoreUp=req.comment.scoreUp+1;
+					updownStatus=1;
 				}else{
 					req.comment.scoreUp=req.comment.scoreUp-1;
 					req.comment.scoreDown=req.comment.scoreDown+1;
+					updownStatus=2;
 				}
 			}
 			var response={};
@@ -95,6 +99,7 @@ exports.voteOnComment = function(req,res,next){
 			req.comment.save();
 			response.scoreUp=req.comment.scoreUp;
 			response.scoreDown=req.comment.scoreDown;
+			response.updownStatus=updownStatus;
 			res.send(200,response);
 
 		}else{
@@ -105,14 +110,17 @@ exports.voteOnComment = function(req,res,next){
 			newCommentVote.save(function(err,newCommentVote){
 				if(req.body.value===1){
 					req.comment.scoreUp=req.comment.scoreUp+1;
+					updownStatus=1;
 				}else{
 					req.comment.scoreDown=req.comment.scoreDown+1;
+					updownStatus=2;
 				}
 				req.comment.save();
 				var response={};
 
 				response.scoreUp=req.comment.scoreUp;
 				response.scoreDown=req.comment.scoreDown;
+				response.updownStatus=updownStatus;
 				res.send(200,response);
 
 			});
@@ -130,6 +138,7 @@ exports.voteOnReplyComment = function(req,res,next){
 
 	var reply={};
 	var replyIndex=-1;
+	var updownStatus = {};
 
 	for(var i=0; i<req.comment.replies.length;i=i+1){
 
@@ -147,9 +156,11 @@ exports.voteOnReplyComment = function(req,res,next){
 				votedCommentReply.remove();
 				if(req.body.value===1){
 					req.comment.replies[replyIndex].scoreUp=req.comment.replies[replyIndex].scoreUp-1;
+
 				}else{
 					req.comment.replies[replyIndex].scoreDown=req.comment.replies[replyIndex].scoreDown-1;
 				}
+				updownStatus = 0;
 			}else{
 
 				votedCommentReply.voteValue=req.body.value;
@@ -157,9 +168,11 @@ exports.voteOnReplyComment = function(req,res,next){
 				if(req.body.value===1){
 					req.comment.replies[replyIndex].scoreDown=req.comment.replies[replyIndex].scoreDown-1;
 					req.comment.replies[replyIndex].scoreUp=req.comment.replies[replyIndex].scoreUp+1;
+					updownStatus = 1;
 				}else{
 					req.comment.replies[replyIndex].scoreUp=req.comment.replies[replyIndex].scoreUp-1;
 					req.comment.replies[replyIndex].scoreDown=req.comment.replies[replyIndex].scoreDown+1;
+					updownStatus = 2;
 				}
 			}
 			var response={};
@@ -167,6 +180,7 @@ exports.voteOnReplyComment = function(req,res,next){
 			req.comment.save();
 			response.scoreUp=req.comment.replies[replyIndex].scoreUp;
 			response.scoreDown=req.comment.replies[replyIndex].scoreDown;
+			response.updownStatus = updownStatus ;
 			res.send(200,response);
 
 		}else{
@@ -177,14 +191,17 @@ exports.voteOnReplyComment = function(req,res,next){
 			newCommentVote.save(function(err,newCommentVote){
 				if(req.body.value===1){
 					req.comment.replies[replyIndex].scoreUp=req.comment.replies[replyIndex].scoreUp+1;
+					updownStatus = 1;
 				}else{
 					req.comment.replies[replyIndex].scoreDown=req.comment.replies[replyIndex].scoreDown+1;
+					updownStatus = 2;
 				}
 				req.comment.save();
 				var response={};
 
 				response.scoreUp=req.comment.replies[replyIndex].scoreUp;
 				response.scoreDown=req.comment.replies[replyIndex].scoreDown;
+				response.updownStatus = updownStatus ;
 				res.send(200,response);
 
 			});

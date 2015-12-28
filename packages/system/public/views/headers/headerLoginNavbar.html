@@ -1,55 +1,106 @@
 <div class="containter">
-    <nav class="navbar-default agronet_header" role="navigation">
+<div id="pre_header" class="visible-lg"></div>
+  <div id="header" class="container">
+      <!-- moje <nav class="navbar-default agronet_header" role="navigation"> -->
 
-            <div class="container ">
-                
-                  <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                    </button>    
-                  </div>
-                  <a class="navbar-brand" href="#!/">Agronet</a>
-                  <div class="navbar-collapse collapse">
-
-                      <div class="dropdown ">
-                              <a class="header_button" type="button" id="signInMenu" data-toggle="dropdown">Sign In
-                                  <span class="caret"></span></a>
-                            
-                            <ul class="dropdown-menu dropdown_dialog" role="menu" aria-labelledby="signInMenu">
-                                
-                                    <div ng-controller="ctrlLogin" class="row">
-                                        <form id="login_form" class="formBasic" ng-submit="loginUser()">
-
-                                            <div >
-
-                                                <input class="inputSignIn" required id="email" type="email" name="email" placeholder="email"
-                                                       ng-model="loginData.email">
-
-
-                                                <input class="inputSignIn" required id="password" type="password" name="password" placeholder="Password"
-                                                       ng-model="loginData.password">
-                                                <div class="inputRememberMe">
-                                                    <label  >Remember me:
-                                                      <input  type="checkbox" ng-model="loginData.remember_me">
-                                                    </label>
-                                                </div>
-                                                <button type="submit" id="loginButton" class="submit_button">Login</button>
-                                            
-                                            </div>
-                                        </form>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href='/#!/register' class="btn"  type="button" id="register" >Register</a>
-                                </li>
-                            </ul>
-
+              <div class="container ">
+                  <div class="row">
+                      <!-- Logo -->
+                      <div class="logo">
+                        <a href="#!/" title="">
+                          <img ng-src="{{'/files/logo/AgronetLogo300200.jpg'}}" alt="Logo" />
+                        </a>
                       </div>
-                    <!-- </ul> -->
-                  </div>
-                </nav>
-          </div>
-    </nav>
+
+                      <!-- Top Menu -->
+                      <div class="col-md-12 margin-top-30">
+                        <div id="hornav" class="pull-right visible-lg">
+                          <ul class="nav navbar-nav">
+                            <li><a href="index.html">Search</a></li>
+                            <li><span>Sign In</span>
+                              <ul role="menu" aria-labelledby="signInMenu">
+                                  
+                                      <div ng-controller="ctrlLogin" >
+                                          <form id="login_form" ng-submit="loginUser()">
+
+                                                  <li><input class="form-control" required id="email" type="email" name="email" placeholder="email"
+                                                         ng-model="loginData.email"></li>
+
+
+                                                  <li><input class="form-control" required id="password" type="password" name="password" placeholder="Password"
+                                                         ng-model="loginData.password"></li>
+                                                  <div >
+                                                      <li><label  >Remember me:
+                                                        <input  type="checkbox" ng-model="loginData.remember_me">
+                                                      </label></li>
+                                                  </div>
+                                                  <li><button id="btn_login" class="btn-success" type="submit" >Login</button></li>
+                                              
+
+                                          </form>
+                                      </div>
+                                  </li>
+                                  <li>
+                                      <a id="btn_register"  href='/#!/register'  type="button"  >Register</a>
+                                  </li>
+                              </ul>
+                            </div>
+                            </div>
+
+
+
+                      <!-- odavde je pocelo moje -->
+                  <!--   <div class="navbar-header">
+                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>    
+                    </div>
+                    <a class="navbar-brand" href="#!/">Agronet</a>
+                    <div class="navbar-collapse collapse">
+
+                        <div class="dropdown ">
+                                <a class="header_button" type="button" id="signInMenu" data-toggle="dropdown">Sign In
+                                    <span class="caret"></span></a>
+                              
+                              <ul class="dropdown-menu dropdown_dialog" role="menu" aria-labelledby="signInMenu">
+                                  
+                                      <div ng-controller="ctrlLogin" class="row">
+                                          <form id="login_form" class="formBasic" ng-submit="loginUser()">
+
+                                              <div >
+
+                                                  <input class="inputSignIn" required id="email" type="email" name="email" placeholder="email"
+                                                         ng-model="loginData.email">
+
+
+                                                  <input class="inputSignIn" required id="password" type="password" name="password" placeholder="Password"
+                                                         ng-model="loginData.password">
+                                                  <div class="inputRememberMe">
+                                                      <label  >Remember me:
+                                                        <input  type="checkbox" ng-model="loginData.remember_me">
+                                                      </label>
+                                                  </div>
+                                                  <button type="submit" id="loginButton" class="submit_button">Login</button>
+                                              
+                                              </div>
+                                          </form>
+                                      </div>
+                                  </li>
+                                  <li>
+                                      <a href='/#!/register' class="btn"  type="button" id="register" >Register</a>
+                                  </li>
+                              </ul>
+
+                        </div>
+                      </ul> 
+                    </div>
+                  </nav> -->
+
+                  <!-- do ovde je bilo moje -->
+            </div>
+            </div>
+      <!-- </nav> -->
+      </div>
 </div>

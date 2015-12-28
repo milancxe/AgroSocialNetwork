@@ -21,6 +21,15 @@ config.fileProfilePicture=function(){
 	}
 };
 
+config.logoPath=function(){
+	if(isWin){
+		return 'C:\\work\\agronet\\user\\';
+	}else{
+		return '/home/agronetUser/data/logoPicture/';
+	}
+};
+
+
 config.paginationSize={
 	posts:10,
 	comments:10

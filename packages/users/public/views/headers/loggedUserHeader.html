@@ -1,4 +1,48 @@
+<div id="pre_header" class="visible-lg"></div>
+  <div id="header" class="container">
+    <div class="row">
+      <!-- Logo -->
+      <div class="logo">
+        <a href="#!/" title="">
+          <img ng-src="{{'/files/logo/AgronetLogo300200.jpg'}}" alt="Logo" />
+        </a>
+      </div>
+      <!-- End Logo -->
+      <!-- Top Menu -->
+      <div class="col-md-12 margin-top-30">
+        <div id="hornav" class="pull-right visible-lg">
+          <ul class="nav navbar-nav">
+            <li> <div ng-search ></div></li>
+            <li><img ng-if='user' ng-src="{{'/files/profilePicture/32/'+user.profilePicture}}" /></li>
+            <li><span ui-sref="ml.rhf.newPost">Create new</span></li>
+            <li><span>Settings</span>
+              <ul>
+                <li>
+                  <a href="#!/users/{{user._id}}/changePassword"   type="button"  >change password</a>
+                </li>
+                <li>
+                  <a ui-sref="ml.rhf.editProfile"  type="button"  >edit profile</a>
+                </li>
+                <li>
+                    <a ng-click="logoutUser()"  role= "button" ng-controller="ctrlLogout">Logout</a>
+                </li>
+              </ul>
+            </li>
+            <li><a ng-click="logoutUser()" role= "button" ng-controller="ctrlLogout">Logout</a></li>
+          </ul>       </div>
+        </div>
+        <div class="clear"></div>
+        <!-- End Top Menu -->
+      </div>
+    </div>
+    <!-- === END HEADER === -->
 
+
+
+
+
+
+<!-- Ovo ispod je bilo moje
 <div class="containter">
     <nav class="navbar-default agronet_header" role="navigation">
 
@@ -25,13 +69,13 @@
                             </div>
                               <!-- <a class="header_button" type="button" id="loggedMenu" data-toggle="dropdown">Details
                                   <span class="caret"></span></a> -->
-                                  <!-- <div> -->
+                              <!--    <div>
                                     <a id="loggedMenu" data-toggle="dropdown">
                                       <span class="glyphicon glyphicon-cog"><span class="caret caret_dropdown"></span></span>
 
                                     </a>
                                  <!--  </div> -->
-                                  <ul class="dropdown-menu dropdown_dialog_user" role="menu" aria-labelledby="loggedMenu">
+                                 <!--    <ul class="dropdown-menu dropdown_dialog_user" role="menu" aria-labelledby="loggedMenu">
                                     
                                     
 
@@ -53,4 +97,4 @@
                 </nav>
           </div>
     </nav>
-</div>
+</div> -->

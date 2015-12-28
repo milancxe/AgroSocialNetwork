@@ -35,8 +35,6 @@ exports.findPost = function( searchText,next){
 
 	console.log(re);
 	PostModel.find({title:re}).exec(function(err,foundPosts){
-		console.log('nasao sam:');
-		console.log(foundPosts);
 		next(foundPosts);
 	});
 
@@ -51,7 +49,6 @@ exports.checkUserVotedPost = function( userId,posts,next){
 
 		var markVote=function(err,markedOne){
 			counter=counter+1;
-			console.log('iz markiranja:');
 			if(markedOne){
 				var ids=posts.map(function(it) { return it._id; });
 				//trcim i trazim da li postoji lajkovan ako postoji postavim mu status
@@ -64,8 +61,6 @@ exports.checkUserVotedPost = function( userId,posts,next){
 
 			}
 			if(posts.length===counter){
-				console.log('saljeM:');
-				console.log(posts);
 				next(posts);
 			}
 			

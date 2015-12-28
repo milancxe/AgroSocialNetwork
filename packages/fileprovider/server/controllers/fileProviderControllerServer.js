@@ -241,3 +241,18 @@ exports.changeProfilePicture = function(req, res) {
 		});
 	});
 };
+
+exports.getLogo = function(req, res) {
+
+	console.log('spicio me je za prikaz logo slike');
+	var filePath = global.config.logoPath() +'/'+ req.filename;
+	var stat = fs.statSync(filePath);
+
+	res.writeHead(200, {
+		'Content-Type': 'image/jpg',
+		'Content-Length': stat.size
+	});
+
+	var readStream = fs.createReadStream(filePath);
+	readStream.pipe(res);
+};

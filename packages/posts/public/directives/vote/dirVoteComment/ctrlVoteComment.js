@@ -11,7 +11,7 @@ function($scope, Post, $stateParams, $sce, dialogs,$location){
 		$scope.$parent.post.voteComment(value,$scope.comment._id,function(response){
 			$scope.comment.scoreUp=response.scoreUp;
 			$scope.comment.scoreDown=response.scoreDown;
-			$scope.comment.upDownStatus=response.upDownStatus;
+			$scope.comment.updownStatus=response.updownStatus;
 			$scope.score=0+$scope.comment.scoreUp-$scope.comment.scoreDown;
 		});
 

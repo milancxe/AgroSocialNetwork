@@ -1,7 +1,43 @@
-<div ng-controller="ctrlOnePost">
+<div id="content" class="container" ng-controller="ctrlOnePost">
 	<div ng-if="post">
 
-		 	<div class="post_title">{{post.title}}</div>
+			<div class="row margin-top-30">
+		 		<div class="col-md-12 text-center"><h2>{{post.title}}</h2></div>
+		 	</div>
+
+			<div ng-Image-Galery all-images="images" videos="videos" ng-if="images"></div>
+
+			<div class="score">
+				{{score}}
+
+				<a class="" href="" ng-click="voteUp()">
+						<i ng-show="post.updownStatus!==1" class="glyphicon glyphicon-arrow-up"></i>
+						<i ng-show="post.updownStatus==1" class="glyphicon glyphicon-arrow-up voted_color"></i>
+				</a>
+								<!-- <span ng-if="post.updownStatus==1">*</span> -->
+				<a class="" href="" ng-click="voteDown()">
+						<i ng-show="post.updownStatus!==2" class="glyphicon glyphicon-arrow-down "></i>
+						<i ng-show="post.updownStatus==2" class="glyphicon glyphicon-arrow-down voted_color"></i>
+				</a>
+							<!-- <span ng-if="post.updownStatus==2">*</span> -->
+			</div>
+
+
+			<div class="row margin-top-30 text-center"><h3> {{post.description}}</h3></div>
+			
+
+
+
+			<div ng-Comments post='post' ></div>
+	</div>
+</div>
+
+<!--
+moje staro:
+ <div ng-controller="ctrlOnePost">
+	<div ng-if="post">
+
+		 	<div class="post_title">{{post.title}}nes</div>
 		 	
 
 			<div ng-Image-Galery all-images="images" videos="videos" ng-if="images"></div>
@@ -12,14 +48,14 @@
 				<a class="btn" href="" ng-click="voteUp()">
 						<i ng-if="post.updownStatus!==1" class="glyphicon glyphicon-arrow-up"></i>
 						<i ng-if="post.updownStatus==1" class="glyphicon glyphicon-arrow-up voted_color"></i>
-				</a>
+				</a> -->
 								<!-- <span ng-if="post.updownStatus==1">*</span> -->
-				<a class="btn" href="" ng-click="voteDown()">
+<!-- 				<a class="btn" href="" ng-click="voteDown()">
 						<i ng-if="post.updownStatus!==2" class="glyphicon glyphicon-arrow-down "></i>
 						<i ng-if="post.updownStatus==2" class="glyphicon glyphicon-arrow-down voted_color"></i>
-				</a>
+				</a> -->
 							<!-- <span ng-if="post.updownStatus==2">*</span> -->
-			</div>
+<!-- 			</div>
 
 
 			<div class="post_description"> {{post.description}}</div>
@@ -29,4 +65,4 @@
 
 			<div ng-Comments post='post' ></div>
 	</div>
-</div>
+</div> -->

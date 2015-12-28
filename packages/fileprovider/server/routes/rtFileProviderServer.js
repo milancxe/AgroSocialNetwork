@@ -15,7 +15,8 @@ module.exports = function(app) {
 	app.route('/files/post/:fileSize/:filename')
         .get(fileprovider.getPostImage);
 
-
+    app.route('/files/logo/:filename')
+        .get(fileprovider.getLogo);
 
     app.route('/files/uploadImage')
         .post(/*auth.requiresLogin,*/ hasAuthorization, fileprovider.uploadImage);
