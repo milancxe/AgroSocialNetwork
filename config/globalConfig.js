@@ -3,7 +3,7 @@
 var config = {};
 var isWin = /^win/.test(process.platform);
 config.mode=process.env.AGRONET_ENV==='production'?'production':'dev';
-config.port='3000';
+config.port=process.env.AGRONET_PORT?process.env.AGRONET_PORT:'3000';
 
 config.filePathPostImage=function(){
 	if(isWin){
