@@ -27,11 +27,6 @@ var paths = {
 	'!node_modules/**',
 	'packages/**/*.css',
 	'packages/**/*.less'
-	],
-	jpg: [
-	'!bower_components/**',
-	'!node_modules/**',
-	'packages/**/*.jpg'
 	]
 };
 
