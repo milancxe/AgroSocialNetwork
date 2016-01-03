@@ -1,6 +1,6 @@
 'use strict';
 
-var assetsBower = require('./config/assetsBower.js');
+var assetsBower = require(__dirname+'/config/assetsBower.js');
 
 var paths = {
 	jsPublic:[
@@ -46,6 +46,7 @@ grunt.initConfig({
 	env : {
 		agronet : {
 			AGRONET_ENV : process.argv[2]==='production'?'production':'dev'
+			AGRONET_PORT : grunt.option('port')?grunt.option('port'):'3000'
 		}
 	},
 	watch: {
