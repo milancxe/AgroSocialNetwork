@@ -1,41 +1,47 @@
-<div>
+<div id="content" class="container">
+    <div class="row margin-vert-30">
+        <div class="col-md-6 col-md-offset-3 col-sm-offset-3">
+
     <div class="alert alert-danger animated fadeIn" ng-show="error.general">{{error.general}}</div>
-    <form id="register_form" class="register_form" ng-submit="editProfileData()">
-        <h1>Edit Your Details</h1>
-        <div class="">
+    <form class="login-page"  ng-submit="editProfileData()">
+            <div class="login-header margin-bottom-30">
+                <h2>Edit your Profile</h2>
+            </div>
+
             <label class="">Username</label>
-            <input required id="username" type="text" name="username" placeholder="Username"
+            <input  class="form-control margin-bottom-20" required id="username" type="text" name="username" placeholder="Username"
                    ng-model="editUser.username">
             <div ng-show="error.username">{{error.username}}</div>
-        </div>
 
-        <div class="">
+
             <label class="">First name</label>
-            <input required id="firstName" type="text" name="firstName" placeholder="First name"
+            <input class="form-control margin-bottom-20" required id="firstName" type="text" name="firstName" placeholder="First name"
                    ng-model="editUser.firstName">
             <div ng-show="error.firstName" >{{error.firstName}}</div>
-        </div>
 
-        <div class="">
-            <label class="col-lg-2 control-label">Last name</label>
-            <input required id="lastName" type="text" name="lastName" placeholder="Last name"
+            <label class="">Last name</label>
+            <input class="form-control margin-bottom-20" required id="lastName" type="text" name="lastName" placeholder="Last name"
                    ng-model="editUser.lastName">
 
             <div ng-show="error.lastName" >{{error.lastName}}</div>
-        </div>
+
         <div>
         <label class="">Profile picture:</label>
+        <div class="row">
             <img ng-src="{{'/files/profilePicture/160/'+editUser.profilePicture}}" />
-            <div class="change_profile_picture">
+            </div>
+            <div class="btn btn-default" style="margin-top:20px">
                 <a role="button" href="#!/users/{{user._id}}/changeProfilePicture">Change Profile Picture</a>
             </div>
         </div>
 
 
-        <div class="">
-            <button type="submit" class="button submit_button button_submit">Save</button>
+        <div style="margin-top:20px">
+            <button type="submit" class="btn btn-success">Save</button>
         </div>
 
     </form>
 
+</div>
+</div>
 </div>

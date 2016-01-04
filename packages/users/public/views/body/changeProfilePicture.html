@@ -1,33 +1,41 @@
-<div id="register_form" class="register_form text-center">
-    <h1> Change your profile picture</h1>
-	<div class="">
-		<img ng-src="{{'/files/profilePicture/160/'+user.profilePicture}}" />
-	</div>
+<div id="content" class="container">
+    <div class="row margin-vert-30">
+        <div class="col-md-6 col-md-offset-3 col-sm-offset-3">
+        <div class="login-header margin-bottom-30">
+                <h2>Change your profile picture</h2>
+         </div>
 
-    <div class="">
-            <!-- <input type="file" nv-file-select="" uploader="uploader" accept="image/*"/><br/> -->
-            <label>Select new picture</label>
-            <div class="fileUpload btn button">
-                    <span>Browse</span>
-                    <input id="uploadBtn" type="file" class="upload" nv-file-select="" uploader="uploader" accept="image/*"/>
-                </div>
-            <ul>
-                <li ng-repeat="item in uploader.queue">
-                    Name: <span ng-bind="item.file.name"></span><br/>
-                    <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
-                    <div class="progress" style="margin-bottom: 0;">
-                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+    	<div class="">
+    		<img ng-src="{{'/files/profilePicture/484/'+user.profilePicture}}" />
+    	</div>
+
+            <div class="">
+                <!-- <input type="file" nv-file-select="" uploader="uploader" accept="image/*"/><br/> -->
+                <label >Select new picture</label>
+                <div class="fileUpload btn btn-default" style="margin-top:20px">
+                        <span>Browse</span>
+                        <input id="uploadBtn" type="file" class="upload" nv-file-select="" uploader="uploader" accept="image/*"/>
                     </div>
-                    <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
-                        <span class="glyphicon glyphicon-trash"></span> Remove
-                    </button>
-                </li>
-            </ul>
-            <div ng-if="uploader.queue" class="progress" style="margin-bottom: 0;">
-                <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }" style="width: 0%;"></div>
-            </div>
-            <div class="alert alert-danger animated fadeIn" ng-show="error.multipleImages">{{error.multipleImages}}</div>
-            <button type="button" class="button submit_button button_submit" ng-click="ChangeProfilePicture()"> Change Picture </button>
+                <ul>
+                    <li ng-repeat="item in uploader.queue">
+                        Name: <span ng-bind="item.file.name"></span><br/>
+                        <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+                        <div class="progress" style="margin-bottom: 0;">
+                                <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                        </div>
+                        <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                            <span class="glyphicon glyphicon-trash"></span> Remove
+                        </button>
+                    </li>
+                </ul>
+                <div ng-if="uploader.queue" class="progress" style="margin-bottom: 0;">
+                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }" style="width: 0%;"></div>
+                </div>
+                <div class="alert alert-danger animated fadeIn" ng-show="error.multipleImages">{{error.multipleImages}}</div>
+                <button type="button" class="button btn btn-success" style="margin-top:20px" ng-click="ChangeProfilePicture()"> Change Picture </button>
 
-    </div> 
+            </div> 
+        </div>
+    </div>
 </div>
+

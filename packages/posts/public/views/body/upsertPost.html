@@ -1,4 +1,87 @@
-<div ng-init="init()">
+<div id="content" class="container">
+    <div class="row margin-vert-30">
+        <div class="col-md-10 col-md-offset-1 col-sm-offset-1" ng-init="init()">
+
+	<form id="" class="signup-page" ng-submit="savePost()">
+	        <div class="signup-header">
+                    <h2>Create New Post</h2>
+                </div>
+	        
+	            <label class="">Title</label>
+	            <input class="form-control margin-bottom-20" required id="title" type="text" name="title" placeholder="Title"
+	                   ng-model="post.title">
+	            <div ng-show="error.title">{{error.title}}</div>
+	        
+
+	        
+	            <label class="">Description</label>
+	            <div class="row margin-bottom-20">
+		            <textarea class="col-md-8 col-md-offset-0" required id="description" type="text" name="description" placeholder="Description"
+		                   ng-model="post.description"></textarea>
+		            <div ng-show="error.description">{{error.description}}</div>
+	        	</div>
+
+	        
+        	<div class="" ng-if='!create'>
+				<div class="" ng-repeat="image in post.postImage">
+					<img ng-src="{{'/files/post/160/'+image}}" />
+					<button type="button" class="btn btn-danger btn-xs" ng-click="removeImage(image)">
+                            <span class="glyphicon glyphicon-trash"></span> Remove Image
+                    </button>
+				</div> 
+			</div>
+        
+
+		    <div>
+		       <!--  <input type="file" nv-file-select="" uploader="uploader" accept="image/*" multiple/><br/> -->
+		        <div class="fileUpload btn button btn-primary">
+                    <span>Browse</span>
+                    <input id="uploadBtn" type="file" class="upload" nv-file-select="" uploader="uploader" accept="image/*" multiple/>
+                </div>
+		        <ul>
+		            <li ng-repeat="item in uploader.queue">
+		                Name: <span ng-bind="item.file.name"></span><br/>
+		                <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+		                <div class="progress" style="margin-bottom: 0;">
+	                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+	                    </div>
+	                    <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                            <span class="glyphicon glyphicon-trash"></span> Remove
+                        </button>
+		            </li>
+		        </ul>
+		        <!-- <div class="progress" style="margin-bottom: 0;">
+	                <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }" style="width: 0%;"></div>
+	            </div> -->
+		    </div> 
+		    <div class="form-group row">
+	            <label for="contentVideo" class="">Add Video to your post</label>
+	            <div class="">
+	                <input name="contentVideo" type="text" data-ng-model="contentVideoAddress" class="form-control margin-bottom-20"id="contentVideo" placeholder="Youtube link">
+	                <a class="col-md-10 btn" data-ng-click="addVideo()">
+	                    <i class="glyphicon glyphicon-plus">Add Video to your post</i>
+	                </a>
+	                <ul class="col-md-6"> 
+
+	                    <li ng-repeat="video in post.contentVideo"  >
+	                        <div ng-youtube-video video-id="{{video.id}}"></div>
+	                        <a class="btn" data-ng-click="removeVideo(video.index)">
+	                            <i class="glyphicon glyphicon-trash"></i>
+	                        </a>
+	                    </li>
+	                </ul>
+	            </div>
+        	</div>
+	        
+
+	        
+	        <button type="submit" class="btn btn-success">Create Post</button>
+	        
+	    </form>
+	    </div>
+	    </div>
+
+<!-- <div ng-init="init()">
 	<form id="create_post_form" class="create_post_form" ng-submit="savePost()">
 	        <h1>Create new post</h1>
 	        <div class="">
@@ -28,7 +111,7 @@
 
 		    <div>
 		       <!--  <input type="file" nv-file-select="" uploader="uploader" accept="image/*" multiple/><br/> -->
-		        <div class="fileUpload btn button">
+		      <!--   <div class="fileUpload btn button">
                     <span>Browse</span>
                     <input id="uploadBtn" type="file" class="upload" nv-file-select="" uploader="uploader" accept="image/*" multiple/>
                 </div>
@@ -43,11 +126,11 @@
                             <span class="glyphicon glyphicon-trash"></span> Remove
                         </button>
 		            </li>
-		        </ul>
+		        </ul> -->
 		        <!-- <div class="progress" style="margin-bottom: 0;">
 	                <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }" style="width: 0%;"></div>
 	            </div> -->
-		    </div> 
+		  <!--  </div> 
 		    <div class="form-group">
 	            <label for="contentVideo" class="">Add Video to your post</label>
 	            <div class="create_form_video_container">
@@ -73,4 +156,5 @@
 	        </div>
 	    </form>
 
+</div> -->
 </div>

@@ -1,16 +1,47 @@
-<div>
-	 On this page user details will be shown
+<div id="content" class="container">
+    <div class="row margin-vert-30">
+
+
+    	<div class="col-md-10 login-header margin-bottom-30 text-center">
+                <h2>User Information</h2>
+         </div>
+        <div class="col-md-3 col-md-offset-2 col-sm-offset-1">
+			
+			
+        <table style="width:100%">
+		  <tr>
+		    <th>First Name:</th>
+		    <td>{{user.firstName}}</td>
+		  </tr>
+		  <tr>
+		    <th >Last Name:</th>
+		    <td>{{user.lastName}}</td>
+		  </tr>
+		  <tr>
+		    <th >Username:</th>
+		    <td>{{user.username}}</td>
+		  </tr>
+
+		</table>
+	 <!-- On this page user details will be shown
+	 {{user}}
 	 firstName:{{user.firstName}}
-	 {{user.lastName}}
-	 {{user.username}}
-	<img ng-if="user"img ng-src="{{'/files/profilePicture/160/'+user.profilePicture}}" />
-</div>
-<div>
-	<a ng-click="getCreatedPosts()" class="btn btn default">Created Posts</a>
-	<a ng-click="getVotedPosts()" class="btn btn default">Voted Posts</a>
-	<a ng-click="getCommentedPosts()" class="btn btn default">Commented Posts</a>
-<div>
-<div>
+	 {{user.lastName}} -->
+	 </div>
+	 <div class="col-md-3">
+		<img ng-if="user"img ng-src="{{'/files/profilePicture/160/'+user.profilePicture}}" />
+
+	</div>
+	</div>
+
+	<row  class="col-md-10  text-center">
+	
+		<a ng-click="getCreatedPosts()" class="btn btn-default">Created Posts</a>
+		<a ng-click="getVotedPosts()" class="btn btn-default">Voted Posts</a>
+		<a ng-click="getCommentedPosts()" class="btn btn-default">Commented Posts</a>
+	
+	</div>
+<div class="col-md-10">
 	<h4 class="text-center">Posts</h4 class="row">
 	
     <!--Body content-->
@@ -22,4 +53,7 @@
     <div>
     	<a href="" ng-if="showLoadMore" class="btn btn default" ng-click="loadMore()">load more posts</a>
 	</div>
+</div>
+</div>
+</div>
 </div>
