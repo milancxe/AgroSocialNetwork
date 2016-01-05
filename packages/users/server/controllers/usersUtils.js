@@ -25,7 +25,7 @@ exports.findPostsVotedByUser = function( userId,lastId,next){
 		   	}
 		   	var pom =ids.slice(index,endVal);
 		   		
-		   	PostModel.find({'_id':{$in : pom}}).limit(global.config.paginationSize.posts).sort('-created').exec(function(err,posts){ 
+		   	PostModel.find({'_id':{$in : pom}}).populate({path:'author',model:'UserModel'}).limit(global.config.paginationSize.posts).sort('-created').exec(function(err,posts){ 
 
 		     	next(posts);
 		   	});
@@ -53,7 +53,7 @@ exports.findPostsCommentedByUser = function( userId,lastId,next){
 		   	}
 		   	var pom =ids.slice(index,endVal);
 
-		   	PostModel.find({'_id':{$in : pom}}).limit(global.config.paginationSize.posts).sort('-created').exec(function(err,posts){ 
+		   	PostModel.find({'_id':{$in : pom}}).populate({path:'author',model:'UserModel'}).limit(global.config.paginationSize.posts).sort('-created').exec(function(err,posts){ 
 		    	next(posts);
 		   	});
 	});

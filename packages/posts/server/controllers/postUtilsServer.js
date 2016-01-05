@@ -34,7 +34,7 @@ exports.findPost = function( searchText,next){
 	var re = new RegExp('.*'+searchText+'.*','i');
 
 	console.log(re);
-	PostModel.find({title:re}).exec(function(err,foundPosts){
+	PostModel.find({title:re}).populate({path:'author',model:'UserModel'}).exec(function(err,foundPosts){
 		next(foundPosts);
 	});
 
