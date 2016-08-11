@@ -35,32 +35,31 @@ module.exports = function(app) {
   	});
   });
 
-  // Use local strategy
-  passport.use(new LocalStrategy({
-  	usernameField: 'email',
-  	passwordField: 'password'
-  },function(email, password, done) {
-    console.log('trazim u local strategiji');
-  	UserCredentialModel.findOne({
-  		email: email
-  	}).populate('user').exec(function(err, userCredential) {
-  		if (err) {
-  			return done(err);
-  		}
-  		if (!userCredential) {
-  			return done(null, false, {
-  				message: 'Unknown user'
-  			});
-  		}
-  		if (!userCredential.authenticate(password)) {
-  			return done(null, false, {
-  				message: 'Invalid password'
-  			});
-  		}
-  		return done(null, userCredential.user);
-  	});
-  }
-  ));
+    // Use local strategy
+    passport.use(new LocalStrategy({
+    	usernameField: 'email',
+    	passwordField: 'password'
+    },function(email, password, done) {
+      	UserCredentialModel.findOne({
+      		email: email
+      	}).populate('user').exec(function(err, userCredential) {
+      		if (err) {
+      			return done(err);
+      		}
+      		if (!userCredential) {
+      			return done(null, false, {
+      				message: 'Unknown user'
+      			});
+      		}
+      		if (!userCredential.authenticate(password)) {
+      			return done(null, false, {
+      				message: 'Invalid password'
+      			});
+      		}
+      		return done(null, userCredential.user);
+      	});
+      }
+    ));
 
     //Use RememberMe Strategy
     passport.use(new RememberMeStrategy(

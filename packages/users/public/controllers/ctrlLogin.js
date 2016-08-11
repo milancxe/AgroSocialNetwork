@@ -15,7 +15,6 @@ function($scope, $rootScope, $state , $stateParams, User,$http){
                 remember_me: $scope.loginData.remember_me
             }).success(function (response) {
                     
-                    
                     $scope.loginError = 0;
                     var loggedUser = new User(response.user);
                     $rootScope.user = loggedUser;

@@ -20,7 +20,6 @@ module.exports = function (app) {
                     if (!err){
                         res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 604800000 });
                     }
-                    //TODO show error
                 });
             }
             res.send({
@@ -30,7 +29,6 @@ module.exports = function (app) {
 
     app.route('/loggedin')
     .get(function (req, res) {
-
 		try{        
 	        if(req.isAuthenticated()){
 	            res.send(200,req.user);

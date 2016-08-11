@@ -51,8 +51,6 @@ var CommentModel= new Schema({
         }
 
     }]
-
-
 });
 
 mongoose.model('CommentModel', CommentModel);

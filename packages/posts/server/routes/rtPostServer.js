@@ -43,6 +43,11 @@ module.exports = function (app) {
 
     app.route('/posts/:postId/comment/:commentId/voteReply')
         .post(auth.requiresLogin,comments.voteOnReplyComment);
+    
+    app.route('/posts/giveMeBestFive')
+        .post(posts.giveMeBestFive);
+
+
 
     app.param('postId', posts.post);
     app.param('commentId',comments.comment);

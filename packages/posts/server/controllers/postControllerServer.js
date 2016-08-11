@@ -41,6 +41,18 @@ exports.getAllPosts=function(req,res){
 
 };
 
+exports.giveMeBestFive=function(req,res){
+
+	var lastId= req.body.lastId ? req.body.lastId : null ;
+	var userId = req.user ? req.user._id :null;
+	postUtils.giveMeBestFive(userId, lastId ,function(posts){
+
+		res.send(200,posts);
+
+	}); 
+
+};
+
 exports.createPost = function (req, res, next) {
 
 
@@ -125,12 +137,10 @@ exports.searchPosts = function(req,res,next){
 };
 
 exports.voteOnPost = function(req,res,next){
-
 	//check to see If I already voted on post
 	PostVoteModel.findOne({post:req.post,author:req.user}).exec(function(err, postVote){
 		if (err) res.send(500);
 		var updownStatus={};
-		//console.log(postVote.voteValue);
 		if (postVote){
 			if(postVote.voteValue===req.body.voteType){
 				postVote.remove();

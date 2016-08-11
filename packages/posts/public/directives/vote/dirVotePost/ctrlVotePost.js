@@ -6,9 +6,6 @@ angular.module('agronet.posts')
 .controller('ctrlVotePost',['$scope', 'Post', '$stateParams', '$sce', 'dialogs','$location',
 function($scope, Post, $stateParams, $sce, dialogs,$location){
 
-	console.log('I should vote on post:');
-	console.log($scope.post);
-
 	$scope.score=0+$scope.post.scoreUp-$scope.post.scoreDown;
 
 

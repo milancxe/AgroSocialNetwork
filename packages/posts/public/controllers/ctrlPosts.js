@@ -19,6 +19,16 @@ angular.module('agronet.posts')
 			}
 		});
 
+		new Post().giveMeBestFive(null,function(bestFive){
+
+			$scope.bestFive=bestFive;
+			if(bestFive.length===10){
+				$scope.showLoadMore=true;
+			}else{
+				$scope.showLoadMore=false;
+			}
+		});
+
 
 		$scope.loadMore=function(){
 

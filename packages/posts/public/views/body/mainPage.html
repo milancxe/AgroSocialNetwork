@@ -7,12 +7,21 @@
             
             <!--Body content-->
             <div class="row margin-vert-30">
-                <div class="col-md-9">
-                    <ul class="ul">
-                        <li ng-repeat="post in allPosts">
-                            <div ng-show-small-post post="post" all-posts="allPosts"/>
-                        </li>
-                    </ul>
+                    <div class="col-md-8">
+                        <ul class="ul">
+                            <li ng-repeat="post in allPosts">
+                                <div ng-show-small-post post="post" all-posts="allPosts"/>
+                            </li>
+                        </ul>
+                    </div>
+                <div class="col-md-4" style="padding-top:10px;">
+                <div class="panel-title" ></div>
+                        <ul class="ul">
+                            <li ng-repeat="post in bestFive">
+                                <div ng-sidebar-challenge post="post" all-posts="bestFive"/>
+
+                            </li>
+                        </ul>
                 </div>
             </div>
         </div>
@@ -20,22 +29,3 @@
     <a href="" ng-if="showLoadMore" class="btn btn-primary" ng-click="loadMore()">load more posts</a>
     </div>
 </div> 
-
-
-<!-- moje staro: -->
-<!-- <div class="containter">
-
-        <div>
-			<div class="main_title">Posts of other people</div>
-			
-            <!--Body content-->
-            <!-- <ul class="ul">
-                <li ng-repeat="post in allPosts">
-                    <div ng-show-small-post post="post" all-posts="allPosts"/>
-                </li>
-            </ul>
-        </div>
-    <div>
-    <a href="" ng-if="showLoadMore" class="btn btn default" ng-click="loadMore()">load more posts</a>
-	</div>
-</div> -->

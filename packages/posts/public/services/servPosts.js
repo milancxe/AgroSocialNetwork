@@ -93,6 +93,13 @@ angular.module('agronet.posts').factory('Post', ['$resource','$http','$state',
             });
         };
 
+        PostResource.prototype.giveMeBestFive=function(lastId,next){
+            $http.post('posts/giveMeBestFive',{lastId:lastId})
+            .success(function(data,status,headers,config){
+                if(next) next(data);
+            });
+        };
+
         return PostResource;
 	}
 ]);

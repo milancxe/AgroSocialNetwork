@@ -22,10 +22,22 @@ exports.findAllPostsByCreation=function( userId,lastId,next){
 				next(checkedPosts);
 			});
 	});
+};
+
+
+exports.giveMeBestFive=function( userId,lastId,next){
+
+	var findCriteria={$where:'this.scoreUp>this.scoreDown'};
+	console.log(findCriteria);
+	PostModel.find(findCriteria).populate({path:'author',model:'UserModel'}).limit(5).exec(function(err,foundPosts){
+		console.log(foundPosts);
+		next(foundPosts);
+	});
 	
 
 
 };
+	
 
 exports.findPost = function( searchText,next){
 
